@@ -9,10 +9,10 @@ services:
     container_name: webserver
     hostname: webserver
     ports:
-      - "8090:8080"
+      - "8080:8080"
       - "8000:8000"
-    links:
-      - mypostgres:postgresdb
+#    links:
+#      - mypostgres:postgresdb
     networks:
       - main
 
@@ -25,14 +25,12 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - type: volume
-        source: psql_data
-        target: /var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     networks:
       - main
 
 volumes:
-  psql_data:
+  db-data:
 
 networks:
   main:

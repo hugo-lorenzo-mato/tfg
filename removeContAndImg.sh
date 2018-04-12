@@ -11,7 +11,7 @@ docker rm $(docker ps -a -q) -f
 echo ""
 echo ""
 echo ""
-docker rmi $(docker images -q)
+docker rmi $(docker images -q) -f
 echo ""
 echo ""
 echo ""
