@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+
+  mytomcat:
+    build:
+      context: ./appserver
+    image: webserver
+    container_name: webserver
+    hostname: webserver
+    ports:
+      - "8090:8080"
+      - "8000:8000"
+    links:
+      - mypostgres:postgresdb
+    networks:
+      - main
+
+  mypostgres:
+    build:
+      context: ./database
+    image: postgresdb
+    container_name: postgresdb
+    hostname: postgresdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - type: volume
+        source: psql_data
+        target: /var/lib/postgresql/data
+    networks:
+      - main
+
+volumes:
+  psql_data:
+
+networks:
+  main:
