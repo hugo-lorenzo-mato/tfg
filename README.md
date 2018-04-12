@@ -1,5 +1,3 @@
-﻿###### Este proyecto utiliza como base el código de FILO1701
-
 # Plataforma base
 
 ## Prerequisitos
@@ -64,4 +62,17 @@
         * La conexión a la base de datos se encuentra en el archivo `/WEB-INF/classes/config/application-prod.yml` y los logs en `/WEB-INF/classes/logback-spring.xml`.
     * Para actualizaciones:
         * Desplegar el nuevo war manteniendo la carpeta `/upload` y los archivos: `/WEB-INF/classes/config/application-prod.yml`, `/WEB-INF/classes/logback-spring.xml`.
+
+
+# Docker-compose
+
+## Script borrado imágenes y contenedores
+
+* `sudo sh removeCOMPLETO.sh`: elimina todas las imágenes y contenedores.
+* `sudo sh removeNObasicas.sh`: NO elimina las imágenes iniciales como tomcat y postgres.
+
+## Lanzar Docker
+
+* `docker-compose up --build`
+* `docker-compose stop`
 
