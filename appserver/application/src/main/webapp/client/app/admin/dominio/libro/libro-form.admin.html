@@ -1,0 +1,631 @@
+<form name="form" role="form" ng-submit="ctrl.save()" novalidate>
+    <div class="form-body">
+
+        <!-- Categoría: Tabla selección única enumerado -->
+        <!-- Prescindimos de ella hasta que devuelvan feedback de primera entrega
+        <div class="row">
+
+            <h5 class="col-sm-12 col-sm-offset-0" id="primeraFila">{{'admin.prototexto.form.categoria' | translate}}</h5>
+            -->
+        <!--Tipo-->
+        <!--
+        <div class="col-sm-5 ">
+            <div class="form-group">
+                <enum-select id="tipo" label="admin.libro.form.tipo" model="ctrl.item.tipo"
+                             options="ctrl.tipos" base="enum.tipo-libro" required="false"></enum-select>
+            </div>
+        </div>
+
+    </div>
+    -->
+        <!-- Genero y asunto: Tablas de selección única; enumerado -->
+        <div class="row">
+
+            <h5 class="col-sm-12" id="primeraFila">{{'admin.prototexto.form.analiticos' | translate}}</h5>
+
+            <!--Genero-->
+
+            <div class="col-sm-3">
+                <div class="form-group col-sm-12">
+                    <enum-select id="genero" label="admin.prototexto.form.genero" model="ctrl.item.genero"
+                                 options="ctrl.genero" base="enum.genero" required="false"></enum-select>
+                </div>
+            </div>
+
+
+            <!-- Assunto -->
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <enum-select id="assunto" label="admin.prototexto.form.assunto" model="ctrl.item.assunto"
+                                 options="ctrl.assunto" base="enum.assunto" required="false"></enum-select>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Resumen: textarea -->
+        <div class="row">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label-form key="admin.prototexto.form.resumo" for="resumo" required="false" class="col-sm-12"></label-form>
+                        <text-area model="ctrl.item.resumo" id="resumo" required="false" class="col-sm-12"/></texta-rea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Titulo -->
+        <div class="row">
+            <h5 class="col-sm-12 col-sm-offset-0">{{'admin.prototexto.form.descriptivos' | translate}}</h5>
+
+            <!--Titulo-->
+
+            <div class="col-sm-12 ">
+                <div class="form-group">
+                    <label-form key="admin.libro.form.titulo" for="titulo" required="true"></label-form>
+                    <input class="form-control" id="titulo" type="text" ng-model="ctrl.item.titulo" required>
+                </div>
+            </div>
+        </div>
+
+        <!--Autoria / CDU-->
+        <div class="row">
+
+            <div class="col-sm-5 ">
+                <div class="form-group">
+                    <label-form key="admin.libro.form.autoria" for="autoria" required="false"></label-form>
+                    <input class="form-control" id="autoria" type="text" ng-model="ctrl.item.autoria">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label-form key="admin.libro.form.cdu" for="cdu" required="false"></label-form>
+                    <input class="form-control" id="cdu" type="text" ng-model="ctrl.item.cdu">
+                </div>
+            </div>
+
+            <!-- Repositorio -->
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label-form key="admin.libro.form.repositorio" for="repositorio" required="false"></label-form>
+                    <input class="form-control" id="repositorio" type="text" ng-model="ctrl.item.repositorio">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--Fecha primera edicion libro-->
+        <div class="row">
+            <div class="col-sm-6">
+                <fecha model="ctrl.item" prefijo="publicacion"></fecha>
+            </div>
+        </div>
+
+
+        <!-- ************** Diferenciamos en función si la categoría es una edición o un capítulo ************** -->
+        <!-- ************** TODO: tratar de aclarar con ellos estos campos. Al final, todavía sin feedback, optamos por
+        ******************* TODO: mostrar las dos quitando los ng-if en función de la categoría **************** -->
+
+        <!-- Si se trata de una edición, entonces nuevas opciones a cubrir -->
+        <div class="row">
+            <div class="col-sm-12  espacioCitas">
+                <div class="form-group">
+                    <div> <!--ng-if="ctrl.item.tipo === 'EDISAO'"-->
+                        <list-form acordeon="true" label="admin.libro.form.libroEdiciones" list="ctrl.item.ediciones"
+                                   resolve="{openPaisModal: ctrl.openPaisModal,
+                                             paisService: ctrl.paisService,
+                                             openCiudadModal: ctrl.openCiudadModal,
+                                             ciudadService: ctrl.ciudadService,
+                                             openAgenteModal:ctrl.openAgenteModal,
+                                             agenteService:ctrl.agenteService,
+                                             openOrganizacionModal:ctrl.openOrganizacionModal,
+                                             organizacionService:ctrl.organizacionService,
+                                             openFuncionAgenteModal:ctrl.openFuncionAgenteModal,
+                                             funcionAgenteService:ctrl.funcionAgenteService,
+                                             openFuncionOrganizacionModal:ctrl.openFuncionOrganizacionModal,
+                                             funcionOrganizacionService:ctrl.funcionOrganizacionService,
+                                             openTipologiaModal:ctrl.openTipologiaModal,
+                                             tipologiaService: ctrl.tipologiaService}"
+                                   required="false"
+                                   template-url="libro.edicion.html">
+                        </list-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Si se trata de un capítulo, entonces nuevas opciones a cubrir -->
+        <div class="row">
+
+            <div class="col-sm-12  espacioCitas">
+                <div class="form-group">
+                    <div> <!--ng-if="ctrl.item.tipo === 'CAPITULO'"-->
+                        <list-form acordeon="true" label="admin.libro.form.libroCapitulos" list="ctrl.item.capitulos"
+                                   resolve="{openAgenteModal:ctrl.openAgenteModal,
+                                             agenteService:ctrl.agenteService,
+                                             openFuncionAgenteModal:ctrl.openFuncionAgenteModal,
+                                             funcionAgenteService:ctrl.funcionAgenteService}"
+                                   required="false"
+                                   template-url="seg.html">
+                        </list-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ************** FIN Diferenciamos en función si la categoría es una edición o un capítulo ************** -->
+
+        <!-- Contiene: checkbox múltiple -->
+        <div class="row" id="multipleSuperior">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.contem" for="contem" required="false"></label-form>
+                    <span class="icon glyphicon glyphicon-question-sign"
+                          uib-tooltip="{{'admin.prototexto.form.contemTip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                             </span>
+                    <div class="check-box col-sm-12" id="contem">
+                        <label key="admin.prototexto.form.iconografia" class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox" ng-model="ctrl.item.iconografia" id="iconografia" class="col-sm-2 ">{{'admin.prototexto.form.iconografia' | translate}}
+                        </label>
+                        <label key="admin.prototexto.form.rasuras"class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox"  ng-model="ctrl.item.rasuras" class="col-sm-2 ">{{'admin.prototexto.form.rasuras' | translate}}
+                        </label>
+                        <label key="admin.prototexto.form.sublinhado"class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox"  ng-model="ctrl.item.sublinhado" class="col-sm-2 ">{{'admin.prototexto.form.sublinhado' | translate}}
+                        </label>
+                        <label key="admin.prototexto.form.anotasoes" class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox"   ng-model="ctrl.item.anotasoes">{{'admin.prototexto.form.anotasoes' | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista citas a producción pasiva -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <list-form acordeon="true" label="admin.prototexto.form.citaPrototextos" list="ctrl.item.citasLibro"
+                               resolve="{citaLibroService: ctrl.citaLibroService}"
+                               template-url="libro.citaLibro.html">
+                    </list-form>
+                    <script type="text/ng-template" id="libro.citaLibro.html">
+                        <!-- Cita produccion pasiva -->
+                        <div class="row col-sm-12">
+                            <!-- referenciaPasivo -->
+                            <div class="col-sm-4 ">
+                                <div class="form-group">
+                                    <label-form key="admin.citaPrototexto.form.referenciaPasivo" for="referenciaPasivo_{{$index}}" required="false"></label-form>
+                                    <input class="form-control" id="referenciaPasivo_{{$index}}" ng-model="element.referenciaPasivo">
+                                </div>
+                            </div>
+
+                            <!--Página de inicio de la citaPrototexto -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label-form key="admin.citaPrototexto.form.paginaIniCitado" for="paginaIniCitado_{{$index}}"></label-form>
+                                    <input class="form-control" type="number" id="paginaIniCitado_{{$index}}" ng-model="element.paginaIniCitado">
+                                </div>
+                            </div>
+
+                            <!--Página de fin de la citaPrototexto -->
+                            <div class="col-sm-3 form-group">
+                                <div class="form-group">
+                                    <label-form key="admin.citaPrototexto.form.paginaFinCitado" for="paginaFinCitado_{{$index}}"></label-form>
+                                    <input class="form-control" type="number" id="paginaFinCitado_{{$index}}" ng-model="element.paginaFinCitado">
+                                </div>
+                            </div>
+
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campos comunes a todas las clases: subidaPrototextos de ficheros y temas administracion-->
+        <div class="row" id="subidaDocumentos">
+            <h5 class="col-sm-11">{{'admin.prototexto.form.camposDocumentais' | translate}}</h5>
+            <div class="col-sm-4">
+                <div class="form-group col-sm-12">
+
+                    <div class="row col-sm-12">
+                        <!--Documento digital completo (jpg, tif, pdf,...)-->
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.digitalCompleto" for="digitalCompleto"></label-form>
+                                <file-upload archivo="ctrl.item.completoPath" archivo-temporal="ctrl.item.completoTmp"
+                                             id="digitalCompleto" accept="" url="{{ctrl.urlBaseCompleto}}"></file-upload>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Documento transcripción (txt, doc, odt, rtf,...)-->
+                    <div class="row col-sm-12">
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.transcripcion" for="transcripcion"></label-form>
+                                <file-upload archivo="ctrl.item.transcripcionPath" archivo-temporal="ctrl.item.transcripcionTmp"
+                                             id="transcripcion" accept="" url="{{ctrl.urlBaseTranscripcion}}"></file-upload>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12">
+                        <!--Documento crítica genética (TEI,...)-->
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.critica" for="critica"></label-form>
+                                <file-upload archivo="ctrl.item.geneticaPath" archivo-temporal="ctrl.item.geneticaTmp"
+                                             id="critica" accept="" url="{{ctrl.urlBaseGenetica}}"></file-upload>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Imagen (JPG) y Otros -->
+                    <div class="row col-sm-12">
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.imagen" for="imagen"></label-form>
+                                <imagen ng-model="ctrl.item.imagen"
+                                        ruta-carpeta-imagen="{{ctrl.urlBaseImagen}}"
+                                        edicion="true"
+                                        indice="0"
+                                        on-remove-image="ctrl.item.imagen = {eliminar: true}">
+
+                                </imagen>
+                                <!--Sólo para testear subidaPrototextos. No se está hardcodeando para app final obviamente :)-->
+                                <!--
+                                <div ng-if="ctrl.item.imagen.eliminar != false">
+                                    <div ng-if="ctrl.item.imagen.rutaImagen ">
+                                        <a href="http://localhost:9000{{ctrl.item.imagen.rutaImagen}}" target="_blank">Ruta a imagen</a>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- fin columna izquierda; a la derecha pongo la múltiple -->
+            <!--Otros documentos: ilimitados-->
+
+            <div class="col-sm-8 ilimitados">
+                <div>
+                    <div class="form-group col-sm-12">
+                        <list-form label="admin.prototexto.form.subidaPrototextos" list="ctrl.item.subidaLibros"
+                                   resolve="{subidaService: ctrl.subidaService,
+                                                        urlBaseLibroOtros: ctrl.urlBaseLibroOtros}"
+                                   template-url="libro.subidaMultiple.html">
+                        </list-form>
+
+                        <script type="text/ng-template" id="libro.subidaMultiple.html">
+                            <label-form for="otros-{{$index}}"></label-form>
+                            <!--Otros documentos: ilimitados-->
+                            <div class="form-group col-sm-12">
+                                <file-upload archivo="element.otroPath" archivo-temporal="element.otroTmp"
+                                             id="otros-{{$index}}" accept="" url="{{ctrl.resolve.urlBaseLibroOtros}}"></file-upload>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Cierre subida documentos -->
+
+
+        <!-- Notas: textarea notas del personal investigador  -->
+        <div class="row">
+
+            <h5 class="col-sm-12 col-sm-offset-0">{{'admin.prototexto.form.camposInstrumentais' | translate}}</h5>
+
+            <div class="col-sm-12 ">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.notas" for="notas" required="false"></label-form>
+                    <text-area model="ctrl.item.notas" id="notas" required="false"/></texta-area>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Opciones limitadas a usuario administrador -->
+        <div class="row" has-authority="ROLE_ADMIN">
+
+            <h6 class="col-sm-12 col-sm-offset-0">{{'admin.prototexto.form.camposAdmin' | translate}}</h6>
+
+            <!--Revisado-->
+            <div class="row col-sm-12">
+                <div class="col-sm-11">
+                    <div class="form-group">
+                        <label-form key="admin.prototexto.form.revisadoradio" for="revisado" required="false"></label-form>
+                        <input type="checkbox" class="check-box-table-cell" id="revisado" type="text" ng-model="ctrl.item.revisado">
+                        <span class="ng-tooltip">
+                            <span class="icon glyphicon glyphicon-question-sign"
+                                  uib-tooltip="{{'admin.prototexto.form.revisadotip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--Concluido-->
+            <div class="row col-sm-12">
+                <div class="col-sm-11 ">
+                    <div class="form-group">
+                        <label-form key="admin.prototexto.form.concluidoradio" for="concluido" required="false"></label-form>
+                        <input type="checkbox" class="check-box-table-cell" id="concluido" type="text" ng-model="ctrl.item.concluido">
+                        <span class="ng-tooltip">
+                            <span class="icon glyphicon glyphicon-question-sign"
+                                  uib-tooltip="{{'admin.prototexto.form.concluidotip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                             </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-5 ">
+            <div class="form-group">
+                <input class="form-control hidden" id="type" type="text" ng-model="ctrl.item.type" ng-init="ctrl.item.type='libro'">
+            </div>
+        </div>
+
+        <!--Botones-->
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>
+
+<!-- Script Edicion -->
+<script type="text/ng-template" id="libro.edicion.html">
+    <uib-accordion close-others="oneAtATime" class="col-sm-12">
+        <div uib-accordion-group class="panel-default" is-open="element.desplegado"
+             heading="{{element.id ? element.titulo: 'admin.traduccion.form.nuevaEdicion' | translate}}">
+            <!-- Título -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label-form key="admin.libro.form.tituloEdicion" for="tituloEdicion" required="false"></label-form>
+                        <input class="form-control" id="tituloEdicion" ng-model="element.titulo">
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label-form key="admin.libro.form.ISBN" for="isbn" required="false"></label-form>
+                        <input class="form-control" id="isbn" ng-model="element.isbn">
+                    </div>
+
+                    <!-- tirada -->
+                    <div class="col-sm-3">
+                        <!-- Ejemplares (libros) que se imprimen en cada edición -->
+                        <label-form key="admin.libro.form.TiraEdicion" for="TiraEdicion" required="false"></label-form>
+                        <input class="form-control" id="TiraEdicion" type="number" ng-model="element.tirada">
+                    </div>
+
+                </div>
+
+
+                <!-- Nº páginas, Colección, nº, ISBN -->
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <label-form key="admin.libro.form.numPagEdicion" for="numPagEdicion" required="false"></label-form>
+                        <input class="form-control" id="numPagEdicion" type="number" ng-model="element.numeroPaginas">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label-form key="admin.libro.form.coleccionEdicion" for="coleccionEdicion" required="false"></label-form>
+                        <input class="form-control" id="coleccionEdicion" ng-model="element.coleccion">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label-form key="admin.libro.form.numeroEdicion" for="numeroEdicion" required="false"></label-form>
+                        <input class="form-control" id="numeroEdicion" type="number" ng-model="element.numeroColeccion">
+                    </div>
+                </div>
+
+
+                <!-- País, ciudad -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <button-create click="ctrl.resolve.openPaisModal"></button-create>
+                        <tesauro id="pais" ng-model="element.pais" resource="ctrl.resolve.paisService"
+                                 method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                                 label="admin.prototexto.form.pais" parameters="{sortProperty: 'nombre'}">
+
+                        </tesauro>
+                    </div>
+                    <div class="col-sm-4">
+                        <button-create click="ctrl.resolve.openCiudadModal"></button-create>
+
+                        <tesauro id="ciudad" ng-model="element.ciudad" resource="ctrl.resolve.ciudadService"
+                                 method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                                 label="admin.prototexto.form.ciudad" parameters="{sortProperty: 'nombre', pais: element.pais.id}">
+                        </tesauro>
+                    </div>
+                    <div class="col-sm-4">
+                        <label-form key="admin.libro.form.localizacionEdicion" for="localizacionEdicion" required="false"></label-form>
+                        <input class="form-control" id="localizacionEdicion" ng-model="element.localizacion">
+                    </div>
+                </div>
+
+                <!-- Fecha edición -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <fecha model="element" prefijo="edicion"></fecha>
+                    </div>
+                </div>
+
+                <!-- Descripción-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label-form key="admin.libro.form.descripcionEdicion" for="descripcionEdicion" required="false"></label-form>
+                        <text-area model="element.descripcion" id="descripcionEdicion" required="false"/></texta-area>
+                    </div>
+                </div>
+
+
+                <!-- Agente> función -->
+                <div class="row">
+
+                    <div class="col-sm-10" id="agentesEdicion">
+
+                        <list-form acordeon="true" label="admin.libro.form.edicionAgente" list="element.edicionAgentes"
+                                   resolve="{agenteService:ctrl.resolve.agenteService,
+                                         openAgenteModal:ctrl.resolve.openAgenteModal,
+                                         funcionAgenteService:ctrl.resolve.funcionAgenteService,
+                                         openFuncionAgenteModal:ctrl.resolve.openFuncionAgenteModal}"
+                                   required="false"
+                                   template-url="edicion.agenteTemplate.html">
+                        </list-form>
+
+                    </div>
+                </div>
+
+
+                <!-- Organización> función -->
+                <div class="row">
+                    <div class="col-sm-10">
+                        <list-form acordeon="true" label="admin.libro.form.edicionOrganizacion" list="element.edicionOrganizaciones"
+                                   resolve="{organizacionService:ctrl.resolve.organizacionService,
+                                         openOrganizacionModal:ctrl.resolve.openOrganizacionModal,
+                                         openFuncionOrganizacionModal:ctrl.resolve.openFuncionOrganizacionModal,
+                                         funcionOrganizacionService:ctrl.resolve.funcionOrganizacionService,
+                                         openTipologiaModal:ctrl.resolve.openTipologiaModal,
+                                         tipologiaService: ctrl.resolve.tipologiaService}"
+                                   required="false"
+                                   template-url="edicion.organizacion.html">
+                        </list-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-accordion>
+</script>
+
+
+<!-- Script capitulo -->
+<script type="text/ng-template" id="seg.html" ng-model="numeroCapitulos">
+    <uib-accordion close-others="oneAtATime" class="col-sm-12">
+        <div uib-accordion-group class="panel-default" is-open="element.desplegado"
+             heading="{{element.id ? element.titulo: 'admin.traduccion.form.nuevoCapitulo' | translate}}">
+            {{element.capitulo.titulo}}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label-form key="admin.libro.form.tituloCapitulo" for="tituloCapitulo" required="false"></label-form>
+                        <input class="form-control" id="tituloCapitulo" ng-model="element.titulo">
+                    </div>
+                </div>
+
+                <!-- Página inicio y página fin -->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label-form key="admin.libro.form.paginaInicio" for="paginaInicio" required="false"></label-form>
+                        <input type="number" class="form-control" id="paginaInicio" ng-model="element.paginaInicio">
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label-form key="admin.libro.form.paginaFin" for="paginaFin" required="false"></label-form>
+                        <input type="number" class="form-control" id="paginaFin" ng-model="element.paginaFin">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agentes del capitulo-->
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+
+                        <list-form acordeon="true" label="admin.libro.form.libroAgentes" list="element.capituloAgentes"
+                                   resolve="{openAgenteModal:ctrl.resolve.openAgenteModal,
+                                             agenteService:ctrl.resolve.agenteService,
+                                             openFuncionAgenteModal:ctrl.resolve.openFuncionAgenteModal,
+                                             funcionAgenteService:ctrl.resolve.funcionAgenteService}"
+                                   required="false"
+                                   template-url="edicion.agenteTemplate.html">
+                        </list-form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </uib-accordion>
+</script>
+
+<!-- Script agente -->
+<script type="text/ng-template" id="edicion.agenteTemplate.html">
+    <uib-accordion close-others="oneAtATime" class="col-sm-12">
+        <div uib-accordion-group class="panel-default" is-open="element.desplegado"
+             heading="{{element.id ? element.agente.apellidos && element.agente.nombre : 'admin.traduccion.form.nuevoAgente' | translate}}">
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <button-create click="ctrl.resolve.openAgenteModal"></button-create>
+
+                    <tesauro id="agente" ng-model="element.agente" resource="ctrl.resolve.agenteService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.agente" parameters="{sortProperty: 'nombre'}">
+
+                    </tesauro>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <button-create click="ctrl.resolve.openFuncionAgenteModal"></button-create>
+
+                    <tesauro id="agente" ng-model="element.funcionAgente" resource="ctrl.resolve.funcionAgenteService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.funcionAgente" parameters="{sortProperty: 'nombre'}">
+
+                    </tesauro>
+                </div>
+
+            </div>
+        </div>
+    </uib-accordion>
+</script>
+
+<!-- Script organizacion -->
+<script type="text/ng-template" id="edicion.organizacion.html">
+    <uib-accordion close-others="oneAtATime" class="col-sm-12">
+        <div uib-accordion-group class="panel-default" is-open="element.desplegado"
+             heading="{{element.id ? element.organizacion.nombre : 'admin.traduccion.form.nuevaOrganizacion' | translate}}">
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <button-create click="ctrl.resolve.openOrganizacionModal"></button-create>
+
+                    <tesauro id="organizacion" ng-model="element.organizacion" resource="ctrl.resolve.organizacionService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.nombreEd" parameters="{sortProperty: 'nombre'}">
+
+                    </tesauro>
+                </div>
+
+                <!--
+                <div class="col-sm-4">
+                    <button-create click="ctrl.resolve.openTipologiaModal"></button-create>
+
+                    <tesauro id="organizacion" ng-model="element.tipologia" resource="ctrl.resolve.tipologiaService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.tipologia" parameters="{sortProperty: 'nombre'}">
+                    </tesauro>
+                </div>
+                -->
+
+                <div class="col-sm-6">
+                    <button-create click="ctrl.resolve.openFuncionOrganizacionModal"></button-create>
+
+                    <tesauro id="organizacion" ng-model="element.funcionOrganizacion" resource="ctrl.resolve.funcionOrganizacionService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.funcionOrganizacion" parameters="{sortProperty: 'nombre'}">
+                    </tesauro>
+                </div>
+            </div>
+        </div>
+    </uib-accordion>
+</script>

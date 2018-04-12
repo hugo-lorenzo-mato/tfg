@@ -1,0 +1,45 @@
+<form name="form" role="form" ng-submit="ctrl.save()" novalidate>
+    <div class="form-body">
+
+        <div class="row">
+            <!--Nombre ES-->
+            <div class="col-sm-5 col-md-offset-1">
+                <div class="form-group">
+                    <label-form key="admin.ciudad.form.nombre" for="nombre" required="true"></label-form>
+                    <input class="form-control" id="nombre" type="text" ng-model="ctrl.item.nombre" required>
+                </div>
+            </div>
+            <!--Nombre GL-->
+            <!--
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label-form key="admin.ciudad.form.nombregl" for="nombregl" required="true"></label-form>
+                    <input class="form-control" id="nombregl" type="text" ng-model="ctrl.item.nombreGl" required>
+                </div>
+            </div>
+            -->
+            <!--Nombre EN-->
+            <!--
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label-form key="admin.ciudad.form.nombreen" for="nombreen" required="true"></label-form>
+                    <input class="form-control" id="nombreen" type="text" ng-model="ctrl.item.nombreEn" required>
+                </div>
+            </div>
+            -->
+            <!--País-->
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <button-create click="ctrl.openPaisModal"></button-create>
+                    <select-form id="paises" label="admin.ciudad.form.pais" model="ctrl.item.pais"
+                                 options="ctrl.paises"></select-form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Botones-->
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>

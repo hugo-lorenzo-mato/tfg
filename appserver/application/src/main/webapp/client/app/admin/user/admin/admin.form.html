@@ -1,0 +1,51 @@
+<!-- edited by @hlorenzo on 13/09/2017
+    Editado para añadir la posibilidad de registrar con distintos
+    roles de usuario.
+-->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 translate="admin.register.title">Registration</h1>
+        <form name="form" ng-submit="ctrl.register()" role="form" autocomplete="off" novalidate>
+
+            <!-- login -->
+            <div class="form-group">
+                <label-form key="admin.admin.form.username" for="login" required="true"></label-form>
+                <input class="form-control" id="login" ng-maxlength="50" ng-minlength="1"
+                       ng-model="ctrl.registerAccount.login" ng-pattern="/^[a-z0-9]*$/"
+                       ng-pattern-err-type="loginPattern" required type="text"/>
+            </div>
+
+            <!-- Rol de usuario -->
+            <div class="form-group"> <!--getTiposRoles-->
+                <enum-select id="role"
+                             label="admin.admin.form.rolReg"
+                             model="ctrl.registerAccount.role"
+                             options="['ROLE_ADMIN','ROLE_CATALOGADOR']"
+                             base="enum.tipo-role"
+                             required="true">
+                </enum-select>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label-form key="admin.admin.form.password" for="password" required="true"></label-form>
+                <input class="form-control" id="password" ng-maxlength="50" ng-minlength="1"
+                       ng-model="ctrl.registerAccount.password" required type="password"/>
+                <password-strength-bar password-to-check="ctrl.registerAccount.password"></password-strength-bar>
+            </div>
+
+            <!-- Repetición de contraseña -->
+            <div class="form-group">
+                <label-form key="admin.admin.form.confirmpassword" for="confirmPassword" required="true"></label-form>
+                <input class="form-control" id="confirmPassword" ng-maxlength="50" ng-minlength="1"
+                       same-as="ctrl.registerAccount.password" same-as-err-type="sameAs2"
+                       ng-model-options="{updateOn: 'blur'}" ng-model="ctrl.confirmPassword" required type="password"/>
+            </div>
+
+            <!--Botones-->
+            <buttons can-save="true" mode="'create'"></buttons>
+
+        </form>
+    </div>
+</div>
+

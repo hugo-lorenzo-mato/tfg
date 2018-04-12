@@ -1,0 +1,101 @@
+<div id="resultados">
+    <h4>{{'admin.buscador.form.resultados' | translate}}</h4>
+
+
+    <div class="recuperados alert-danger text-center" style="padding: 10px;"
+         ng-if="ctrl.tableParams.total() == 0">
+        {{'admin.buscador.form.sinresultados' | translate: {num: ctrl.elementos.numberOfElements} }}
+    </div>
+    <div ng-show="ctrl.tableParams.total() != 0">
+        <div class="total-elementos">
+            <label>{{'admin.total-elementos' | translate}}: {{ctrl.tableParams.total()}}
+            </label>
+        </div>
+
+
+        <div class="table-responsive">
+            <table ng-table="ctrl.tableParams" class="table table-condensed table-bordered table-striped table-hover"
+                   class="ng-cloak">
+                <tr ng-repeat="elemento in $data track by elemento.id" class="animate">
+
+                    <!-- Muestro la numeración automática -->
+                    <td data-title="'admin.prototexto.form.numeracionAutomatica' | translate" class="col-md-2"
+                        sortable="'numeracionAutomatica'">
+                        <a ui-sref="admin/{{elemento.type}}/edit({id: elemento.id})"
+                           title="{{'admin.form.button.edit' | translate}}">
+                            {{elemento.numeracionAutomatica}}
+                        </a>
+                    </td>
+
+                    <!-- Muestro el tipo de la producción -->
+                    <td data-title="'admin.prototexto.form.type' | translate" class="col-md-1" sortable="'type'">
+                        <a ui-sref="admin/{{elemento.type}}/edit({id: elemento.id})"
+                           title="{{'admin.form.button.edit' | translate}}">
+                            {{elemento.type | capitalize}}
+                        </a>
+                    </td>
+
+                    <!-- Muestro el título de la producción -->
+                    <td data-title="'admin.prototexto.form.titulo' | translate" class="col-md-4" sortable="'titulo'">
+                        <a ui-sref="admin/{{elemento.type}}/edit({id: elemento.id})"
+                           title="{{'admin.form.button.edit' | translate}}">
+                            {{elemento.titulo}}
+                        </a>
+                    </td>
+
+                    <!-- Muestro el genero de la producción -->
+                    <td data-title="'admin.prototexto.form.genero' | translate" class="col-md-1" sortable="'genero'">
+                        <enumerado base="enum.genero" value="{{elemento.genero}}"></enumerado>
+                    </td>
+
+                    <!-- Muestro el asunto de la producción -->
+                    <td data-title="'admin.prototexto.form.assunto' | translate" class="col-md-1" sortable="'assunto'">
+                        <enumerado base="enum.assunto" value="{{elemento.assunto}}"></enumerado>
+                    </td>
+
+                    <!-- Muestro si está revisada la producción -->
+                    <td data-title="'admin.prototexto.form.revisado' | translate" class="col-md-1 text-center" sortable="'revisado'">
+
+                            <span ng-if="elemento.revisado === true" class="glyphicon glyphicon-eye-open"></span>
+
+                            <span ng-if="elemento.revisado === false" class="glyphicon glyphicon-eye-close"></span>
+
+                    </td>
+
+
+                    <!-- Muestro si está concluida la producción -->
+                    <td data-title="'admin.prototexto.form.concluido' | translate" class="col-md-1 text-center" sortable="'concluido'">
+
+
+                            <span ng-if="elemento.concluido === true" class="glyphicon glyphicon-check"></span>
+
+                            <span ng-if="elemento.concluido === false" class="glyphicon glyphicon-unchecked"></span>
+
+                    </td>
+
+
+                    <!-- Muestro los botones para editar / eliminar -->
+                    <td class="col-md-1 text-center button-icons">
+
+                        <a ui-sref="admin/{{elemento.type}}/edit({id: elemento.id})"
+                           class="button glyphicon glyphicon-pencil"
+                           title="{{'admin.form.button.edit' | translate}}"></a>
+
+                        <a ng-if="elemento.type == 'prototexto'" ng-click="ctrl.showRemoveConfirmationPrototexto(elemento.id)" class="button glyphicon glyphicon-remove"
+                           title="{{'admin.form.button.delete' | translate}}"></a>
+                        <a ng-if="elemento.type == 'libro'" ng-click="ctrl.showRemoveConfirmationLibro(elemento.id)" class="button glyphicon glyphicon-remove"
+                           title="{{'admin.form.button.delete' | translate}}"></a>
+                        <a ng-if="elemento.type == 'periodico'" ng-click="ctrl.showRemoveConfirmationPeriodico(elemento.id)" class="button glyphicon glyphicon-remove"
+                           title="{{'admin.form.button.delete' | translate}}"></a>
+
+
+                    </td>
+
+                </tr>
+            </table>
+            <loading is-loading="ctrl.loading" class="center-block"></loading>
+        </div>
+    </div>
+</div>
+
+

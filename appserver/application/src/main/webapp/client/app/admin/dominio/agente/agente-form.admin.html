@@ -1,0 +1,28 @@
+<form name="form" role="form" ng-submit="ctrl.save()" novalidate>
+    <div class="form-body">
+
+        <div class="row">
+
+            <!--Nombre-->
+            <div class="col-sm-5 col-sm-offset-1">
+                <div class="form-group">
+                    <label-form key="admin.agente.form.nombre" for="nombre" required="true"></label-form>
+                    <input class="form-control" id="nombre" ng-model="ctrl.item.nombre" required>
+                </div>
+            </div>
+
+
+            <!--Apellidos-->
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label-form key="admin.agente.form.apellido" for="apellido" required="true"></label-form>
+                    <input class="form-control" id="apellido" ng-model="ctrl.item.apellidos" required>
+                </div>
+            </div>
+        </div>
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>
+
+
+

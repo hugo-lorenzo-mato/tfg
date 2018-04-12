@@ -1,0 +1,47 @@
+<div class="row">
+
+
+    <h1>{{'admin.formularios.form.principal' | translate}}</h1>
+
+    <!-- Tipos de producción -->
+    <div class="form-group col-sm-10 col-sm-offset-1">
+        <enum-select id="role"
+                     label="admin.formularios.form.clases"
+                     model="myVar"
+                     options="['produccionActiva','prototexto','libro', 'periodico']"
+                     base="enum.tipo-selector"
+                     required="true">
+        </enum-select>
+    </div>
+    <br><br><br><br>
+    <div ng-switch="myVar">
+        <div ng-switch-when="produccionActiva">
+            <hr>
+            <h2>{{'admin.formularios.form.prototextos' | translate}}</h2>
+            <hr>
+            <prototexto-list-admin></prototexto-list-admin>
+            <br><br>
+            <hr>
+            <h2>{{'admin.formularios.form.libros' | translate}}</h2>
+            <hr>
+            <libro-list-admin></libro-list-admin>
+            <br><br>
+            <hr>
+                <h2>{{'admin.formularios.form.periodicos' | translate}}</h2>
+            <hr>
+            <periodico-list-admin></periodico-list-admin>
+        </div>
+        <div ng-switch-when="prototexto">
+            <prototexto-list-admin></prototexto-list-admin>
+        </div>
+        <div ng-switch-when="libro">
+            <libro-list-admin></libro-list-admin>
+        </div>
+        <div ng-switch-when="periodico">
+            <periodico-list-admin></periodico-list-admin>
+        </div>
+        <div ng-switch-default>
+            <p class="alert alert-info text-center text-primary col-sm-8 col-sm-offset-2">{{ 'admin.formularios.form.seleccionar' | translate}}</p>
+        </div>
+    </div>
+</div>

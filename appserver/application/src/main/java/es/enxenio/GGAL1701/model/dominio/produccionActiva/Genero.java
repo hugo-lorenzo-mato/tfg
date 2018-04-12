@@ -1,0 +1,71 @@
+package es.enxenio.GGAL1701.model.dominio.produccionActiva;
+
+/**
+ * Created by hlorenzo on 16/08/2017.
+ **/
+public enum Genero {
+
+    ANUNCIO,
+
+    ARTIGO,
+
+    CHARGE,
+
+    COMUNICASAO,
+
+    CONFERENCIA,
+
+    CONTO,
+
+    CRONICA,
+
+    DEPOIMENTOS,
+
+    DISCURSOS,
+
+    DISSERTASAOMESTRADO,
+
+    DOCUMENTARIO,
+
+    ENSAIO,
+
+    ENTREVISTA,
+
+    FILME,
+
+    ILUSTRASAO,
+
+    LITERATURAINFANTIL,
+
+    LITERATURAJUVENIL,
+
+    MANIFESTO,
+
+    MEMORIAS,
+
+    MONOGRAFIAGRADUASAO,
+
+    NARRATIVADEVIAGEMS,
+
+    NOTICIA,
+
+    NOVELA,
+
+    POESIA,
+
+    REPORTAGEM,
+
+    RESENHA,
+
+    ROMANCE,
+
+    ROTEIROCINEMA,
+
+    ROTEIROTEATRO,
+
+    TEATRO,
+
+    TESEDOUTORAMENTO,
+
+    OUTRO
+}

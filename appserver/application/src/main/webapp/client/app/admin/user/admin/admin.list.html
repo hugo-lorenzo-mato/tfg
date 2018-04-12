@@ -1,0 +1,28 @@
+<div has-authority="ROLE_ADMIN">
+    <div class="btn-ctrl">
+        <a class="btn btn-primary btn-crear" ui-sref="admin/admin/create">
+            <span translate="global.menu.register"></span>
+        </a>
+    </div>
+</div>
+
+<table ng-table="ctrl.tableParams" class="table table-condensed table-bordered table-striped">
+
+    <tr ng-repeat="user in $data track by user.login">
+        <td data-title="'admin.admin.form.login' | translate" sortable="'login'">
+            {{user.login}}
+        </td>
+
+        <td data-title="'admin.admin.form.role' | translate" sortable="'role'">
+            <span ng-if="user.role == 'ROLE_ADMIN'">{{'admin.admin.form.adminEnum' | translate}}</span>
+            <span ng-if="user.role == 'ROLE_CATALOGADOR'">{{'admin.admin.form.catalogadorEnum' | translate}}</span>
+        </td>
+
+        <td class="text-center button-icons">
+            <a ng-click="ctrl.showRemoveConfirmation(user)" class="button glyphicon glyphicon-remove"
+               title="{{'admin.form.button.delete' | translate}}"></a>
+        </td>
+    </tr>
+</table>
+<loading is-loading="ctrl.loading" class="center-block"></loading>
+

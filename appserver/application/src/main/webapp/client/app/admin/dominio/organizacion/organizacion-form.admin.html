@@ -1,0 +1,31 @@
+<form name="form" role="form" ng-submit="ctrl.save()" id="formulario" novalidate>
+    <div class="form-body">
+
+        <div class="row">
+
+            <!--Nombre-->
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label-form key="admin.organizacion.form.nombre" for="nombre" required="true"></label-form>
+                    <input class="form-control" id="nombre" ng-model="ctrl.item.nombre" required>
+                </div>
+            </div>
+
+            <!-- Tipologia -->
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <button-create click="ctrl.openTipologiaModal"></button-create>
+                    <tesauro id="organizacion" ng-model="ctrl.item.tipologia" resource="ctrl.tipologiaService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.tipologia" parameters="{sortProperty: 'nombre'}">
+                    </tesauro>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Botones-->
+
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>

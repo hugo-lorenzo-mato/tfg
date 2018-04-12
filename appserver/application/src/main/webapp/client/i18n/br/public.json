@@ -1,0 +1,56 @@
+{
+  "global": {
+    "title": "Catalogador acervo Josué Guimarães",
+    "menu": {
+      "home": "Inicio",
+      "formularios": "Formulários",
+      "account": {
+        "main": "Conta"
+      },
+      "administradores": "Usuários",
+      "register": "Criar novo usuário",
+      "logout": "Sair",
+      "entidades": "Entidades",
+      "agentes": "Agentes",
+      "organismos": "Organizações",
+      "paises": "Países",
+      "ciudades": "Cidades",
+      "libros": "Livros",
+      "periodicos": "Periódicos",
+      "prototextos": "Prototextos",
+      "catalogador": "Catalogador",
+      "buscador": "Busca",
+      "lugares": "Localizaçoes",
+      "inicio": "Começo ",
+      "administracion": "Administración",
+      "busqueda": "Procura",
+      "registrosCitados":"Citas a producción pasiva",
+      "registroCitadoPrototexto": "De prototextos",
+      "produccionActiva": "Produção ativa",
+      "ediciones": "Edições",
+      "organizaciones": "Organizações",
+      "funciones": "Funções",
+      "funcionesOrganizacion": "Funções organizaçoes",
+      "funcionesAgente": "Funções agentes",
+      "tipologia": "Tipología Organizações"
+
+
+
+    }
+  },
+  "login": {
+    "title": "Administração",
+    "form": {
+      "username": "Nome de usuário",
+      "password": "Senha",
+      "rememberme": "Mantenha-me conectado",
+      "button": "Acessar conta",
+      "error": {
+        "authentication": "O nome de usuario ou a senha non son corretos."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2017"
+  }
+}

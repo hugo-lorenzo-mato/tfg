@@ -1,0 +1,182 @@
+$panel_heading_height: 36px;
+@import "variables.scss";
+
+.public {
+
+    .empty {
+        font-size: 15px;
+        color: #999;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+    }
+
+    @media (max-width: 767px) {
+
+    }
+
+    /* Barra de carga */
+    #loading-bar {
+        .bar {
+            background: $brand-primary;
+        }
+    }
+
+    #loading-bar-spinner {
+        .spinner-icon {
+            border-top-color: white;
+            border-left-color: white;
+        }
+    }
+
+    /* ==========================================================================
+    Header
+    ========================================================================== */
+
+    #header {
+        margin: 8px 0;
+        a:hover {
+            text-decoration: none;
+        }
+
+        .logo, .titulo {
+            display: inline-block;
+        }
+
+        .titulo {
+            h5 {
+                font-size: 30px;
+                font-weight: bold;
+            }
+        }
+
+        .logo {
+            img {
+                height: 90px;
+            }
+        }
+
+    }
+
+    /* ==========================================================================
+    Footer
+    ========================================================================== */
+
+    #footer {
+        .footer {
+            background: #d5d5d5;
+            color: #333333;
+            height: 60px;
+            font-size: 16px;
+        }
+        .container {
+            padding: 18px 0;
+            .info {
+                & > span {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    /* ==========================================================================
+    Menú
+    ========================================================================== */
+
+    .navbar-right {
+        float: left ! important;
+        margin-left: -15px;
+    }
+
+    /* ==========================================================================
+
+    ========================================================================== */
+
+    h1 {
+        border-bottom: 1px solid #dbdbdb;
+        border-top: 1px solid #dbdbdb;
+        clear: both;
+        font-size: 13px !important;
+        font-weight: normal;
+        padding: 5px 0 5px 10px;
+        text-transform: uppercase;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        color: #666;
+        font-size: 22px;
+    }
+
+    h3 {
+        clear: both;
+        color: #7aaee2;
+        font-size: 20px;
+        font-weight: normal;
+        width: 100%;
+        padding: 0;
+        margin: 0 0 5px;
+    }
+
+    h4 {
+        color: #666;
+        font-size: 18px;
+    }
+
+    /* ==========================================================================
+    Formularios
+    ========================================================================== */
+
+    label {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #999;
+    }
+
+    /* ==========================================================================
+    Botones
+    ========================================================================== */
+
+    .btn-ctrl {
+        float: right;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* ==========================================================================
+    Modal
+    ========================================================================== */
+
+    .modal-header {
+        background: $brand-primary;
+        * {
+            color: white;
+        }
+        .close {
+            margin-top: 10px;
+        }
+    }
+
+    .close:focus {
+        outline: none;
+    }
+
+    /* ==========================================================================
+    Página principal
+    ========================================================================== */
+
+    .main {
+        .right {
+            img {
+                max-width: 160px;
+            }
+        }
+    }
+}
+
+

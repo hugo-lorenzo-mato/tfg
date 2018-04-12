@@ -1,0 +1,95 @@
+# HELP ME:
+#- label: Etiqueta
+#  icon: Glyphicon que se mostrará junto al texto
+#  state: Estado al que redirige
+#  authorities: Roles que pueden ver la entrada del menú
+#  states: Lista de estados en los cuales se muestra la entrada del menú
+#  actives: Lista de estados en los cuales la entrada del menú se marcará como activa.
+#  modal: Permite abrir una ventana modal estática pasándole el ID.
+#  componente: Componente HTML.
+#  subtree: Dropdown
+#    - label: divider
+#
+
+####################### ADMIN #######################
+
+#
+# Created by hlorenzo on 08/08/2017
+# No editar menu-admin.json directamente, sino éste. Los cambios se reflejarán automáticamente
+#
+
+#- componente: <idiomas></idiomas>
+
+# Enlace a la página principal. Útil durante el desarrolo.
+#- label: Principal
+#  icon: glyphicon glyphicon-home
+#  state: home
+
+
+#Buscador Avanzado
+- label: global.menu.buscador
+  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+  state:  buscador
+
+
+### Catalogador ###
+#- label: global.menu.catalogador
+#  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+#  state: formularios
+
+# Entidades del dominio
+- label: global.menu.catalogador
+  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+  actives:  admin/prototexto, admin/libro, admin/periodico, admin/lugares, admin/creador, admin/buscador, admin/agente, admin/organizacion, admin/edicion
+  subtree:
+### Producción Activa ###
+- label: global.menu.produccionActiva
+  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+  actives:  admin/prototexto, admin/libro, admin/periodico
+  subtree:
+  ### Prototextos ###
+  - label: global.menu.prototextos
+    state: admin/prototexto
+  ### Libros ###
+  - label: global.menu.libros
+    state: admin/libro
+  ### Periodicos ###
+  - label: global.menu.periodicos
+    state: admin/periodico
+### Entidades ###
+- label: global.menu.entidades
+  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+  actives:  lugares/pais, lugares/ciudad, admin/agente, admin/organizacion,
+  subtree:
+  ### Agentes ###
+  - label: global.menu.agentes
+    state: admin/agente
+  ### Organizaciones ###
+  - label: global.menu.organizaciones
+    state: admin/organizacion
+### Lugares ###
+  - label: global.menu.lugares
+    authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+    state:  admin/ciudad
+
+### Usuarios ###
+- label: global.menu.administradores
+  authorities: ROLE_ADMIN
+  state: admin/admin
+
+### test ###
+#- label: global.menu.formularios
+#  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+#  state: formularios
+
+### Autenticado ###
+- label: global.menu.account.main
+  icon: glyphicon glyphicon-user
+  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+  subtree:
+    - label: admin.changepassword.title
+      icon: glyphicon glyphicon-edit
+      state: contrasena
+    - label: global.menu.logout
+      icon: glyphicon glyphicon-log-out
+      state: logout

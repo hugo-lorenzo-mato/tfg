@@ -1,0 +1,657 @@
+{
+  "admin": {
+    "buscador":{
+      "form":{
+        "avanzada": "Buscador:",
+        "titulo":"Título",
+        "resumen":"Resumo",
+        "genero":"Gênero",
+        "assunto":"Assunto",
+        "buscar": "Procurar",
+        "notas": "Notas do pessoal investigador",
+        "fechaInicio":"Data início da procura",
+        "fechaFin":"Data final da procura",
+        "contiene":"Contem:",
+        "disponible": "Disponível:",
+        "completo": "Digital completo",
+        "transcripcion": "Transcrição",
+        "genetica": "Crítica genética",
+        "imagen": "Imagen",
+        "estado": "Estado",
+        "intervalo": "Data de publicação",
+        "inicioBusqueda":"Ano intervalo inicial",
+        "finBusqueda":"Ano intervalo final",
+        "resultados":"Resultados da procura",
+        "numresultados":"Coincidências:",
+        "sinresultados":"Nenhum resultado. Experimente outros critérios de procura",
+        "buscadorAvanzado": "Buscador avanzado:"
+      }
+    },
+    "total-elementos":"Nº elementos",
+    "etiqueta":{
+      "agente": "Agente",
+      "funcionAgente": "Funções",
+      "organizacion": "Organização",
+      "tipologia": "Tipologia",
+      "funcionOrganizacion": "Funções",
+      "ciudad": "Cidade",
+      "pais": "país"
+    },
+    "admin": {
+      "create": {
+        "title": "Criar novo usuário ",
+        "success": "O usuário foi criado"
+      },
+      "edit": {
+        "title": "Editar usuário",
+        "success": "O usuário foi modificado com sucesso",
+        "accessdenied": "Não possui permissões suficientes para editar esse usuário"
+      },
+      "list": {
+        "title": "Administradores / catalogadores"
+      },
+      "form": {
+        "username": "Nome de usuário",
+        "password": "Senha",
+        "confirmpassword": "Confirmar senha",
+        "login": "Nome de usuário",
+        "rol": "Rol",
+        "email": "Email",
+        "fecharegistro": "Data de registro",
+        "role":"Rol de usuário",
+        "rolReg":"Rol de usuário",
+        "catalogadorEnum": "Catalogador",
+        "adminEnum": "Administrador",
+        "type": "Produção"
+      },
+      "success": {
+        "create": "Um e-mail foi enviado ao usuário para configurar sua senha",
+        "edit": "As informações do usuário foram atualizadas"
+      },
+      "error": {
+        "alreadyexists": "Um usuário com esse e-mail já existe",
+        "alreadyexistslogin": "Um usuário já existe com este login"
+      }
+    },
+    "agente":{
+      "form":{
+        "nombre": "Nome",
+        "apellido": "Sobrenome",
+        "função": "função",
+        "apellidos": "Sobrenome"
+      },
+      "list": {
+        "title": "Agentes"
+      },
+      "create": {
+        "title": "Adicionar agente",
+        "success": "Se ha añadido el agente"
+      },
+      "edit": {
+        "title": "Editar agente",
+        "success": "El agente se ha modificado correctamente"
+      },
+      "delete": {
+        "title": "Remover agente",
+        "confirm": "Tem certeza de que deseja remover o agente <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "O agente foi removido com êxito"
+      }
+    },
+    "changepassword": {
+      "title": "Alterar senha",
+      "success": "Senha atualizada corretamente",
+      "oldpassword": "Senha",
+      "newpassword": "Nova senha",
+      "error": {
+        "incorrect": "A senha inserida não é correta"
+      }
+    },
+    "citaPrototexto": {
+      "create": {
+        "title": "Criar registro citado",
+        "success": "O registro citado foi criado"
+      },
+      "edit": {
+        "title": "Editar registro citado",
+        "success": "O registro citado foi modificado corretamente"
+      },
+      "list": {
+        "title": "Registros citados",
+        "autorCitado": "Autor",
+        "anoCitado": "Ano",
+        "paginaIniCitado": "Página inicial"
+      },
+      "delete": {
+        "title": "Remover registro citado",
+        "confirm": "Tem certeza de que deseja remover o registro acima <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "Registro excluído com êxito"
+      },
+      "form": {
+        "anoCitado": "Ano",
+        "autorCitado": "Autor",
+        "explicacion": "Vinculado con el/los registro/s correspondiente de la producción pasiva. FUNCIONALIDAD QUE SE INCLUIRÍA CON EL SIGUIENTE MÓDULO. Con el módulo desarrollado no habría que introducir referencias, sino buscarlas",
+        "hipervinculoCitado": "Referência a recurso",
+        "paginaFinCitado": "Página final",
+        "paginaIniCitado": "Página inicial",
+        "referenciaCita": "Referência recurso pasivo",
+        "referenciaPasivo": "Referência ao recurso do pasivo",
+        "registroCitado": "Criar ou selecionar registro de produção passiva"
+      }
+    },
+    "ciudad": {
+      "create": {
+        "title": "Criar cidade",
+        "success": "A cidade foi criada"
+      },
+      "edit": {
+        "title": "Editar cidade",
+        "success": "A cidade foi modificada corretamente"
+      },
+      "list": {
+        "title": "Localizações"
+      },
+      "delete": {
+        "title": "Remover cidade",
+        "confirm": "Tem certeza de que deseja remover a cidade <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "A cidade foi removida com sucesso"
+      },
+      "form": {
+        "nombre": "Nome",
+        "nombregl": "Nome (gallego)",
+        "nombreen": "Nome (inglés)",
+        "pais": "País"
+      }
+    },
+    "edicion":{
+      "form":{
+        "nombre": "Nome",
+        "sobrenome": "Sobrenome",
+        "agente": "Selecionar ou criar um novo agente",
+        "organizacion": "Seleccionar ou criar uma nova organização",
+        "edicionAgente":"Adicionar un novo agente à edição",
+        "edicionOrganizacion":"Adicionar uma nova organização à edição",
+        "tipologia": "Seleccionar ou criar tipología",
+        "função": "Seleccionar ou criar função",
+        "nombreEd": "Seleccionar ou criar organização",
+        "isbn": "ISBN",
+        "tituloEdicion": "Título da ediçao",
+        "edicionAno": "Ano",
+        "funcionOrganizacion":"Seleccionar ou criar nova funçao",
+        "funcionAgente": "Seleccionar ou criar nova funçao"
+
+      },
+      "list": {
+        "title": "Edições"
+      },
+      "create": {
+        "title": "Engadir edição",
+        "success": "Edição adicionada"
+      },
+      "edit": {
+        "title": "Editar edição",
+        "success": "La edicion se ha modificado correctamente"
+      },
+      "delete": {
+        "title": "Remover edição",
+        "confirm": "Tem certeza de que deseja remover a edição <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "Se ha eliminado la edicion correctamente"
+      }
+    },
+    "formularios":{
+      "form":{
+        "clases": "Classes",
+        "libros":"Livros:",
+        "periodicos": "Periódicos:",
+        "principal":"Seletor de elementos",
+        "prototextos":"Prototextos:",
+        "seleccionar":"Deve selecionar uma das opções no seletor"
+      }
+    },
+    "funcionAgente":{
+      "form":{
+        "nombre": "Nome",
+        "nombregl": "Nome (gallego)",
+        "nombreen": "Nome (inglés)",
+        "sobrenome": "Sobrenome",
+        "agente": "Seleccionar o crear nuevo agente",
+        "organizacion": "Seleccionar o crear nueva organização",
+        "edicionAgente":"Adicionar un nuevo agente a la edición",
+        "edicionOrganizacion":"Adicionar una nueva organização a la edición",
+        "tipologia": "Seleccionar ou criar tipología",
+        "função": "Seleccionar ou criar função",
+        "nombreEd": "Seleccionar ou criar organização",
+        "isbn": "ISBN"
+      },
+      "list": {
+        "title": "Agentes"
+      },
+      "create": {
+        "title": "Engadir função",
+        "success": "Função adicionada"
+      },
+      "edit": {
+        "title": "Editar função",
+        "success": "La função se ha modificado correctamente"
+      },
+      "delete": {
+        "title": "Remover função",
+        "confirm": "¿Esta seguro de que desea remover la função <b>{{id}}</b>? Esta operación no se puede deshacer.",
+        "success": "Se ha eliminado la função correctamente"
+      }
+    },
+    "funcionOrganizacion":{
+      "form":{
+        "agente": "Seleccionar o crear nuevo agente",
+        "sobrenome": "Sobrenome",
+        "edicionAgente":"Adicionar un nuevo agente a la edición",
+        "edicionOrganizacion":"Adicionar una nueva organização a la edición",
+        "função": "Seleccionar o crear função",
+        "isbn": "ISBN",
+        "nombre": "Nome",
+        "nombreEd": "Seleccionar o crear organização",
+        "nombreen": "Nome (inglés)",
+        "nombregl": "Nome (gallego)",
+        "organizacion": "Seleccionar o crear nueva organização",
+        "tipologia": "Seleccionar o crear tipología"
+      },
+      "list": {
+        "title": "Organizações"
+      },
+      "create": {
+        "title": "Adicionar função",
+        "success": "Função adicionada"
+      },
+      "edit": {
+        "title": "Editar função",
+        "success": "La função se ha modificado correctamente"
+      },
+      "delete": {
+        "title": "Remover função",
+        "confirm": "¿Esta seguro de que desea remover la função <b>{{id}}</b>? Esta operación no se puede deshacer.",
+        "success": "Se ha eliminado la função correctamente"
+      }
+    },
+    "general": {
+      "form": {
+        "cabeceraEditar": "Editando el recurso con título:"
+      }
+    },
+    "libro": {
+      "create": {
+        "title": "Adicionar livro",
+        "success": "Se ha añadido el livro correctamente"
+      },
+      "edit": {
+        "title": "Editar livro",
+        "success": "O livro foi modificado corretamente"
+      },
+      "list": {
+        "title": "Livros"
+      },
+      "delete": {
+        "title": "Remover livro",
+        "confirm": "Tem certeza de que deseja remover o livro <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "O livro foi excluído com êxito"
+      },
+
+      "form": {
+        "autoria": "Autoría",
+        "capituloTip":"De ser un capítulo, se han de cubrir los siguientes campos",
+        "cdu": "CDU",
+        "coleccionEdicion": "Colección",
+        "concluido":"Concluído",
+        "concluidoradio":"Concluido",
+        "concluidotip": "Marque para confirmar a conclusão",
+        "descripcionEdicion": "Descripción edición",
+        "edicionAgente": "Adicione um novo agente",
+        "edicionOrganizacion": "Adicionar uma nova organização",
+        "FechaEdicionTip": "Data de publicação da edição específica",
+        "FechaLibroTip":"Data publicação primeira edición",
+        "ISBN": "ISBN",
+        "libroAgentes": "Agentes do capítulo",
+        "libroCapitulos": "Capítulos do livro",
+        "libroEdiciones": "Edições do livro",
+        "localizacionEdicion": "Localização da edição",
+        "noRevisado": "Nom",
+        "numeroEdicion": "Nº colección",
+        "numPagEdicion": "Páginas",
+        "opcionesCapitulo":"Opções específicas por ser um capítulo: ",
+        "paginaFin": "Página final",
+        "paginaFinCap": "Página final do capítulo",
+        "paginaIniCap": "Página inicial do capítulo",
+        "paginaInicio": "Página inicial",
+        "repositorio": "Repositório",
+        "revisado": "Revisado",
+        "revisadoradio": "Revisado",
+        "revisadotip": "Marque para confirmar que foi revisado",
+        "sirevisado": "Sim",
+        "tipo": "Categoria",
+        "TiraEdicion": "Tiragem",
+        "titulo": "Título",
+        "tituloCapitulo": "Título do capítulo",
+        "tituloEdicion": "Título da edição",
+        "contiene": "Contém",
+        "capitulos":"Nº capítulos",
+        "ediciones":"Nº ediciones"
+      }
+    },
+    "list-users": {
+      "delete": {
+        "success": "Usuário removido",
+        "title": "Remover usuário ",
+        "confirm": "¿Está seguro de que quiere remover el usuário  <b>{{id}}</b>? Esta operación no se puede deshacer.",
+        "error": "No se ha podido remover el usuário "
+      },
+      "error": {
+        "notfound": "Usuário não encontrado"
+      }
+    },
+    "organizacion":{
+      "form":{
+        "nombre": "Nome",
+        "sobrenome": "Sobrenome",
+        "agente": "Seleccionar ou criar novo agente",
+        "organizacion": "Seleccionar ou criar nova organização",
+        "edicionAgente":"Adicionar un nuevo agente a la edición",
+        "edicionOrganizacion":"Adicionar uma nova organização à edição",
+        "tipologia": "Seleccionar ou criar tipología",
+        "função": "Seleccionar ou criar função",
+        "nombreEd": "Seleccionar ou criar organização",
+        "isbn": "ISBN",
+        "tipologiaList":"Tipologia"
+      },
+      "list": {
+        "title": "Organizações"
+      },
+      "create": {
+        "title": "Adicionar organizacion",
+        "success": "Organização adicionada"
+      },
+      "edit": {
+        "title": "Editar organização",
+        "success": "A organização foi modificada com sucesso"
+      },
+      "delete": {
+        "title": "Remover organização",
+        "confirm": "Tem certeza de que deseja remover a organização <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "Organização removida com sucesso"
+      }
+    },
+    "pais": {
+      "create": {
+        "title": "Criar país",
+        "success": "O país foi criado"
+      },
+      "edit": {
+        "title": "Editar país",
+        "success": "País modificado corretamente"
+      },
+      "list": {
+        "title": "Localizações"
+      },
+      "delete": {
+        "title": "Remover país",
+        "confirm": "Tem certeza de que deseja remover o país <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "País excluído com sucesso"
+      },
+      "form": {
+        "nombre": "Nome",
+        "nombregl": "Nome (gallego)",
+        "nombreen": "Nome (inglés)"
+      }
+    },
+    "periodico": {
+      "create": {
+        "title": "Adicionar periódico",
+        "success": "Se ha añadido el periódico"
+      },
+      "edit": {
+        "title": "Editar periódico",
+        "success": "O periódico foi modificado corretamente"
+      },
+      "list": {
+        "title": "Periódicos"
+      },
+      "delete": {
+        "title": "Remover periódico",
+        "confirm": "¿Esta seguro de que desea remover el periódico <b>{{id}}</b>? Esta operación no se puede deshacer.",
+        "success": "Se ha eliminado el periódico correctamente"
+      },
+      "form": {
+        "anoBiblioteca":"Ano biblioteca",
+        "autor":"Autor",
+        "cidadees": "Cidade",
+        "concluido":"Concluido",
+        "concluidoradio":"Concluido",
+        "concluidotip": "Marque para confirmar a conclusão",
+        "descrisao": "Descrição",
+        "hipervinculo":"Referência a prototexto",
+        "lide": "Subtítulo",
+        "localisasao": "Localización",
+        "noRevisado": "No",
+        "numeroPaginas": "Nº páginas total",
+        "numeroVolume": "Número / Volumen",
+        "openFuncionAgenteModal": "Seleccionar o crear nueva função",
+        "paginaFinal": "Nº página final",
+        "paginaFinBiblioteca":"Página final biblioteca",
+        "paginaIniBiblioteca":"Página inicio biblioteca",
+        "paginaInicial": "Nº página inicial",
+        "pais": "País",
+        "primeraLinea": "Primera línea",
+        "pseudonimo": "Pseudonimo",
+        "repositorio": "Repositorio",
+        "revisado": "Revisado",
+        "revisadoradio": "Revisado",
+        "revisadotip": "Marcar para confirmar que ha sido revisado",
+        "sirevisado": "Sí",
+        "tipo": "Categoria",
+        "ultimaLinha": "Última línea" ,
+        "titulo": "Título"
+      }
+    },
+    "prototexto": {
+      "create": {
+        "title": "Adicionar prototexto",
+        "success": "Prototexto adicionado"
+      },
+      "edit": {
+        "title": "Editar prototexto",
+        "success": "O prototexto foi modificado corretamente"
+      },
+      "list": {
+        "title": "Prototextos"
+      },
+      "delete": {
+        "title": "Remover protototexto",
+        "confirm": "Tem certeza de que deseja remover o prototext <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "Prototexto eliminado com êxito"
+      },
+      "form": {
+        "analiticos":"Campos analíticos:",
+        "anoBiblioteca":"Ano biblioteca",
+        "anoCitado":"Ano",
+        "anotasoes":"Anotações",
+        "assunto": "Assunto",
+        "autorBiblioteca":"Autor biblioteca",
+        "autorCitado":"Autor",
+        "autorCorrespondencia": "Autor correspondencia",
+        "biblioteca":"Biblioteca",
+        "caderno":"Caderno",
+        "camposAdmin":"Campos a serem cobertos pelo Administrador:",
+        "camposDocumentais":"Campos documentais:",
+        "camposInstrumentais":"Campos instrumentais:",
+        "categoria":"Categorias:",
+        "citado":"Citado",
+        "citadotip":"Permite múltiplos registros",
+        "citaPrototextos": "Producción pasiva citada",
+        "ciudad": "Cidade",
+        "cidadees": "Cidade",
+        "concluido":"Concluido",
+        "concluidoradio":"Concluido",
+        "concluidotip": "Verifique para confirmar que foi concluído.",
+        "contem":"Contém",
+        "contemTip": "Posible selección múltiple",
+        "correspondencia":"Correspondência",
+        "critica": "Documento de la crítica genética",
+        "descriptivos":"Campos descritivos:",
+        "descrisao": "Descrição" ,
+        "digitalCompleto": "Documento digital completo",
+        "folha": "Folha caderno",
+        "folhasSoltas":"Folhas soltas",
+        "genero": "Gênero",
+        "hipervinculo":"Referência a prototexto",
+        "hipervinculoCitado":"Referência producción pasiva",
+        "hipervinculoCorrespondencia":"Referência a prototexto",
+        "iconografia":"Iconografia",
+        "imagen":"Imagem (jpg)",
+        "localizasao": "Localização",
+        "materialAutonomo":"Material Autônomo",
+        "noRevisado": "Nom",
+        "notas":"Notas do personal investigador",
+        "nuevaCita": "Cita",
+        "numeracionAutomatica": "Numeração",
+        "numeroPaginas": "Nº páginas",
+        "otros": "Outros documentos",
+        "paginaAparicion":"Página",
+        "paginaFinBiblioteca": "Página final biblioteca",
+        "paginaFinCitado": "Página final",
+        "paginaIniBiblioteca": "Página inicio biblioteca",
+        "paginaIniCitado": "Página inicio",
+        "pais": "País",
+        "paises": "País",
+        "primeraLinea": "Primeira linha",
+        "primeraLineaTip": "Textual: não numérico",
+        "rasuras":"Rasuras",
+        "registroCitado": "Registro citado",
+        "registroCitadoPasiva": "Recurso pasivo citado",
+        "resumo": "Resumo",
+        "revisado": "Revisado ",
+        "revisadoradio": "Revisado",
+        "revisadotip": "Marcar para confirmar que ha sido revisado",
+        "sirevisado": "Sim",
+        "soporteTip":"Seleção única: desmarque para selecionar uma nova opção",
+        "subidaMultiple": "Subida múltiple de outros arquivos",
+        "subidaPrototextos": "Subida de recursos adicionais",
+        "subidas":"Outros elementos",
+        "sublinhado":"Sublinhado",
+        "suporte":"Suporte",
+        "tipo": "Categoria",
+        "titulo": "Título",
+        "transcripcion": "Documento da transcrição",
+        "ultimaLineaTip": "Textual: não numérico",
+        "ultimaLinha": "Última linha",
+        "sinRevisar": "Sem revisão",
+        "sinConcluir": "Sem concluir",
+        "soporte": "Suporte",
+        "type":"Produção"
+
+      }
+    },
+    "register": {
+      "title": "Criar usuário ",
+      "success": "Usuário criado",
+      "password.strength": "Segurança de senha",
+      "error": {
+        "alreadyexists": "Um usuário com esse nome já existe",
+        "fail": "Algo deu errado. Verifique os dados do formulário.",
+        "dontmatch": "As senhas não corresponde"
+      }
+    },
+    "tesauro": {
+      "tooltip": "Introduce los datos separados por comas o pulsando la tecla 'Enter'"
+    },
+    "tipo":{
+      "delete": {
+        "title": "Remover produção",
+        "confirm": "Tem certeza de que deseja remover a produção <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "A produção foi removido com êxito"
+      }
+    },
+    "tipologia":{
+      "form":{
+        "agente": "Seleccionar o crear nuevo agente",
+        "apellido": "Sobrenome",
+        "edicionAgente":"Adicionar un nuevo agente a la edición",
+        "edicionOrganizacion":"Adicionar una nueva organização a la edición",
+        "função": "Seleccionar o crear função",
+        "isbn": "ISBN",
+        "nombre": "Nome",
+        "nombreEd": "Seleccionar ou criar organização",
+        "nombreen": "Nome (inglés)",
+        "nombregl": "Nome (gallego)",
+        "organizacion": "Seleccionar ou criar uma nova organização",
+        "tipologia": "Seleccionar ou criar uma nova tipología"
+      },
+      "list": {
+        "title": "Organizações"
+      },
+      "create": {
+        "title": "Adicionar tipologia",
+        "success": "Se ha añadido la tipologia"
+      },
+      "edit": {
+        "title": "Editar tipologia",
+        "success": "Tipologia editada corretamente"
+      },
+      "delete": {
+        "title": "Remover tipologia",
+        "confirm": "Tem certeza de que deseja remover a tipologia <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "Tipologia removida com sucesso"
+      }
+    },
+    "traduccion":{
+      "form":{
+        "nuevaparte":"Nova referência ao recurso passivo",
+        "nuevaEdicion": "Adicionar uma nova edição do livro",
+        "nuevoAgente": "Novo agente",
+        "nuevaOrganizacion": "Nova organização",
+        "nuevoCapitulo": "Novo capítulo"
+      }
+    },
+    "title": "Acervo Josué Guimarães",
+    "form": {
+      "id": "ID",
+      "filter": "Filtrar",
+      "button": {
+        "add": "Adicionar",
+        "back": "Atrás",
+        "cancel": "Cancelar",
+        "create": "Criar",
+        "close": "Fechar",
+        "delete": "Remover",
+        "remove": "tirar",
+        "edit": "Editar",
+        "update": "Atualizar",
+        "save": "Gardar",
+        "generate": "Gerar",
+        "send": "Enviar"
+      },
+      "error": {
+        "fail": "Algo ha salido mal. Compruebe los datos del formulario y si el error persiste, contacte con el administrador",
+        "alreadyexists": "Ya existe esta entidad"
+      }
+    },
+    "Libro": {
+      "delete": {
+        "title": "Remover livro",
+        "confirm": "Tem certeza de que deseja remover o livro <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "O livro foi removido corretamente"
+      }
+    },
+    "Prototexto": {
+      "delete": {
+        "title": "Remover protototexto",
+        "confirm": "Tem certeza de que deseja remover o prototexto <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "Prototexto eliminado com êxito"
+      }
+    },
+    "Periodico": {
+      "delete": {
+        "title": "Remover periódico",
+        "confirm": "Tem certeza de que deseja remover o periódico <b> {{id}} </ b>? Esta operação não pode ser desfeita.",
+        "success": "O periódico foi removido corretamente"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,28 @@
+# HELP ME:
+#- label: Etiqueta
+#  icon: Glyphicon que se mostrará junto al texto
+#  state: Estado al que redirige
+#  authorities: Roles que pueden ver la entrada del menú
+#  states: Lista de estados en los cuales se muestra la entrada del menú
+#  actives: Lista de estados en los cuales la entrada del menú se marcará como activa.
+#  modal: Permite abrir una ventana modal estática pasándole el ID.
+#  componente: Componente HTML.
+#  subtree: Dropdown
+#    - label: divider
+
+####################### PUBLICA #######################
+
+
+# Inicio
+  - label: global.menu.inicio
+    state: /
+# Panel de Administración
+  - label: global.menu.catalogador
+    state:  admin/prototexto
+# Panel de Búsqueda
+#  - label: global.menu.busqueda
+#    state:  admin/buscador
+### Usuarios ###
+#  - label: global.menu.creador
+#    authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+#    state: admin/creador

@@ -1,0 +1,9 @@
+<script type="text/ng-template" id="citaPrototexto.tesauro.html">
+    <a>
+        Referencia pasivo: {{match.model.referenciaPasivo}} <span ng-if="match.model.autorCitado"> | Autor: {{match.model.autorCitado}}</span>
+        | Año: <span ng-if="match.model.anoCitado"> | Autor: {{match.model.anoCitado}}</span>
+        | Pag. Inicio: <span ng-if="match.model.paginaIniCitado"> | Autor: {{match.model.paginaIniCitado}}</span>
+        | Pág. Fin: <span ng-if="match.model.paginaFinCitado"> | Autor: {{match.model.paginaFinCitado}}</span>
+    </a>
+</script>
+

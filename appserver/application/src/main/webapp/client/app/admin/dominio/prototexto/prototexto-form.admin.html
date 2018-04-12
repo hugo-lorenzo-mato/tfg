@@ -1,0 +1,491 @@
+<form name="form" ng-submit="ctrl.save()" id="formulario" novalidate>
+    <div class="form-body">
+
+        <!-- Categoría: Tabla selección única enumerado -->
+        <div class="row col-sm-5">
+
+            <h5 id="primeraFila">{{'admin.prototexto.form.categoria' | translate}}</h5>
+
+            <!--Tipo-->
+            <div class="col-sm-9 primerSelectForm">
+                <div class="form-group">
+                    <enum-select id="tipo" label="admin.prototexto.form.tipo" model="ctrl.item.tipo"
+                                 options="ctrl.tipos" base="enum.tipo-prototexto" required="false"></enum-select>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Genero y asunto: Tablas de selección única; enumerado -->
+        <div class="row col-sm-7">
+
+            <h5 id="segundaFila">{{'admin.prototexto.form.analiticos' | translate}}</h5>
+
+            <!--Genero-->
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <enum-select id="genero" label="admin.prototexto.form.genero" model="ctrl.item.genero"
+                                 options="ctrl.genero" base="enum.genero" required="false"></enum-select>
+                </div>
+            </div>
+
+            <!-- Assunto -->
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <enum-select id="assunto" label="admin.prototexto.form.assunto" model="ctrl.item.assunto"
+                                 options="ctrl.assunto" base="enum.assunto" required="false"></enum-select>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Resumen: textarea -->
+        <div class="row">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label-form key="admin.prototexto.form.resumo" for="resumo" required="false" class="col-sm-12"></label-form>
+                        <text-area model="ctrl.item.resumo" id="resumo" required="false" class="col-sm-12"/></text-area>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Título: text input -->
+        <div class="row class=col-sm-12">
+            <h5 class="col-sm-12">{{'admin.prototexto.form.descriptivos' | translate}}</h5>
+            <!--Titulo-->
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.titulo" for="titulo" required="true"></label-form>
+                    <input class="form-control" id="titulo" type="text" ng-model="ctrl.item.titulo" required>
+                </div>
+            </div>
+
+            <!--numero paginas-->
+
+            <div class="col-sm-4 ">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.numeroPaginas" for="numeroPaginas" required="false"></label-form>
+                    <input class="form-control" id="numeroPaginas" type="number" ng-model="ctrl.item.numeroPaginas">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Primera línea: text input, no número -->
+        <div class="row">
+
+            <!--Primera linea-->
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.primeraLinea" for="primeiraLinha" required="false"></label-form>
+                    <span class="ng-tooltip">
+                            <span class="icon glyphicon glyphicon-question-sign"
+                                  uib-tooltip="{{'admin.prototexto.form.primeraLineaTip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                             </span>
+                        </span>
+                    <input class="form-control" id="primeiraLinha" type="text" ng-model="ctrl.item.primeiraLinha">
+                </div>
+            </div>
+
+            <!--Ultima linea-->
+
+            <div class="col-sm-6 ">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.ultimaLinha" for="ultimaLinha" required="false"></label-form>
+                    <span class="ng-tooltip">
+                            <span class="icon glyphicon glyphicon-question-sign"
+                                  uib-tooltip="{{'admin.prototexto.form.ultimaLineaTip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                             </span>
+                        </span>
+                    <input class="form-control" id="ultimaLinha" type="text" ng-model="ctrl.item.ultimaLinha">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Última línea: text input; mismo que anterior -->
+        <div class="row">
+
+        </div>
+
+        <!-- País, ciudad y nº de páginas: dos modales y un number input -->
+        <div class="row">
+
+            <!--Pais-->
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <button-create click="ctrl.openPaisModal"></button-create>
+                    <tesauro id="pais" ng-model="ctrl.item.pais" resource="ctrl.paisService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.prototexto.form.pais" parameters="{sortProperty: 'nombre'}">
+
+                    </tesauro>
+                </div>
+            </div>
+
+            <!--Ciudad-->
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <button-create click="ctrl.openCiudadModal"></button-create>
+
+                    <tesauro id="ciudad" ng-model="ctrl.item.ciudad" resource="ctrl.ciudadService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.prototexto.form.ciudad" parameters="{sortProperty: 'nombre', pais: ctrl.item.pais.id}">
+
+                    </tesauro>
+                </div>
+            </div>
+
+            <!--Localizacion-->
+            <div class="col-sm-4 ">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.localizasao" for="localizasao" required="false"></label-form>
+                    <input class="form-control" id="localizasao" ng-model="ctrl.item.localizasao">
+                </div>
+            </div>
+        </div>
+
+        <!-- Fecha: tres number input -->
+        <div class="row">
+            <div class="col-sm-6">
+                <fecha model="ctrl.item" prefijo="publicacion"></fecha>
+            </div>
+
+        </div>
+
+        <!-- Descripcion: textarea -->
+        <div class="row">
+
+            <!--Descripcion-->
+
+            <div class="col-sm-12 ">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.descrisao" for="descrisao" required="false"></label-form>
+                    <text-area model="ctrl.item.descrisao" id="descrisao" required="false"/></texta-area>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Contiene: checkbox múltiple -->
+        <!-- TODO: Ojo! porque al comprobar lo que nos devuelve este campo, debemos observar que select de categoría está marcado y también que elemento de "contem" -->
+        <!-- Porque del modo en que está implementado, guarda los valores de los campos. De haber tiempo cambiar y poner a nulo los restantes cuando cambia el checkbox.
+             Tener en cuenta también que hay dos selects distintos para categoría, por lo que habría que comprobar ambos-->
+        <div class="row" id="multipleSuperior">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.contem" for="contem" required="false"></label-form>
+                    <span class="icon glyphicon glyphicon-question-sign"
+                          uib-tooltip="{{'admin.prototexto.form.contemTip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                    </span>
+                    <div class="check-box col-sm-12" id="contem">
+                        <label key="admin.prototexto.form.iconografia" class="checkbox-inline col-sm-2" >
+                            <input type="checkbox" ng-model="ctrl.item.iconografia" id="iconografia" class="col-sm-2 ">{{'admin.prototexto.form.iconografia' | translate}}
+                        </label>
+                        <label key="admin.prototexto.form.rasuras"class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox"  ng-model="ctrl.item.rasuras" class="col-sm-2 ">{{'admin.prototexto.form.rasuras' | translate}}
+                        </label>
+                        <label key="admin.prototexto.form.sublinhado"class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox"  ng-model="ctrl.item.sublinhado" class="col-sm-2 ">{{'admin.prototexto.form.sublinhado' | translate}}
+                        </label>
+                        <label key="admin.prototexto.form.anotasoes" class="checkbox-inline col-sm-2 ">
+                            <input type="checkbox"   ng-model="ctrl.item.anotasoes">{{'admin.prototexto.form.anotasoes' | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="huecoMultiple">
+            <!-- Soporte: select. Categoría assanilado abre nueva posibilidad: Biblioteca personal -->
+            <div class="col-sm-12">
+                <!-- Finalmente opto por implementarlo con un enum -->
+                <div class="row correctSoporte">
+                    <div class="col-sm-3" >
+                        <div class="form-group">
+
+                            <div ng-if="ctrl.item.tipo == 'ASS'">
+                                <enum-select id="suporte" label="admin.prototexto.form.soporte" model="ctrl.item.sampliado"
+                                             options="ctrl.tipoSoporte" base="enum.tipo-soporte" required="false"></enum-select>
+                            </div>
+
+                            <div ng-if="ctrl.item.tipo != 'ASS'">
+                                <enum-select id="suporte2" label="admin.prototexto.form.soporte" model="ctrl.item.sreducido"
+                                             options="ctrl.tipoSoporteReducido" base="enum.tipo-soporte-reducido" required="false"></enum-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cuaderno -->
+                <div class="row">
+                    <div ng-if="ctrl.item.sreducido == 'CAD' && ctrl.item.tipo != 'ASS' || ctrl.item.sampliado == 'CAD' && ctrl.item.tipo == 'ASS'">
+                        <div class="form-group">
+                            <div class="row col-sm-12">
+
+                                <div class="col-sm-3">
+                                    <label-form key="admin.prototexto.form.paginaAparicion" for="paginaAparicion" required="false"></label-form>
+                                    <input class="form-control" id="paginaAparicion" type="number" ng-model="ctrl.item.paginaCuaderno" />
+                                </div>
+                                <!--Hoja en la que se encuentra: izquierda o derecha-->
+                                <div class="col-sm-3">
+                                    <enum-select id="folha" label="admin.prototexto.form.folha" model="ctrl.item.folha"
+                                                 options="ctrl.folha" base="enum.folha-prototexto">
+                                    </enum-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Biblioteca -->
+            <div ng-if="ctrl.item.sreducido == 'BIB' && ctrl.item.tipo != 'ASS' || ctrl.item.sampliado == 'BIB' && ctrl.item.tipo== 'ASS'" class="elementosBiblioteca">
+                <div class="form-group col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label-form key="admin.prototexto.form.hipervinculo" for="hipervinculo"></label-form>
+                            <input type="text" class="form-control" id="hipervinculo" ng-model="ctrl.item.hipervinculo" />
+                        </div>
+                        <div class="col-sm-3">
+
+                            <label-form key="admin.prototexto.form.anoBiblioteca" for="anoBiblioteca"></label-form>
+                            <input type="number" class="form-control" id="anoBiblioteca"  ng-model="ctrl.item.anoBiblioteca"   />
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <label-form key="admin.prototexto.form.paginaIniBiblioteca" for="paginaIniBiblioteca"></label-form>
+                            <input type="number" class="form-control" id="paginaIniBiblioteca"  ng-model="ctrl.item.paginaIniBiblioteca"  />
+                        </div>
+
+                        <div class="col-sm-3">
+
+                            <label-form key="admin.prototexto.form.paginaFinBiblioteca" for="paginaFinBiblioteca"></label-form>
+                            <input type="number" class="form-control" id="paginaFinBiblioteca"  ng-model="ctrl.item.paginaFinBiblioteca"  />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Correspondencia -->
+            <div ng-if="ctrl.item.sampliado == 'COR' && ctrl.item.tipo == 'ASS'">
+                <div class="row col-sm-12">
+                    <div class="col-sm-4">
+                        <div class="form-group" id="correspondenciaActiva">
+                            <label-form key="admin.prototexto.form.hipervinculoCorrespondencia" for="hipervinculoCorrespondencia" id="labelHipervinculoCorrespondencia" required="false" ></label-form>
+                            <!-- Hipervinculo a prototexto vinculado-->
+                            <input class="form-control" id="hipervinculoCorrespondencia" ng-model="ctrl.item.hipervinculoCorrespondencia" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label-form key="admin.prototexto.form.autorCorrespondencia" id="labelAutorCorrepondencia" for="autorCorrespondencia" required="false"></label-form>
+                            <input type="text" class="form-control" id="autorCorrespondencia"  ng-model="ctrl.item.autorCorrespondencia" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Fecha correspondencia-->
+
+                <div class="row col-sm-12" id="labelFechaCorrespondencia">
+                    <div class="col-sm-6">
+                        <label for="fechaCorrespondencia" class="col-sm-11" required="false">
+                            <fecha id="fechaCorrespondencia" model="ctrl.item" prefijo="fechaCorrespondencia"></fecha>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Lista citaPrototextos a producción pasiva -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <list-form acordeon="true" label="admin.prototexto.form.citaPrototextos" list="ctrl.item.citasPrototexto"
+                               template-url="prototexto.citaPrototexto.html">
+                    </list-form>
+                    <script type="text/ng-template" id="prototexto.citaPrototexto.html">
+                        <div class="row col-sm-12">
+
+                            <!-- referenciaPasivo -->
+                            <div class="col-sm-4 ">
+                                <div class="form-group">
+
+                                    <label-form key="admin.citaPrototexto.form.referenciaPasivo" for="referenciaPasivo_{{$index}}" required="false"></label-form>
+                                    <input class="form-control" id="referenciaPasivo_{{$index}}" ng-model="element.referenciaPasivo" required>
+                                </div>
+                            </div>
+
+                            <!--Página de inicio de la citaPrototexto -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label-form key="admin.citaPrototexto.form.paginaIniCitado" for="paginaIniCitado_{{$index}}"></label-form>
+                                    <input class="form-control" type="number" id="paginaIniCitado_{{$index}}" ng-model="element.paginaIniCitado">
+                                </div>
+                            </div>
+
+                            <!--Página de fin de la citaPrototexto -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label-form key="admin.citaPrototexto.form.paginaFinCitado" for="paginaFinCitado_{{$index}}"></label-form>
+                                    <input class="form-control" type="number" id="paginaFinCitado_{{$index}}" ng-model="element.paginaFinCitado">
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campos comunes a todas las clases: subidaPrototextos de ficheros y temas administracion-->
+        <div class="row" id="subidaDocumentos">
+            <h5 class="col-sm-11">{{'admin.prototexto.form.camposDocumentais' | translate}}</h5>
+            <div class="col-sm-4">
+                <div class="form-group col-sm-12">
+                    <div class="row col-sm-12">
+                        <!--Documento digital completo (jpg, tif, pdf,...)-->
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.digitalCompleto" for="digitalCompleto"></label-form>
+                                <file-upload archivo="ctrl.item.completoPath" archivo-temporal="ctrl.item.completoTmp"
+                                             id="digitalCompleto" accept="" url="{{ctrl.urlBaseCompleto}}"></file-upload>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Documento transcripción (txt, doc, odt, rtf,...)-->
+                    <div class="row col-sm-12">
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.transcripcion" for="transcripcion"></label-form>
+                                <file-upload archivo="ctrl.item.transcripcionPath" archivo-temporal="ctrl.item.transcripcionTmp"
+                                             id="transcripcion" accept="" url="{{ctrl.urlBaseTranscripcion}}"></file-upload>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12">
+                        <!--Documento crítica genética (TEI,...)-->
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.critica" for="critica"></label-form>
+                                <file-upload archivo="ctrl.item.geneticaPath" archivo-temporal="ctrl.item.geneticaTmp"
+                                             id="critica" accept="" url="{{ctrl.urlBaseGenetica}}"></file-upload>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Imagen (JPG) y Otros -->
+                    <div class="row col-sm-12">
+                        <div>
+                            <div class="form-group">
+                                <label-form key="admin.prototexto.form.imagen" for="imagen"></label-form>
+                                <imagen ng-model="ctrl.item.imagen"
+                                        ruta-carpeta-imagen="{{ctrl.urlBaseImagen}}"
+                                        edicion="true"
+                                        indice="0"
+                                        on-remove-image="ctrl.item.imagen = {eliminar: true}">
+
+                                </imagen>
+                                <!--Sólo para testear subidaPrototextos. No se está hardcodeando para app final :)-->
+                                <!--
+                                <div ng-if="ctrl.item.imagen.eliminar != false">
+                                    <div ng-if="ctrl.item.imagen.rutaImagen ">
+                                        <a href="http://localhost:9000{{ctrl.item.imagen.rutaImagen}}" target="_blank">Ruta a imagen</a>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- fin columna izquierda; a la derecha pongo la múltiple -->
+
+            <!--Otros documentos: ilimitados-->
+            <div class="col-sm-8 ilimitados">
+                <div>
+                    <div class="form-group col-sm-12">
+                        <list-form label="admin.prototexto.form.subidaPrototextos" list="ctrl.item.subidaPrototextos"
+                                   resolve="{subidaService: ctrl.subidaService,
+                                                        urlBasePrototextoOtros: ctrl.urlBasePrototextoOtros}"
+                                   template-url="prototexto.subidaMultiple.html">
+                        </list-form>
+
+                        <script type="text/ng-template" id="prototexto.subidaMultiple.html">
+                            <label-form for="otros-{{$index}}"></label-form>
+                            <!--Otros documentos: ilimitados-->
+                            <div class="form-group col-sm-12">
+                                <file-upload archivo="element.otroPath" archivo-temporal="element.otroTmp"
+                                             id="otros-{{$index}}" accept="" url="{{ctrl.resolve.urlBasePrototextoOtros}}"></file-upload>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notas: textarea notas del personal investigador  -->
+        <div class="row">
+
+            <h5 class="col-sm-12 col-sm-offset-0">{{'admin.prototexto.form.camposInstrumentais' | translate}}</h5>
+
+            <div class="col-sm-12 ">
+                <div class="form-group">
+                    <label-form key="admin.prototexto.form.notas" for="notas" required="false"></label-form>
+                    <text-area model="ctrl.item.notas" id="notas" required="false"/></texta-area>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Opciones limitadas a usuario administrador -->
+        <div class="row" has-authority="ROLE_ADMIN">
+            <h6 class="col-sm-12">{{'admin.prototexto.form.camposAdmin' | translate}}</h6>
+            <!--Revisado-->
+            <div class="row col-sm-12">
+                <div class="col-sm-11 ">
+                    <div class="form-group">
+                        <label-form key="admin.prototexto.form.revisadoradio" for="revisado" required="false"></label-form>
+                        <input type="checkbox" class="check-box-table-cell" id="revisado" type="text" ng-model="ctrl.item.revisado">
+                        <span class="ng-tooltip">
+                            <span class="icon glyphicon glyphicon-question-sign"
+                                  uib-tooltip="{{'admin.prototexto.form.revisadotip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--Concluido-->
+            <div class="row col-sm-12">
+                <div class="col-sm-11 ">
+                    <div class="form-group">
+                        <label-form key="admin.prototexto.form.concluidoradio" for="concluido" required="false"></label-form>
+                        <input type="checkbox" class="check-box-table-cell" id="concluido" type="text" ng-model="ctrl.item.concluido">
+                        <span class="ng-tooltip">
+                            <span class="icon glyphicon glyphicon-question-sign"
+                                  uib-tooltip="{{'admin.prototexto.form.concluidotip' | translate}}" tooltip-placement="{{position || 'right'}}">
+                             </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <input class=" hidden" id="type" type="text" ng-model="ctrl.item.type" ng-init="ctrl.item.type='prototexto'">
+        </div>
+
+        <!--Botones-->
+
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>
+

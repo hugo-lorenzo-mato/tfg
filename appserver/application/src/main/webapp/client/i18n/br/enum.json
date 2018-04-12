@@ -1,0 +1,153 @@
+{
+  "enum": {
+    "tipo-soporte-reducido":{
+      "FOL":"Folhas soltas",
+      "CAD":"Caderno",
+      "MAT":"Material autônomo",
+      "BIB":"Biblioteca"
+    },
+    "tipo-soporte":{
+      "FOL":"Folhas soltas",
+      "CAD":"Caderno",
+      "MAT":"Material autônomo",
+      "BIB":"Biblioteca",
+      "COR": "Correspondencia"
+    },
+    "concluido":{
+      "true":"Sim",
+      "false":"Não"
+    },
+    "revisado":{
+      "true":"Sim",
+      "false":"Não"
+    },
+    "all": "Todos",
+    "boolean": {
+      "true": "Sim",
+      "false": "Não"
+    },
+    "tipo-role":{
+      "ROLE_CATALOGADOR":"Catalogador",
+      "ROLE_ADMIN":"Administrador"
+    },
+    "tipo-organismo": {
+      "EDI": "Editorial",
+      "PUB": "Publicação ",
+      "IMP": "Impressão "
+    },
+    "tipo-prototexto": {
+      "MAN": "Manuscrito",
+      "DAT": "Datiloscrito",
+      "ESB": "Esboços",
+      "PLA": "Planos",
+      "NOT": "Notas",
+      "DIA": "Diagramas",
+      "ASS": "Assinalados"
+    },
+  "tipo-type": {
+    "libro": "Libro",
+    "periodico": "Periódico",
+    "prototexto": "Prototexto"
+  },
+    "tipo-libro": {
+      "EDISAO": "Ediçao",
+      "CAPITULO": "Capítulo"
+    },
+    "rol-agente": {
+      "TRAD": "Tradutor",
+      "EDIT": "Editor",
+      "COMP": "Compositor",
+      "ILUS": "Ilustrador",
+      "PROL": "Prologuista"
+    },
+    "tipo-periodico": {
+      "JORNAL": "Jornal",
+      "REVISTA": "Revista"
+
+    },
+    "genero-agente": {
+      "H": "Homem",
+      "M": "Mulher"
+    },
+    "assunto": {
+      "ACERVO":"Acervo",
+      "AMIZADE":"Amizade",
+      "ARTE":"Arte",
+      "CIENCIA":"Ciência",
+      "CINEMA":"Cinema",
+      "CULTURA":"Cultura",
+      "ECONOMIA":"Economia",
+      "ESPORTES":"Esportes",
+      "ESTUDOS":"Estudos",
+      "FILOSOFIA":"Filosofia",
+      "HISTORIA":"História",
+      "IMPRESA":"Imprensa",
+      "LEITURAS":"Leituras",
+      "LITERATURARS":"Literatura RS",
+      "LITERATURABR":"Literatura BR",
+      "LITERATURAESTR":"Literatura ESTR",
+      "LITERATURAJG":"Literatura JG",
+      "MEIOEDITORIAL":"Meio editorial",
+      "MEIOLIVREIRO":"Meio livreiro",
+      "MUSICA":"Música",
+      "OBRA":"Obra",
+      "POLITICA":"Política",
+      "PROJETOSLITERARIOS":"Projetos literários",
+      "PROJETOSPESSOAIS":"Projetos pessoais",
+      "SAUDE":"Saúde",
+      "SOCIEDADE":"Sociedade",
+      "TEATRO":"Teatro",
+      "TELEVISAO":"Televisão",
+      "TEORIALITERARIA":"Teoría literária",
+      "VIAGENS":"Viajens",
+      "VIDAPESSOAL":"Vida pessoal",
+      "VIDAPROFISSIONAL":"Vida profissional",
+      "VIDACULTURAL":"Vida cultural",
+      "VIDASOCIAL":"Vida social"
+    },
+    "genero": {
+      "ANUNCIO":"Anúncio",
+      "ARTIGO":"Artigo",
+      "CHARGE":"Charge",
+      "COMUNICASAO":"Comunicação",
+      "CONFERENCIA":"Conferência",
+      "CONTO":"Conto",
+      "CRONICA":"Crônica",
+      "DEPOIMENTOS":"Depoimentos",
+      "DISCURSOS":"Discursos",
+      "DISSERTASAOMESTRADO":"Dissertação (Mestrado)",
+      "DOCUMENTARIO":"Documentario",
+      "ENSAIO":"Ensaio",
+      "ENTREVISTA":"Entrevista",
+      "FILME":"Filme",
+      "ILUSTRASAO":"Ilustração",
+      "LITERATURAINFANTIL":"Literatura Infantil",
+      "LITERATURAJUVENIL":"Literatura Juvenil",
+      "MANIFESTO":"Manifiesto",
+      "MEMORIAS":"Memórias",
+      "MONOGRAFIAGRADUASAO":"Monografia (Graduação)",
+      "NARRATIVADEVIAGEMS":"Narrativa de viajens",
+      "NOTICIA":"Notícia",
+      "NOVELA":"Novela",
+      "POESIA":"Poesia",
+      "REPORTAGEM":"Reportagem",
+      "RESENHA":"Resenha",
+      "ROMANCE":"Romance",
+      "ROTEIROCINEMA":"Roteiro (Cinema)",
+      "ROTEIROTEATRO":"Roteiro (Teatro)",
+      "TEATRO":"Teatro",
+      "TESEDOUTORAMENTO":"Tese (doutoramento)",
+      "OUTRO":"Outro"
+    },
+    "folha-prototexto":{
+      "ESQ": "Esquerda",
+      "DIR": "Direita"
+    },
+    "tipo-selector":{
+      "prototexto":"Prototextos",
+      "libro": "Livros",
+      "periodico": "Periódicos",
+      "produccionActiva":"Produção Ativa total"
+    }
+  }
+}

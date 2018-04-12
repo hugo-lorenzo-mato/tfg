@@ -1,0 +1,207 @@
+<form name="form" role="form" ng-submit="ctrl.save()" id="formulario" novalidate>
+    <div class="form-body">
+
+        <!-- Título -->
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <label-form key="admin.libro.form.tituloEdicion" for="tituloEdicion" required="true"></label-form>
+                <input class="form-control" id="tituloEdicion" ng-model="ctrl.item.titulo" required>
+            </div>
+        </div>
+
+        <!-- Agente > función -->
+        <div class="row">
+            <!-- Agente > función -->
+            <div class="col-sm-10 col-sm-offset-1" id="agentesEdicion">
+
+                <list-form acordeon="true" label="admin.edicion.form.edicionAgente" list="agentes"
+                           resolve="{agenteService:ctrl.agenteService,
+                                     openAgenteModal:ctrl.openAgenteModal,
+                                     funcionService:ctrl.funcionService,
+                                     openFuncionModal:ctrl.openFuncionModal}"
+                           required="false"
+                           template-url="edicion.agente.html">
+                </list-form>
+
+            </div>
+        </div>
+
+        <!-- Organización > función -->
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+
+                <list-form acordeon="true" label="admin.edicion.form.edicionOrganizacion" list="ctrl.item.organizaciones"
+                           resolve="{organizacionService:ctrl.organizacionService,
+                                     openAgenteModal:ctrl.openOrganizacionModal}"
+                           required="false"
+                           template-url="edicion.organizacion.html">
+                </list-form>
+
+            </div>
+        </div>
+
+        <!-- Fecha edición -->
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                                    <span class="icon glyphicon glyphicon-question-sign"
+                                          uib-tooltip="{{'admin.libro.form.edicionesLibroTip' | translate}}" tooltip-placement="{{position || 'left'}}">
+                                    </span>
+                <fecha model="ctrl.item" prefijo="edicion"></fecha>
+            </div>
+        </div>
+
+        <!-- País, ciudad -->
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <button-create click="ctrl.openPaisModal"></button-create>
+                <tesauro id="funcionOrganizacion" ng-model="ctrl.item.pais" resource="ctrl.paisService"
+                         method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                         label="admin.prototexto.form.pais" parameters="{sortProperty: 'nombre'}">
+
+                </tesauro>
+            </div>
+            <div class="col-sm-5">
+                <button-create click="ctrl.openCiudadModal"></button-create>
+
+                <tesauro id="ciudad" ng-model="ctrl.item.ciudad" resource="ctrl.ciudadService"
+                         method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                         label="admin.prototexto.form.ciudad" parameters="{sortProperty: 'nombre'}">
+
+                </tesauro>
+
+            </div>
+        </div>
+
+        <!-- Nº páginas, Colección, nº, ISBN -->
+        <div class="row">
+
+            <div class="col-sm-2 col-sm-offset-1">
+                <label-form key="admin.libro.form.numPagEdicion" for="numPagEdicion" required="true"></label-form>
+                <input class="form-control" id="numPagEdicion" type="number" ng-model="ctrl.item.numeroPaginas" required>
+            </div>
+
+            <div class="col-sm-3">
+                <label-form key="admin.libro.form.coleccionEdicion" for="coleccionEdicion" required="true"></label-form>
+                <input class="form-control" id="coleccionEdicion" ng-model="ctrl.item.coleccion" required>
+            </div>
+
+            <div class="col-sm-2">
+                <label-form key="admin.libro.form.numeroEdicion" for="numeroEdicion" required="true"></label-form>
+                <input class="form-control" id="numeroEdicion" type="number" ng-model="ctrl.item.numeroColeccion" required>
+            </div>
+
+            <div class="col-sm-3">
+                <label-form key="admin.edicion.form.isbn" for="isbn" required="true"></label-form>
+                <input class="form-control" id="isbn" ng-model="ctrl.item.isbn" required>
+            </div>
+
+        </div>
+
+        <!-- Descripción-->
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <label-form key="admin.libro.form.descripcionEdicion" for="descripcionEdicion" required="false"></label-form>
+                <text-area model="ctrl.item.descripcion" id="descripcionEdicion" required="false"/></texta-rea>
+            </div>
+        </div>
+
+        <!-- Tira y localización(documental, no geográfica) -->
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-1">
+                <!-- Ejemplares (libros) que se imprimen en cada edición -->
+                <label-form key="admin.libro.form.TiraEdicion" for="TiraEdicion" required="true"></label-form>
+                <input class="form-control" id="TiraEdicion" type="number" ng-model="ctrl.item.tirada" required>
+            </div>
+            <div class="col-sm-5">
+                <label-form key="admin.libro.form.localizacionEdicion" for="localizacionEdicion" required="true"></label-form>
+                <input class="form-control" id="localizacionEdicion" ng-model="ctrl.item.localizacion" required>
+            </div>
+        </div>
+
+        <!--Botones-->
+
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>
+
+
+<!-- Script agente -->
+<script type="text/ng-template" id="edicion.agente.html">
+    <uib-accordion close-others="oneAtATime" class="col-sm-12">
+        <div uib-accordion-group class="panel-default" is-open="element.desplegado"
+             heading="{{element.id ? element.nombre : 'admin.traduccion.form.nuevoAgente' | translate}}">
+            <div class="row">
+
+                <!-- Agente -->
+
+                <div class="col-sm-6">
+                    <button-create click="ctrl.resolve.openAgenteModal"></button-create>
+
+                    <tesauro id="agente" ng-model="element" resource="ctrl.resolve.agenteService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             key="nombre"
+                             display="nombre"
+                             label="admin.edicion.form.agente" parameters="{sortProperty: 'nombre'}">
+                    </tesauro>
+                </div>
+
+
+                <!-- Función del agente -->
+                <!--
+                <div class="col-sm-6">
+                    <button-create click="ctrl.resolve.openFuncionModal"></button-create>
+
+                    <tesauro id="funcionOrganizacion" ng-model="element.funciones" resource="ctrl.resolve.funcionService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.funcionOrganizacion" parameters="{sortProperty: 'nombre'}">
+
+                    </tesauro>
+                </div>
+
+                -->
+
+            </div>
+        </div>
+    </uib-accordion>
+</script>
+
+<!-- Script organizacion -->
+<script type="text/ng-template" id="edicion.organizacion.html">
+    <uib-accordion close-others="oneAtATime" class="col-sm-12">
+        <div uib-accordion-group class="panel-default" is-open="element.desplegado"
+             heading="{{element.id ? element.nombre : 'admin.traduccion.form.nuevaOrganizacion' | translate}}">
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <button-create click="ctrl.resolve.openOrganizacionModal"></button-create>
+
+                    <tesauro id="organizacion" ng-model="ctrl.organizacion" resource="ctrl.resolve.organizacionService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.nombreEd" parameters="{sortProperty: 'nombre'}">
+
+                    </tesauro>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <button-create click="ctrl.resolve.openOrganizacionModal"></button-create>
+
+                    <tesauro id="organizacion" ng-model="ctrl.organizacion" resource="ctrl.resolve.organizacionService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.tipologia" parameters="{sortProperty: 'nombre'}">
+                    </tesauro>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <button-create click="ctrl.resolve.openOrganizacionModal"></button-create>
+
+                    <tesauro id="organizacion" ng-model="ctrl.organizacion" resource="ctrl.resolve.organizacionService"
+                             method="findAll" restricted="true" multiple="false" min-length="0" eliminable="true"
+                             label="admin.edicion.form.funcionOrganizacion" parameters="{sortProperty: 'nombre'}">
+                    </tesauro>
+                </div>
+            </div>
+        </div>
+    </uib-accordion>
+</script>

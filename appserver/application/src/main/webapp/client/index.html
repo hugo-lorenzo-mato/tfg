@@ -1,0 +1,517 @@
+<!doctype html>
+<html>
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Catalogador Acervo Josué Guimarães</title>
+    <meta name="description" content="">
+    <meta name="google" value="notranslate">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css assets/css/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="assets/css/vendor.css">
+    <!-- endbuild -->
+    <!-- build:css assets/css/main.css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- inject:css -->
+
+    <link rel="stylesheet" href="app/components/alert/alert.css">
+
+    <link rel="stylesheet" href="app/components/breadcrumb/breadcrumb.css">
+
+    <link rel="stylesheet" href="app/components/buttontop/button-top.css">
+
+    <link rel="stylesheet" href="app/components/idiomas/idiomas.css">
+
+    <link rel="stylesheet" href="app/components/loading/loading.css">
+
+    <link rel="stylesheet" href="app/components/menu/menu.css">
+
+    <link rel="stylesheet" href="app/components/form/buttoncreate/button-create.css">
+
+    <link rel="stylesheet" href="app/components/form/date/date-picker.css">
+
+    <link rel="stylesheet" href="app/components/form/filter/filter.input.css">
+
+    <link rel="stylesheet" href="app/components/form/listform/list-form.css">
+
+    <link rel="stylesheet" href="app/components/form/multiselect/multi-select.css">
+
+    <link rel="stylesheet" href="app/components/form/password/password-strength-bar.css">
+
+    <link rel="stylesheet" href="app/components/form/tesauro/tesauro.css">
+
+    <link rel="stylesheet" href="app/components/form/tesauroCitas/tesauroCitas.css">
+
+    <link rel="stylesheet" href="app/components/form/textarea/text-area.css">
+
+    <link rel="stylesheet" href="app/components/form/tooltip/tooltip.css">
+
+    <link rel="stylesheet" href="app/components/form/archivos/download/download.css">
+
+    <link rel="stylesheet" href="app/components/form/archivos/fileupload/file-upload.css">
+
+    <link rel="stylesheet" href="app/components/form/archivos/imagen/imagen.css">
+
+    <link rel="stylesheet" href="app/components/form/archivos/imagenperfil/imagen-perfil.css">
+
+    <link rel="stylesheet" href="app/components/form/archivos/imagenperfilver/imagen-perfil-ver.css">
+
+    <!-- endinject -->
+
+    <link rel="stylesheet" href="assets/css/clean.css">
+    <!-- endbuild -->
+
+</head>
+
+<body ng-app="app" ng-cloak ng-class="isAdmin ? 'admin' : 'public'">
+
+<div id="header" ui-view="header"></div>
+
+<div ui-view="navbar"></div>
+
+<div class="container">
+    <alert modal="false"></alert>
+</div>
+
+<div class="container">
+
+    <div class="well">
+        <div ng-if="isAdmin" ncy-breadcrumb></div>
+
+        <div ui-view="content"></div>
+    </div>
+
+</div>
+
+<div id="footer" ui-view="footer"></div>
+
+<!-- build:js app/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-auto-validate/dist/jcs-auto-validate.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="bower_components/rangy/rangy-core.js"></script>
+<script src="bower_components/rangy/rangy-classapplier.js"></script>
+<script src="bower_components/rangy/rangy-highlighter.js"></script>
+<script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+<script src="bower_components/rangy/rangy-serializer.js"></script>
+<script src="bower_components/rangy/rangy-textrange.js"></script>
+<script src="bower_components/textAngular/dist/textAngular.js"></script>
+<script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+<script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+<!-- endbower -->
+
+<!--JavaScripts añadidos a mano-->
+<script src="bower_components/angular-i18n/angular-locale_es.js"></script>
+
+<!-- endbuild -->
+
+
+<!-- build:js app/app.js  -->
+<!-- inject:js -->
+
+<script src="app/app.module.js"></script>
+
+<script src="app/components/form/archivos/imagenperfilver/imagen-perfil-ver.component.js"></script>
+
+<script src="app/components/form/archivos/imagenperfil/imagen-perfil.component.js"></script>
+
+<script src="app/components/form/archivos/imagen/imagen.directive.js"></script>
+
+<script src="app/components/form/archivos/imagen/imagen.controller.js"></script>
+
+<script src="app/components/form/archivos/fileupload/file-upload.directive.js"></script>
+
+<script src="app/components/form/archivos/fileupload/file-upload.controller.js"></script>
+
+<script src="app/components/form/archivos/download/download.directive.js"></script>
+
+<script src="app/components/form/archivos/download/download.controller.js"></script>
+
+<script src="app/admin/dominio/subidas/subidaPrototexto/subidaPrototexto.admin.state.js"></script>
+
+<script src="app/admin/dominio/subidas/subidaPrototexto/subidaPrototexto-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/subidas/subidaPrototexto/subidaPrototexto-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/subidas/subidaPrototexto/subidaPrototexto-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/organizacion/organizacionBloque/organizacion-bloque.admin.state.js"></script>
+
+<script src="app/admin/dominio/organizacion/organizacionBloque/organizacion-bloque.admin.controller.js"></script>
+
+<script src="app/admin/dominio/lugar/pais/pais.admin.state.js"></script>
+
+<script src="app/admin/dominio/lugar/pais/pais-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/lugar/pais/pais-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/lugar/pais/pais-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/lugar/lugarBloque/lugar-bloque.admin.state.js"></script>
+
+<script src="app/admin/dominio/lugar/lugarBloque/lugar-bloque.admin.controller.js"></script>
+
+<script src="app/admin/dominio/lugar/ciudad/ciudad.admin.state.js"></script>
+
+<script src="app/admin/dominio/lugar/ciudad/ciudad-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/lugar/ciudad/ciudad-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/lugar/ciudad/ciudad-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionOrganizacion/funcionOrganizacion.admin.state.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionOrganizacion/funcionOrganizacion-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionOrganizacion/funcionOrganizacion-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionOrganizacion/funcionOrganizacion-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionAgente/funcionAgente.admin.state.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionAgente/funcionAgente-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionAgente/funcionAgente-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/funciones/funcionAgente/funcionAgente-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto.admin.state.js"></script>
+
+<script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico.admin.state.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-form.admin.component.js"></script>
+
+<script src="app/components/form/validate/same-as.directive.js"></script>
+
+<script src="app/components/form/tooltip/tooltip.directive.js"></script>
+
+<script src="app/components/form/textarea/text-area.config.js"></script>
+
+<script src="app/components/form/textarea/text-area.component.js"></script>
+
+<script src="app/components/form/tesauroCitas/tesauroCitas.directive.js"></script>
+
+<script src="app/components/form/tesauro/tesauro.directive.js"></script>
+
+<script src="app/components/form/select/select-form.component.js"></script>
+
+<script src="app/components/form/password/password-strength-bar.directive.js"></script>
+
+<script src="app/components/form/multiselect/multi-select.component.js"></script>
+
+<script src="app/components/form/listform/list-form.component.js"></script>
+
+<script src="app/components/form/label/label-form.component.js"></script>
+
+<script src="app/components/form/filter/filter.input.component.js"></script>
+
+<script src="app/components/form/fecha/fecha.component.js"></script>
+
+<script src="app/components/form/enumModificado/enumModificado-select.component.js"></script>
+
+<script src="app/components/form/enum/enum-select.component.js"></script>
+
+<script src="app/components/form/enum/enum-select-boolean.component.js"></script>
+
+<script src="app/components/form/delete/entity.delete.modal.controller.js"></script>
+
+<script src="app/components/form/date/date-picker.component.js"></script>
+
+<script src="app/components/form/confirm/confirm.modal.controller.js"></script>
+
+<script src="app/components/form/buttons/buttons-form.component.js"></script>
+
+<script src="app/components/form/buttoncreate/button-create.component.js"></script>
+
+<script src="app/admin/user/logout/logout.state.js"></script>
+
+<script src="app/admin/user/logout/logout.controller.js"></script>
+
+<script src="app/admin/user/admin/admin.form.controller.js"></script>
+
+<script src="app/admin/user/admin/admin.admin.state.js"></script>
+
+<script src="app/admin/user/admin/admin.admin.controller.js"></script>
+
+<script src="app/admin/dominio/tipologia/tipologia.admin.state.js"></script>
+
+<script src="app/admin/dominio/tipologia/tipologia-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/tipologia/tipologia-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/tipologia/tipologia-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/prototexto/prototexto.admin.state.js"></script>
+
+<script src="app/admin/dominio/prototexto/prototexto-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/prototexto/prototexto-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/prototexto/prototexto-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/periodico/periodico.admin.state.js"></script>
+
+<script src="app/admin/dominio/periodico/periodico-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/periodico/periodico-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/periodico/periodico-form.admin.component.js"></script>
+
+<script src="app/admin/components/buscador/buscador.resultados.component.js"></script>
+
+<script src="app/admin/components/buscador/buscador.avanzado.component.js"></script>
+
+<script src="app/admin/dominio/organizacion/organizacion.admin.state.js"></script>
+
+<script src="app/admin/dominio/organizacion/organizacion-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/organizacion/organizacion-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/organizacion/organizacion-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/libro/libro.admin.state.js"></script>
+
+<script src="app/admin/dominio/libro/libro-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/libro/libro-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/libro/libro-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/formularios/formularios.state.js"></script>
+
+<script src="app/admin/dominio/formularios/formularios.controller.js"></script>
+
+<script src="app/admin/dominio/edicion/edicion.admin.state.js"></script>
+
+<script src="app/admin/dominio/edicion/edicion-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/edicion/edicion-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/edicion/edicion-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/buscador/buscador.admin.state.js"></script>
+
+<script src="app/admin/dominio/agente/agente.admin.state.js"></script>
+
+<script src="app/admin/dominio/agente/agente-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/agente/agente-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/agente/agente-form.admin.component.js"></script>
+
+<script src="app/admin/dominio/agente/agente-bloque.admin.state.js"></script>
+
+<script src="app/admin/dominio/agente/agente-bloque.admin.controller.js"></script>
+
+<script src="app/admin/components/password/password.component.js"></script>
+
+<script src="app/security/auth/principal.service.js"></script>
+
+<script src="app/security/auth/auth.service.js"></script>
+
+<script src="app/security/auth/auth.jwt.service.js"></script>
+
+<script src="app/security/auth/account.service.js"></script>
+
+<script src="app/layouts/header/header.controller.js"></script>
+
+<script src="app/public/home/home.state.js"></script>
+
+<script src="app/public/home/home.controller.js"></script>
+
+<script src="app/layouts/error/error.state.js"></script>
+
+<script src="app/entities/util/resource-helper.service.js"></script>
+
+<script src="app/entities/dominio/tipologia.service.js"></script>
+
+<script src="app/entities/dominio/subidaPrototexto.service.js"></script>
+
+<script src="app/entities/dominio/subidaPeriodico.service.js"></script>
+
+<script src="app/entities/dominio/subidaLibro.service.js"></script>
+
+<script src="app/entities/dominio/prototexto.service.js"></script>
+
+<script src="app/entities/dominio/produccionActiva.service.js"></script>
+
+<script src="app/entities/dominio/periodico.js"></script>
+
+<script src="app/entities/dominio/pais.service.js"></script>
+
+<script src="app/entities/dominio/organizacion.service.js"></script>
+
+<script src="app/entities/dominio/libro.service.js"></script>
+
+<script src="app/entities/dominio/funcionOrganizacion.service.js"></script>
+
+<script src="app/entities/dominio/funcionAgente.service.js"></script>
+
+<script src="app/entities/dominio/edicion.service.js"></script>
+
+<script src="app/entities/dominio/ciudad.service.js"></script>
+
+<script src="app/entities/dominio/citaPrototexto.service.js"></script>
+
+<script src="app/entities/dominio/citaPeriodico.service.js"></script>
+
+<script src="app/entities/dominio/citaLibro.service.js"></script>
+
+<script src="app/entities/dominio/agente.service.js"></script>
+
+<script src="app/config/interceptor/notification.interceptor.js"></script>
+
+<script src="app/config/interceptor/errorhandler.interceptor.js"></script>
+
+<script src="app/config/interceptor/auth.interceptor.js"></script>
+
+<script src="app/config/interceptor/auth-expired.interceptor.js"></script>
+
+<script src="app/components/util/parse-links.service.js"></script>
+
+<script src="app/components/util/compile.directive.js"></script>
+
+<script src="app/components/statics/static.state.js"></script>
+
+<script src="app/components/statics/static.modal.service.js"></script>
+
+<script src="app/components/statics/static.modal.controller.js"></script>
+
+<script src="app/components/statics/static.component.js"></script>
+
+<script src="app/components/security/has-no-authority.directive.js"></script>
+
+<script src="app/components/security/has-authority.directive.js"></script>
+
+<script src="app/components/security/has-any-authority.directive.js"></script>
+
+<script src="app/components/security/has-any-authority-or-state.directive.js"></script>
+
+<script src="app/components/pagination/pagination.component.js"></script>
+
+<script src="app/components/ngtable/ng-table-helper.service.js"></script>
+
+<script src="app/components/modal/modal.service.js"></script>
+
+<script src="app/components/modal/entity.modal.component.js"></script>
+
+<script src="app/components/menu/submenu.directive.js"></script>
+
+<script src="app/components/menu/menu.service.js"></script>
+
+<script src="app/components/menu/menu.component.js"></script>
+
+<script src="app/components/menu/menu-item.directive.js"></script>
+
+<script src="app/components/loading/loading.component.js"></script>
+
+<script src="app/components/idiomas/idiomas.component.js"></script>
+
+<script src="app/components/form/show-validation.directive.js"></script>
+
+<script src="app/components/form/radio-button.directive.js"></script>
+
+<script src="app/components/filters/unique.filter.js"></script>
+
+<script src="app/components/filters/num.filter.js"></script>
+
+<script src="app/components/filters/minutos.filter.js"></script>
+
+<script src="app/components/filters/capitalize.filter.js"></script>
+
+<script src="app/components/enum/enumerado.component.js"></script>
+
+<script src="app/components/date/date.component.js"></script>
+
+<script src="app/components/buttontop/button-top.component.js"></script>
+
+<script src="app/components/booleano/booleano.component.js"></script>
+
+<script src="app/components/alert/alert.service.js"></script>
+
+<script src="app/components/alert/alert.config.js"></script>
+
+<script src="app/components/alert/alert.component.js"></script>
+
+<script src="app/admin/user/password.admin.state.js"></script>
+
+<script src="app/admin/login/login.state.js"></script>
+
+<script src="app/admin/login/login.controller.js"></script>
+
+<script src="app/admin/estaticas/estaticas.admin.state.js"></script>
+
+<script src="app/admin/estaticas/estatica.service.js"></script>
+
+<script src="app/admin/estaticas/estatica-idioma.service.js"></script>
+
+<script src="app/admin/estaticas/estatica-form.admin.component.js"></script>
+
+<script src="app/services/rutas.service.js"></script>
+
+<script src="app/services/language.service.js"></script>
+
+<script src="app/services/enum.service.js"></script>
+
+<script src="app/public/public.state.js"></script>
+
+<script src="app/public/public.constants.js"></script>
+
+<script src="app/entities/user.service.js"></script>
+
+<script src="app/config/state.handler.js"></script>
+
+<script src="app/config/http.config.js"></script>
+
+<script src="app/config/app.config.js"></script>
+
+<script src="app/admin/admin.state.js"></script>
+
+<script src="app/admin/admin.state.constants.js"></script>
+
+<script src="app/admin/admin.constants.js"></script>
+
+<script src="app/app.state.js"></script>
+
+<script src="app/app.constants.js"></script>
+
+<!-- endinject -->
+<!-- endbuild -->
+</body>
+</html>

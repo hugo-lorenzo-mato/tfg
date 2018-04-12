@@ -1,0 +1,35 @@
+<form name="form" role="form" ng-submit="ctrl.save()" novalidate>
+    <div class="form-body">
+
+        <div class="row">
+            <!--Nombre-->
+            <div class="col-md-10 col-md-offset-1">
+                <div class="form-group">
+                    <label-form key="admin.pais.form.nombre" for="nombre" required="true"></label-form>
+                    <input class="form-control" id="nombre" type="text" ng-model="ctrl.item.nombre" required>
+                </div>
+            </div>
+            <!--Nombre GL-->
+            <!--
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label-form key="admin.pais.form.nombregl" for="nombregl" required="true"></label-form>
+                    <input class="form-control" id="nombregl" type="text" ng-model="ctrl.item.nombreGl" required>
+                </div>
+            </div>+            -->
+            <!--Nombre EN-->
+            <!--
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label-form key="admin.pais.form.nombreen" for="nombreen" required="true"></label-form>
+                    <input class="form-control" id="nombreen" type="text" ng-model="ctrl.item.nombreEn" required>
+                </div>
+            </div>
+            -->
+        </div>
+
+        <!--Botones-->
+        <buttons can-save="ctrl.canSave" mode="ctrl.mode"></buttons>
+    </div>
+</form>
+

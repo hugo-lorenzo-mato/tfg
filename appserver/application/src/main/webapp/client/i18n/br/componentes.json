@@ -1,0 +1,56 @@
+{
+  "imagen": {
+    "form":{
+      "upload":"Engadir imagem"
+    }
+  },
+  "idiomas": {
+    "es": "es",
+    "en": "en",
+    "br": "br"
+  },
+  "datepicker": {
+    "currentday": "Hoje",
+    "clear": "Limpar",
+    "close": "Fechar"
+  },
+  "upload": {
+    "file": {
+      "title": "Adjuntar arquivo",
+      "vacio": "Não há nenhum arquivo selecionado",
+      "subiendo": "Você deve aguardar para fazer upload do arquivo"
+    }
+  },
+  "multiselect": {
+    "default": "Escolher",
+    "search": "Procurar...",
+    "selectioncount": "seleccionados"
+  },
+  "fecha": {
+    "legendfecha": "Data",
+    "legendnacimiento": "Data de nascimento ",
+    "legendmuerte": "Data da morte",
+    "dia": "Dia",
+    "mes": "Mês",
+    "ano": "Ano"
+  },
+  "estaticas": {
+    "title": "Estáticas",
+    "pagina": {
+      "principal": "Principal"
+    },
+    "idioma": {
+      "EN": "Inglês",
+      "ES": "Espanhol"
+    },
+    "i18n": {
+      "titulo": "Título",
+      "contenido": "Contido"
+    },
+    "form": {
+      "edit": {
+        "success": "A página estática foi modificado com êxito"
+      }
+    }
+  }
+}

@@ -1,0 +1,225 @@
+<div class="buscador-avanzado">
+    <form name="form" role="form" ng-submit="ctrl.search()">
+        <h4>{{'admin.buscador.form.buscadorAvanzado' | translate}}</h4>
+
+        <!-- Titulo / resumen -->
+        <div class="row form-group">
+
+            <!--Titulo-->
+            <div class="col-sm-4">
+                <label-form key="admin.buscador.form.titulo" for="titulo"></label-form>
+                <input type="text" id="titulo" ng-model="ctrl.filtro.titulo" class="form-control">
+            </div>
+
+            <!--Resumen-->
+            <div class="col-sm-4">
+                <label-form key="admin.buscador.form.resumen" for="resumen"></label-form>
+                <input type="text" id="resumen" ng-model="ctrl.filtro.resumen" class="form-control">
+            </div>
+
+            <!-- Notas personal investigador -->
+            <div class="col-sm-4">
+                <div>
+                    <label-form key="admin.buscador.form.notas" for="notas"></label-form>
+                    <input type="text" id="notas" ng-model="ctrl.filtro.notas" class="form-control">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+
+                <!--Tipo produccion-->
+                <div class="col-sm-2">
+                    <enum-select id="role"
+                                 label="admin.admin.form.type"
+                                 model="ctrl.filtro.type"
+                                 options="['libro','periodico','prototexto']"
+                                 base="enum.tipo-type"
+                                 required="false">
+                    </enum-select>
+                </div>
+
+                <!--Genero-->
+                <div class="col-sm-3">
+                    <div>
+                        <enum-select id="genero" label="admin.buscador.form.genero" model="ctrl.filtro.genero"
+                                     options="ctrl.genero" base="enum.genero" ></enum-select>
+                    </div>
+                </div>
+
+                <!-- Assunto -->
+                <div class="col-sm-3">
+                    <div>
+                        <enum-select id="assunto" label="admin.buscador.form.assunto" model="ctrl.filtro.assunto"
+                                     options="ctrl.assunto" base="enum.assunto" ></enum-select>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <label-form key="admin.buscador.form.inicioBusqueda" for="inicioBusqueda"></label-form>
+                    <input type="number" id="inicioBusqueda" ng-model="ctrl.filtro.inicio" class="form-control" min="0">
+                </div>
+
+                <div class="col-sm-2">
+                    <label-form key="admin.buscador.form.finBusqueda" for="finBusqueda"></label-form>
+                    <input type="number" id="finBusqueda" ng-model="ctrl.filtro.fin" class="form-control" min="0">
+                </div>
+
+            </div>
+        </div>
+        <!-- TODO: Se implementa con selects porque puede ser interesante no ver sólo los que tienen algo, sino también los que no tienen. -->
+        <!-- El checkbox nos daría esta opción, pero no podríamos ponerlo a null para mostrar todos nuevamente, esto es
+             que una variable concreta no intervenga -->
+        <div class="row col-sm-12">
+            <div class="form-group">
+                <label-form key="admin.buscador.form.contiene" for="contem" required="false"></label-form>
+                <div class="check-box col-sm-12" id="contem">
+                    <div class="col-sm-1">
+                        <label>{{'admin.prototexto.form.iconografia' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="iconografia"
+                                                model="ctrl.filtro.iconografia"
+                                                options="[true, false]"
+                                                base="enum.concluido"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label>{{'admin.prototexto.form.rasuras' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="rasuras"
+                                                model="ctrl.filtro.rasuras"
+                                                options="[true, false]"
+                                                base="enum.revisado"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="col-sm-1">
+                        <label>{{'admin.prototexto.form.sublinhado' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="sublinhado"
+                                                model="ctrl.filtro.sublinhado"
+                                                options="[true, false]"
+                                                base="enum.concluido"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label>{{'admin.prototexto.form.anotasoes' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="anotasoes"
+                                                model="ctrl.filtro.anotasoes"
+                                                options="[true, false]"
+                                                base="enum.revisado"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row col-sm-12">
+            <div class="form-group">
+                <label-form key="admin.buscador.form.disponible" for="disponible" required="false"></label-form>
+                <div class="check-box col-sm-12" id="disponible">
+                    <div class="col-sm-1">
+                        <label>{{'admin.buscador.form.completo' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="completoPath"
+                                                model="ctrl.filtro.completoPath"
+                                                options="[true, false]"
+                                                base="enum.concluido"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label>{{'admin.buscador.form.transcripcion' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="transcripcionPath"
+                                                model="ctrl.filtro.transcripcionPath"
+                                                options="[true, false]"
+                                                base="enum.revisado"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="col-sm-1">
+                        <label>{{'admin.buscador.form.genetica' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="geneticaPath"
+                                                model="ctrl.filtro.geneticaPath"
+                                                options="[true, false]"
+                                                base="enum.concluido"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label>{{'admin.buscador.form.imagen' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="imagenPath"
+                                                model="ctrl.filtro.imagenPath"
+                                                options="[true, false]"
+                                                base="enum.revisado"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row col-sm-12">
+            <div class="form-group">
+                <label-form key="admin.buscador.form.estado" for="estado" required="false"></label-form>
+                <div class="check-box col-sm-12" id="estado">
+                    <div class="col-sm-1">
+                        <label>{{'admin.prototexto.form.concluido' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="noConcluido"
+                                                model="ctrl.filtro.concluido"
+                                                options="[true, false]"
+                                                base="enum.concluido"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <label>{{'admin.prototexto.form.revisado' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <enum-modificado-select id="noRevisado"
+                                                model="ctrl.filtro.revisado"
+                                                options="[true, false]"
+                                                base="enum.revisado"
+                                                required="false">
+                        </enum-modificado-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary col-sm-offset-11">
+            {{'admin.buscador.form.buscar' | translate}} <i class="fa fa-search"></i>
+        </button>
+
+        <div style="margin-top: -30px;">
+            <div id="resultados" class="resultados" ng-if="ctrl.elementos">
+                <buscador-resultados elementos="ctrl.elementos" filter="ctrl.filter"></buscador-resultados>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary col-sm-offset-11" id="botonFinal"></button>
+
+    </form>
+</div>
+
+
+

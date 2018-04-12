@@ -1,0 +1,111 @@
+<!--
+Created by hlorenzo on 09/08/2017.
+ -->
+<div class="btn-ctrl">
+    <a class="btn btn-primary btn-crear" ui-sref="admin/periodico/create">
+        <span translate="admin.periodico.create.title"></span>
+    </a>
+</div>
+
+
+<!-- Selects de filtros -->
+<div class="row">
+
+    <filter filter="ctrl.filter.key" class="col-sm-3"></filter>
+
+
+    <div class="selectores">
+        <div class="col-sm-1">
+            <label>{{'admin.prototexto.form.concluido' | translate}}</label>
+        </div>
+        <div class="form-group col-sm-2">
+            <enum-modificado-select id="noConcluido"
+                                    model="ctrl.filter.concluido"
+                                    options="[true, false]"
+                                    base="enum.concluido"
+                                    required="false">
+            </enum-modificado-select>
+        </div>
+        <div class="form-group col-sm-1">
+            <label>{{'admin.prototexto.form.revisado' | translate}}</label>
+        </div>
+        <div class="form-group col-sm-2">
+            <enum-modificado-select id="noRevisado"
+                                    model="ctrl.filter.revisado"
+                                    options="[true, false]"
+                                    base="enum.revisado"
+                                    required="false">
+            </enum-modificado-select>
+        </div>
+    </div>
+</div>
+
+<div class="total-elementos">
+    <label>{{'admin.total-elementos' | translate}}: {{ctrl.tableParams.total()}}</label>
+</div>
+<div class="table-responsive">
+    <table ng-table="ctrl.tableParams" class="table table-condensed table-bordered table-striped table-hover" class="ng-cloak">
+
+         <tr ng-repeat="element in $data track by element.id" class="animate">
+
+
+                <div>
+                    <!-- Muestro la numeración automática -->
+                    <td data-title="'admin.prototexto.form.numeracionAutomatica' | translate" sortable="'numeracionAutomatica'" class="col-md-1">
+                        <a ui-sref="admin/periodico/edit({id: element.id})" title="{{'admin.form.button.edit' | translate}}">
+                            {{element.numeracionAutomatica}}
+                        </a>
+                    </td>
+
+                    <!-- Muestro el título de la producción -->
+                    <td data-title="'admin.periodico.form.titulo' | translate" sortable="'titulo'">
+                        <a ui-sref="admin/periodico/edit({id: element.id})" title="{{'admin.form.button.edit' | translate}}">
+                            {{element.titulo}}
+                        </a>
+                    </td>
+
+                    <!-- Muestro el tipo de la producción -->
+                    <td data-title="'admin.periodico.form.tipo' | translate" sortable="'tipo'">
+                        <enumerado base="enum.tipo-periodico" value="{{element.tipo}}"></enumerado>
+                    </td>
+
+                    <!--Muestro Si está revisada la producción -->
+                    <td data-title="'admin.periodico.form.revisado' | translate" sortable="'revisado'"  class="col-md-1 text-center">
+                        <a title="{{'admin.form.button.edit' | translate}}">
+
+                            <span ng-if= "element.revisado === true" class="glyphicon glyphicon-eye-open"></span>
+
+                            <span ng-if= "element.revisado === false" class="glyphicon glyphicon-eye-close"></span>
+
+                        </a>
+                    </td>
+                    <!--
+                                ** Muestro si está concluida la producción
+                                -->
+                    <td data-title="'admin.periodico.form.concluido' | translate" sortable="'concluido'"  class="col-md-1 text-center">
+                        <a title="{{'admin.form.button.edit' | translate}}">
+
+                            <span ng-if= "element.concluido === true" class="glyphicon glyphicon-check"></span>
+
+                            <span ng-if= "element.concluido === false" class="glyphicon glyphicon-unchecked"></span>
+
+                        </a>
+                    </td>
+                    <!--
+                            ** Muestro los botones para editar / eliminar
+                            -->
+                    <td class="col-md-1 text-center button-icons">
+                        <a class="button glyphicon glyphicon-pencil"
+                           title="{{'admin.form.button.edit' | translate}}"></a>
+                        <a ng-click="ctrl.showRemoveConfirmation(element.id)" class="button glyphicon glyphicon-remove"
+                           title="{{'admin.form.button.delete' | translate}}"></a>
+                    </td>
+                </div> <!-- fin campos del formulario -->
+
+            </tr>
+        </div>
+
+
+    </table>
+</div>
+<loading is-loading="ctrl.loading" class="center-block"></loading>
