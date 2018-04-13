@@ -19,7 +19,7 @@ RUN chmod +x $CATALINA_HOME/bin/run.sh
 #RUN echo "export JAVA_OPTS=\"-Ddatasource.jdbcUrl=jdbc:postgresql://mypostgres:5432/ggal1701\"" > /usr/local/tomcat/bin/setenv.sh
 
 # add postgres JDBC driver jar
-ADD tomcat/postgresql-42.2.2.jar $CATALINA_HOME/lib/
+#ADD tomcat/postgresql-42.2.2.jar $CATALINA_HOME/lib/
 
 # add tomcat jpda debugging environmental variables
 ENV JPDA_ADDRESS="8000"
