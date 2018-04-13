@@ -8,7 +8,7 @@ echo ""
 echo ""
 echo ""
 docker rm webserver -f
-docker rmipostgresdb -f
+docker rmi postgresdb -f
 echo ""
 echo ""
 echo ""
