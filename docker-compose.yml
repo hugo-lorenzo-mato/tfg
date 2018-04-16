@@ -2,19 +2,17 @@ version: "3.3"
 
 services:
 
-  mytomcat:
-    build:
-      context: ./appserver
-    image: webserver
-    container_name: webserver
-    hostname: webserver
-    ports:
-      - "8080:8080"
-      - "8000:8000"
-#    links:
-#      - mypostgres:postgresdb
-    networks:
-      - main
+#  mytomcat:
+#    build:
+#      context: ./appserver
+#    image: webserver
+#    container_name: webserver
+#    hostname: webserver
+#    ports:
+#      - "8080:8080"
+#      - "8000:8000"
+#    networks:
+#      - main
 
   mypostgres:
     build:
