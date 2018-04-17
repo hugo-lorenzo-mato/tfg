@@ -76,3 +76,8 @@
         * La conexión a la base de datos se encuentra en el archivo `/WEB-INF/classes/config/application-prod.yml` y los logs en `/WEB-INF/classes/logback-spring.xml`.
     * Para actualizaciones:
         * Desplegar el nuevo war manteniendo la carpeta `/upload` y los archivos: `/WEB-INF/classes/config/application-prod.yml`, `/WEB-INF/classes/logback-spring.xml`.
+
+
+# Jenkins
+
+## Jenkinsfile y demas configuraciones las añadiré en breve
