@@ -45,7 +45,7 @@ public class JavaMelodyConfiguration implements ServletContextInitializer {
         // myProperties.getJavamelody().getUser() + ":" + myProperties.getJavamelody().getPassword());
 
         // to change the default storage directory:
-        javaMelody.addInitParameter(Parameter.STORAGE_DIRECTORY.getCode(), "/javamelody/FILO1701");
+        javaMelody.addInitParameter(Parameter.STORAGE_DIRECTORY.getCode(), "/tmp/javamelody/FILO1701");
 
         javaMelody.addUrlPatterns("/*");
         return javaMelody;
