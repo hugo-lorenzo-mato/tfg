@@ -51,9 +51,9 @@
 
     <link rel="stylesheet" href="app/components/form/tesauro/tesauro.css">
 
-    <link rel="stylesheet" href="app/components/form/textarea/text-area.css">
-
     <link rel="stylesheet" href="app/components/form/tesauroCitas/tesauroCitas.css">
+
+    <link rel="stylesheet" href="app/components/form/textarea/text-area.css">
 
     <link rel="stylesheet" href="app/components/form/tooltip/tooltip.css">
 
@@ -202,14 +202,6 @@
 
 <script src="app/admin/dominio/funciones/funcionAgente/funcionAgente-form.admin.component.js"></script>
 
-<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico.admin.state.js"></script>
-
-<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-list.admin.component.js"></script>
-
-<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-form.admin.config.js"></script>
-
-<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-form.admin.component.js"></script>
-
 <script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto.admin.state.js"></script>
 
 <script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto-list.admin.component.js"></script>
@@ -218,15 +210,23 @@
 
 <script src="app/admin/dominio/citas/citaPrototexto/citaPrototexto-form.admin.component.js"></script>
 
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico.admin.state.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-list.admin.component.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-form.admin.config.js"></script>
+
+<script src="app/admin/dominio/citas/citaPeriodico/citaPeriodico-form.admin.component.js"></script>
+
 <script src="app/components/form/validate/same-as.directive.js"></script>
 
 <script src="app/components/form/tooltip/tooltip.directive.js"></script>
 
-<script src="app/components/form/tesauroCitas/tesauroCitas.directive.js"></script>
-
 <script src="app/components/form/textarea/text-area.config.js"></script>
 
 <script src="app/components/form/textarea/text-area.component.js"></script>
+
+<script src="app/components/form/tesauroCitas/tesauroCitas.directive.js"></script>
 
 <script src="app/components/form/tesauro/tesauro.directive.js"></script>
 
@@ -254,9 +254,9 @@
 
 <script src="app/components/form/date/date-picker.component.js"></script>
 
-<script src="app/components/form/buttons/buttons-form.component.js"></script>
-
 <script src="app/components/form/confirm/confirm.modal.controller.js"></script>
+
+<script src="app/components/form/buttons/buttons-form.component.js"></script>
 
 <script src="app/components/form/buttoncreate/button-create.component.js"></script>
 
@@ -322,8 +322,6 @@
 
 <script src="app/admin/dominio/edicion/edicion-form.admin.component.js"></script>
 
-<script src="app/admin/dominio/buscador/buscador.admin.state.js"></script>
-
 <script src="app/admin/dominio/agente/agente.admin.state.js"></script>
 
 <script src="app/admin/dominio/agente/agente-list.admin.component.js"></script>
@@ -336,11 +334,13 @@
 
 <script src="app/admin/dominio/agente/agente-bloque.admin.controller.js"></script>
 
-<script src="app/admin/components/password/password.component.js"></script>
+<script src="app/admin/dominio/buscador/buscador.admin.state.js"></script>
 
 <script src="app/admin/components/buscador/buscador.resultados.component.js"></script>
 
 <script src="app/admin/components/buscador/buscador.avanzado.component.js"></script>
+
+<script src="app/admin/components/password/password.component.js"></script>
 
 <script src="app/security/auth/principal.service.js"></script>
 
@@ -349,52 +349,6 @@
 <script src="app/security/auth/auth.jwt.service.js"></script>
 
 <script src="app/security/auth/account.service.js"></script>
-
-<script src="app/public/home/home.state.js"></script>
-
-<script src="app/public/home/home.controller.js"></script>
-
-<script src="app/layouts/header/header.controller.js"></script>
-
-<script src="app/layouts/error/error.state.js"></script>
-
-<script src="app/entities/dominio/tipologia.service.js"></script>
-
-<script src="app/entities/dominio/subidaPrototexto.service.js"></script>
-
-<script src="app/entities/dominio/subidaPeriodico.service.js"></script>
-
-<script src="app/entities/dominio/subidaLibro.service.js"></script>
-
-<script src="app/entities/dominio/prototexto.service.js"></script>
-
-<script src="app/entities/dominio/produccionActiva.service.js"></script>
-
-<script src="app/entities/dominio/periodico.js"></script>
-
-<script src="app/entities/dominio/pais.service.js"></script>
-
-<script src="app/entities/dominio/organizacion.service.js"></script>
-
-<script src="app/entities/dominio/libro.service.js"></script>
-
-<script src="app/entities/dominio/funcionOrganizacion.service.js"></script>
-
-<script src="app/entities/dominio/funcionAgente.service.js"></script>
-
-<script src="app/entities/dominio/edicion.service.js"></script>
-
-<script src="app/entities/dominio/ciudad.service.js"></script>
-
-<script src="app/entities/dominio/citaPrototexto.service.js"></script>
-
-<script src="app/entities/dominio/citaPeriodico.service.js"></script>
-
-<script src="app/entities/dominio/citaLibro.service.js"></script>
-
-<script src="app/entities/dominio/agente.service.js"></script>
-
-<script src="app/entities/util/resource-helper.service.js"></script>
 
 <script src="app/components/util/parse-links.service.js"></script>
 
@@ -434,11 +388,11 @@
 
 <script src="app/components/loading/loading.component.js"></script>
 
-<script src="app/components/idiomas/idiomas.component.js"></script>
-
 <script src="app/components/form/show-validation.directive.js"></script>
 
 <script src="app/components/form/radio-button.directive.js"></script>
+
+<script src="app/components/idiomas/idiomas.component.js"></script>
 
 <script src="app/components/filters/unique.filter.js"></script>
 
@@ -461,6 +415,52 @@
 <script src="app/components/alert/alert.config.js"></script>
 
 <script src="app/components/alert/alert.component.js"></script>
+
+<script src="app/public/home/home.state.js"></script>
+
+<script src="app/public/home/home.controller.js"></script>
+
+<script src="app/entities/util/resource-helper.service.js"></script>
+
+<script src="app/entities/dominio/tipologia.service.js"></script>
+
+<script src="app/entities/dominio/subidaPrototexto.service.js"></script>
+
+<script src="app/entities/dominio/subidaPeriodico.service.js"></script>
+
+<script src="app/entities/dominio/subidaLibro.service.js"></script>
+
+<script src="app/entities/dominio/prototexto.service.js"></script>
+
+<script src="app/entities/dominio/produccionActiva.service.js"></script>
+
+<script src="app/entities/dominio/periodico.js"></script>
+
+<script src="app/entities/dominio/pais.service.js"></script>
+
+<script src="app/entities/dominio/organizacion.service.js"></script>
+
+<script src="app/entities/dominio/libro.service.js"></script>
+
+<script src="app/entities/dominio/funcionOrganizacion.service.js"></script>
+
+<script src="app/entities/dominio/funcionAgente.service.js"></script>
+
+<script src="app/entities/dominio/edicion.service.js"></script>
+
+<script src="app/entities/dominio/ciudad.service.js"></script>
+
+<script src="app/entities/dominio/citaPrototexto.service.js"></script>
+
+<script src="app/entities/dominio/citaPeriodico.service.js"></script>
+
+<script src="app/entities/dominio/citaLibro.service.js"></script>
+
+<script src="app/entities/dominio/agente.service.js"></script>
+
+<script src="app/layouts/header/header.controller.js"></script>
+
+<script src="app/layouts/error/error.state.js"></script>
 
 <script src="app/config/interceptor/notification.interceptor.js"></script>
 
