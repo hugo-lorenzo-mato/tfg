@@ -18,7 +18,6 @@
 # No editar menu-admin.json directamente, sino éste. Los cambios se reflejarán automáticamente
 #
 
-#- componente: <idiomas></idiomas>
 
 # Enlace a la página principal. Útil durante el desarrolo.
 #- label: Principal
@@ -93,3 +92,5 @@
     - label: global.menu.logout
       icon: glyphicon glyphicon-log-out
       state: logout
+
+- componente: <idiomas></idiomas>
