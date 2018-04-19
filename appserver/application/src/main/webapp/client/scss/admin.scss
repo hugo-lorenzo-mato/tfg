@@ -356,96 +356,213 @@ $brand-primary: #2196f3;
         }
      */
 
-    .espacioCitas{
+    .espacioCitas {
         margin-top: 10px;
     }
 
-    #suporte{
+    #suporte {
         margin-left: 5px;
     }
 
-    #revisado{
+    #revisado {
         margin-left: 10px;
     }
 
-    #concluido{
+    #concluido {
         margin-left: 6px;
     }
 
-    #soporteSuperior, #contem{
+    #soporteSuperior, #contem {
         margin-top: 10px;
     }
 
-    #multipleSuperior{
+    #multipleSuperior {
         margin-top: 10px;
     }
-    #otrosEspacio{
+    #otrosEspacio {
         margin-top: 40px;
         margin-left: -11px;
     }
 
-    #espacioImagen{
+    #espacioImagen {
         margin-top: 40px;
     }
 
-    #agentesEdicion{
+    #agentesEdicion {
         margin-top: 20px;
     }
 
-    .row h5{
-        margin-top:4%;
+    .row h5 {
+        margin-top: 4%;
         margin-bottom: 2%;
         color: #999;
     }
-    .row h6{
-        margin-top:2%;
+    .row h6 {
+        margin-top: 2%;
         margin-bottom: 2%;
         color: #999;
     }
 
-    #primeraFila{
+    #primeraFila {
         margin-top: 0%;
         margin-bottom: 0%;
 
     }
 
-    #segundaFila{
+    #segundaFila {
         margin-top: 0%;
         margin-bottom: 0%;
 
     }
 
-    #segundoSelectForm{
+    #segundoSelectForm {
         margin-top: 100px;
 
     }
 
-    .form-group:nth-child(1){
+    .form-group:nth-child(1) {
         margin-top: 15px;
     }
 
-    .ilimitados{
-        margin-top:25px;
+    .admin .ilimitados {
+        margin-top: 0px;
     }
 
-    .correctSoporte{
+    .correctSoporte {
         margin-bottom: -100px !important;
     }
 
-    #botonBuscador{
+    #botonBuscador {
         margin-bottom: 25px;
         margin-top: 25px;
     }
 
-    #resultados h4{
+    #resultados h4 {
         margin-top: 7%;
     }
 
-    #botonFinal{
+    #botonFinal {
         width: 0px;
         height: 0px;
-        background: #fff ;
+        background: #fff;
         border-color: #fff;
+    }
+
+    .contemmobilefirst {
+        margin-top: 19px;
+        margin-bottom: 20px;
+    }
+
+    .contemmobile {
+        margin-bottom: 20px;
+    }
+
+    .contemmobilelast {
+        margin-top: 16px;
+    }
+
+    @media (min-width: 700px) {
+
+        #filtrador {
+            display: inline-flex;
+            margin-left: -10px;
+            margin-top: 13px;
+        }
+
+        #filtrador2 {
+            display: inline-flex;
+            margin-left: -15px;
+            margin-top: 13px;
+        }
+
+        #filtradortag {
+            margin-left: 167px;
+            margin-top: 18px;
+        }
+
+        #filtrador2tag {
+            margin-left: -78px;
+            margin-top: 18px;
+        }
+
+        #crear {
+            margin-top: 14px;
+        }
+
+        .botonborrar {
+            margin-top: 27px;
+        }
+
+        .admin .ilimitados {
+            margin-top: 0px;
+        }
+
+
+    }
+
+    #filtrador {
+
+    }
+
+    #filtrador2 {
+
+    }
+
+    #filtradortag {
+
+    }
+
+    #filtrador2tag {
+
+    }
+
+    .crear {
+        margin-top: 10px;
+    }
+    @media only screen and (max-width: 600px){
+        .listarefs {
+            margin-top: 100px;
+        }
+
+        .botonagregar {
+            display: grid;
+            margin-top: 0px;
+            margin-left: -15px;
+            float: left;
+        }
+
+        .botonborrar {
+            margin-right: -20px;
+        }
+
+
+        .botonagregar2 {
+            display: grid;
+            margin-top: 0px;
+            margin-left: 0px;
+            float: left;
+        }
+
+        .botonborrar2 {
+            margin-right: 0px;
+        }
+
+
+        .botonagregar3 {
+            display: grid;
+            margin-top: 0px;
+            margin-left: -15px;
+            float: left;
+        }
+
+        .botonborrar3 {
+            margin-top: 30px;
+        }
+
+        #cabeceracorrespondencia{
+            margin-top: 80px;
+        }
+
     }
 
 }

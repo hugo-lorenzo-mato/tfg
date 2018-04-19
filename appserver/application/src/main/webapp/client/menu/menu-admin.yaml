@@ -20,9 +20,9 @@
 
 
 # Enlace a la página principal. Útil durante el desarrolo.
-#- label: Principal
-#  icon: glyphicon glyphicon-home
-#  state: home
+- label: Principal
+  icon: glyphicon glyphicon-home
+  state: home
 
 
 #Buscador Avanzado
@@ -32,9 +32,9 @@
 
 
 ### Catalogador ###
-#- label: global.menu.catalogador
-#  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
-#  state: formularios
+- label: global.menu.catalogador
+  authorities: ROLE_ADMIN, ROLE_CATALOGADOR
+  state: formularios
 
 # Entidades del dominio
 - label: global.menu.catalogador

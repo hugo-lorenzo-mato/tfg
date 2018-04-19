@@ -36,7 +36,7 @@
             <!-- Assunto -->
 
             <div class="col-sm-3">
-                <div class="form-group">
+                <div class="form-group col-sm-12">
                     <enum-select id="assunto" label="admin.prototexto.form.assunto" model="ctrl.item.assunto"
                                  options="ctrl.assunto" base="enum.assunto" required="false"></enum-select>
                 </div>
@@ -170,18 +170,26 @@
                           uib-tooltip="{{'admin.prototexto.form.contemTip' | translate}}" tooltip-placement="{{position || 'right'}}">
                              </span>
                     <div class="check-box col-sm-12" id="contem">
+                        <div class="contemmobilefirst">
                         <label key="admin.prototexto.form.iconografia" class="checkbox-inline col-sm-2 ">
                             <input type="checkbox" ng-model="ctrl.item.iconografia" id="iconografia" class="col-sm-2 ">{{'admin.prototexto.form.iconografia' | translate}}
                         </label>
+                        </div>
+                        <daiv class="contemmobile">
                         <label key="admin.prototexto.form.rasuras"class="checkbox-inline col-sm-2 ">
                             <input type="checkbox"  ng-model="ctrl.item.rasuras" class="col-sm-2 ">{{'admin.prototexto.form.rasuras' | translate}}
                         </label>
+                        </daiv>
+                        <div class="contemmobile">
                         <label key="admin.prototexto.form.sublinhado"class="checkbox-inline col-sm-2 ">
                             <input type="checkbox"  ng-model="ctrl.item.sublinhado" class="col-sm-2 ">{{'admin.prototexto.form.sublinhado' | translate}}
                         </label>
+                        </div>
+                        <div class="contemmobilelast">
                         <label key="admin.prototexto.form.anotasoes" class="checkbox-inline col-sm-2 ">
                             <input type="checkbox"   ng-model="ctrl.item.anotasoes">{{'admin.prototexto.form.anotasoes' | translate}}
                         </label>
+                        </div>
                     </div>
                 </div>
             </div>

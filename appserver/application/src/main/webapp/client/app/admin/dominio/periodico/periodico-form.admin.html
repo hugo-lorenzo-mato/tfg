@@ -213,14 +213,14 @@
         <div class="row">
             <div class="col-sm-12  espacioCitas">
                 <div class="form-group">
-                    <list-form acordeon="true" label="admin.libro.form.edicionAgente" list="ctrl.item.periodicoAgentes"
+                    <list-form2 acordeon="true" label="admin.libro.form.edicionAgente" list="ctrl.item.periodicoAgentes"
                                resolve="{agenteService:ctrl.agenteService,
                                          openAgenteModal:ctrl.openAgenteModal,
                                          funcionAgenteService:ctrl.funcionAgenteService,
                                          openFuncionAgenteModal:ctrl.openFuncionAgenteModal}"
                                required="false"
                                template-url="periodico.agenteTemplate.html">
-                    </list-form>
+                    </list-form2>
                 </div>
             </div>
         </div>
@@ -229,7 +229,7 @@
         <div class="row">
             <div class="col-sm-12  espacioCitas">
                 <div class="form-group">
-                    <list-form acordeon="true" label="admin.libro.form.edicionOrganizacion" list="ctrl.item.periodicoOrganizaciones"
+                    <list-form3 acordeon="true" label="admin.libro.form.edicionOrganizacion" list="ctrl.item.periodicoOrganizaciones"
                                resolve="{organizacionService:ctrl.organizacionService,
                                          openOrganizacionModal:ctrl.openOrganizacionModal,
                                          funcionOrganizacionService:ctrl.funcionOrganizacionService,
@@ -238,7 +238,7 @@
                                          openTipologiaModal:ctrl.openTipologiaModal}"
                                required="false"
                                template-url="edicion.organizacion.html">
-                    </list-form>
+                    </list-form3>
                 </div>
             </div>
         </div>
@@ -253,18 +253,27 @@
                           uib-tooltip="{{'admin.prototexto.form.contemTip' | translate}}" tooltip-placement="{{position || 'right'}}">
                              </span>
                     <div class="check-box col-sm-12" id="contem">
-                        <label key="admin.prototexto.form.iconografia" class="checkbox-inline col-sm-2 ">
-                            <input type="checkbox" ng-model="ctrl.item.iconografia" id="iconografia" class="col-sm-2 ">{{'admin.prototexto.form.iconografia' | translate}}
-                        </label>
-                        <label key="admin.prototexto.form.rasuras"class="checkbox-inline col-sm-2 ">
-                            <input type="checkbox"  ng-model="ctrl.item.rasuras" class="col-sm-2 ">{{'admin.prototexto.form.rasuras' | translate}}
-                        </label>
-                        <label key="admin.prototexto.form.sublinhado"class="checkbox-inline col-sm-2 ">
-                            <input type="checkbox"  ng-model="ctrl.item.sublinhado" class="col-sm-2 ">{{'admin.prototexto.form.sublinhado' | translate}}
-                        </label>
-                        <label key="admin.prototexto.form.anotasoes" class="checkbox-inline col-sm-2 ">
-                            <input type="checkbox"   ng-model="ctrl.item.anotasoes">{{'admin.prototexto.form.anotasoes' | translate}}
-                        </label>
+                        <div class="contemmobilefirst">
+                            <label key="admin.prototexto.form.iconografia" class="checkbox-inline col-sm-2 ">
+                                <input type="checkbox" ng-model="ctrl.item.iconografia" id="iconografia" class="col-sm-2 ">{{'admin.prototexto.form.iconografia' | translate}}
+                            </label>
+                        </div>
+                        <div class="contemmobile">
+
+                            <label key="admin.prototexto.form.rasuras"class="checkbox-inline col-sm-2 ">
+                                <input type="checkbox"  ng-model="ctrl.item.rasuras" class="col-sm-2 ">{{'admin.prototexto.form.rasuras' | translate}}
+                            </label>
+                        </div>
+                        <div class="contemmobile">
+                            <label key="admin.prototexto.form.sublinhado"class="checkbox-inline col-sm-2 ">
+                                <input type="checkbox"  ng-model="ctrl.item.sublinhado" class="col-sm-2 ">{{'admin.prototexto.form.sublinhado' | translate}}
+                            </label>
+                        </div>
+                        <div class="contemmobilelast">
+                            <label key="admin.prototexto.form.anotasoes" class="checkbox-inline col-sm-2 ">
+                                <input type="checkbox"   ng-model="ctrl.item.anotasoes">{{'admin.prototexto.form.anotasoes' | translate}}
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 Created by hlorenzo on 05/08/2017.
  -->
 <div class="btn-ctrl">
-    <a class="btn btn-primary btn-crear" ui-sref="admin/prototexto/create">
+    <a class="btn btn-primary btn-crear" ui-sref="admin/prototexto/create" id="crear">
         <span translate="admin.prototexto.create.title"></span>
     </a>
 </div>
@@ -10,14 +10,17 @@ Created by hlorenzo on 05/08/2017.
 <!-- Selects de filtros -->
 <div class="row">
 
-    <filter filter="ctrl.filter.key" class="col-sm-3"></filter>
-
-
     <div class="selectores">
+
         <div class="col-sm-1">
+
+            <filter filter="ctrl.filter.key" class="form-group col-sm-2"></filter>
+        </div>
+
+        <div class="form-group col-sm-1" id="filtradortag">
             <label>{{'admin.prototexto.form.concluido' | translate}}</label>
         </div>
-        <div class="form-group col-sm-2">
+        <div class="form-group col-sm-2" id="filtrador">
             <enum-modificado-select id="noConcluido"
                                     model="ctrl.filter.concluido"
                                     options="[true, false]"
@@ -25,10 +28,10 @@ Created by hlorenzo on 05/08/2017.
                                     required="false">
             </enum-modificado-select>
         </div>
-        <div class="form-group col-sm-1">
+        <div class="form-group col-sm-1" id="filtrador2tag">
             <label>{{'admin.prototexto.form.revisado' | translate}}</label>
         </div>
-        <div class="form-group col-sm-2">
+        <div class="form-group col-sm-2" id="filtrador2">
             <enum-modificado-select id="noRevisado"
                                     model="ctrl.filter.revisado"
                                     options="[true, false]"
