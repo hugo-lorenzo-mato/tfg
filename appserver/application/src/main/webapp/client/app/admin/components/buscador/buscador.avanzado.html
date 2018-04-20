@@ -206,9 +206,11 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary col-sm-offset-11">
+        <div class="row">
+        <button type="submit" class="btn btn-primary col-sm-offset-11" id="botonbusqueda">
             {{'admin.buscador.form.buscar' | translate}} <i class="fa fa-search"></i>
         </button>
+        </div>
 
         <div style="margin-top: -10px;">
             <div id="resultados" class="resultados" ng-if="ctrl.elementos">

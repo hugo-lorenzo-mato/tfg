@@ -461,7 +461,7 @@ $brand-primary: #2196f3;
         margin-top: 16px;
     }
 
-    @media (min-width: 700px) {
+    @media (min-width: 600px) {
 
         #filtrador {
             display: inline-flex;
@@ -498,6 +498,17 @@ $brand-primary: #2196f3;
         }
 
 
+        .marcosformularios {
+            border: 3px outset #369;
+            margin-bottom: 100px;
+
+        }
+
+        .interiormarcos{
+            max-width: 90%;
+            margin: 0 auto 0 auto;
+        }
+
     }
 
     #filtrador {
@@ -519,6 +530,15 @@ $brand-primary: #2196f3;
     .crear {
         margin-top: 10px;
     }
+
+
+    #botonbusqueda{
+        float: right;
+        margin-top: 0px;
+        margin-bottom: -34px;
+        margin-right: 10px;
+    }
+
     @media only screen and (max-width: 600px){
         .listarefs {
             margin-top: 100px;
@@ -527,8 +547,8 @@ $brand-primary: #2196f3;
         .botonagregar {
             display: grid;
             margin-top: 0px;
-            margin-left: -15px;
-            float: left;
+            margin-left: -20%;
+            float: right;
         }
 
         .botonborrar {
@@ -563,6 +583,40 @@ $brand-primary: #2196f3;
             margin-top: 80px;
         }
 
+        #avisoformularios{
+            margin-top: -93px;
+            max-width: 95%;
+            margin: 0 auto 0 auto;
+        }
+
+        .admin #crear {
+            margin-right: 0px;
+            margin-top: 30px;
+        }
+
+        #botonbusqueda{
+            float: right;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 13px;
+        }
+
+        .marcosformularios {
+            border-bottom: 3px solid #369;
+            margin-bottom: 30px;
+
+        }
+
     }
+
+    #crear{
+        margin-right: 0px;
+    }
+
+    #formulariosmarco{
+        max-width: 90%;
+        margin:0 auto 0 auto
+    }
+
 
 }
