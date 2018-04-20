@@ -15,7 +15,7 @@ spring:
     # Configuración de la BASE DE DATOS
     datasource:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://mypostgres:5432/ggal1701
+        url: jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/ggal1701
         username: postgres
         password: postgres
         maximum-pool-size: 5

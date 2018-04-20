@@ -420,9 +420,11 @@ $brand-primary: #2196f3;
 
     }
 
+
     .form-group:nth-child(1) {
         margin-top: 15px;
     }
+
 
     .admin .ilimitados {
         margin-top: 0px;
@@ -559,12 +561,28 @@ $brand-primary: #2196f3;
         .botonagregar2 {
             display: grid;
             margin-top: 0px;
-            margin-left: 0px;
+            margin-left: -23%;
             float: left;
         }
 
         .botonborrar2 {
             margin-right: 0px;
+            margin-top: 27px;
+        }
+
+        .scriptagente {
+            max-width: 85%;
+            margin: 0 auto 0 auto;
+        }
+
+        .scriptagentelibro {
+            max-width: 95%;
+            margin: 0 auto 0 auto;
+        }
+
+        .scriptagentelibro {
+            max-width: 95%;
+            margin: 0 auto 0 auto;
         }
 
 
@@ -576,7 +594,7 @@ $brand-primary: #2196f3;
         }
 
         .botonborrar3 {
-            margin-top: 30px;
+            margin-top: 27px;
         }
 
         #cabeceracorrespondencia{

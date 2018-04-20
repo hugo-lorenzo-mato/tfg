@@ -118,7 +118,7 @@
             <div class="col-sm-12  espacioCitas">
                 <div class="form-group">
                     <div> <!--ng-if="ctrl.item.tipo === 'EDISAO'"-->
-                        <list-form acordeon="true" label="admin.libro.form.libroEdiciones" list="ctrl.item.ediciones"
+                        <list-form4 acordeon="true" label="admin.libro.form.libroEdiciones" list="ctrl.item.ediciones"
                                    resolve="{openPaisModal: ctrl.openPaisModal,
                                              paisService: ctrl.paisService,
                                              openCiudadModal: ctrl.openCiudadModal,
@@ -135,7 +135,7 @@
                                              tipologiaService: ctrl.tipologiaService}"
                                    required="false"
                                    template-url="libro.edicion.html">
-                        </list-form>
+                        </list-form4>
                     </div>
                 </div>
             </div>
@@ -146,14 +146,14 @@
             <div class="col-sm-12  espacioCitas">
                 <div class="form-group">
                     <div> <!--ng-if="ctrl.item.tipo === 'CAPITULO'"-->
-                        <list-form acordeon="true" label="admin.libro.form.libroCapitulos" list="ctrl.item.capitulos"
+                        <list-form5 acordeon="true" label="admin.libro.form.libroCapitulos" list="ctrl.item.capitulos"
                                    resolve="{openAgenteModal:ctrl.openAgenteModal,
                                              agenteService:ctrl.agenteService,
                                              openFuncionAgenteModal:ctrl.openFuncionAgenteModal,
                                              funcionAgenteService:ctrl.funcionAgenteService}"
                                    required="false"
                                    template-url="seg.html">
-                        </list-form>
+                        </list-form5>
                     </div>
                 </div>
             </div>
@@ -478,14 +478,14 @@
 
                     <div class="col-sm-10" id="agentesEdicion">
 
-                        <list-form acordeon="true" label="admin.libro.form.edicionAgente" list="element.edicionAgentes"
+                        <list-form3 acordeon="true" label="admin.libro.form.edicionAgente" list="element.edicionAgentes"
                                    resolve="{agenteService:ctrl.resolve.agenteService,
                                          openAgenteModal:ctrl.resolve.openAgenteModal,
                                          funcionAgenteService:ctrl.resolve.funcionAgenteService,
                                          openFuncionAgenteModal:ctrl.resolve.openFuncionAgenteModal}"
                                    required="false"
                                    template-url="edicion.agenteTemplate.html">
-                        </list-form>
+                        </list-form3>
 
                     </div>
                 </div>
@@ -494,7 +494,7 @@
                 <!-- Organización> función -->
                 <div class="row">
                     <div class="col-sm-10">
-                        <list-form acordeon="true" label="admin.libro.form.edicionOrganizacion" list="element.edicionOrganizaciones"
+                        <list-form3 acordeon="true" label="admin.libro.form.edicionOrganizacion" list="element.edicionOrganizaciones"
                                    resolve="{organizacionService:ctrl.resolve.organizacionService,
                                          openOrganizacionModal:ctrl.resolve.openOrganizacionModal,
                                          openFuncionOrganizacionModal:ctrl.resolve.openFuncionOrganizacionModal,
@@ -503,7 +503,7 @@
                                          tipologiaService: ctrl.resolve.tipologiaService}"
                                    required="false"
                                    template-url="edicion.organizacion.html">
-                        </list-form>
+                        </list-form3>
                     </div>
                 </div>
             </div>
@@ -547,14 +547,14 @@
                 <div class="col-sm-8">
                     <div class="form-group">
 
-                        <list-form acordeon="true" label="admin.libro.form.libroAgentes" list="element.capituloAgentes"
+                        <list-form2 acordeon="true" label="admin.libro.form.libroAgentes" list="element.capituloAgentes"
                                    resolve="{openAgenteModal:ctrl.resolve.openAgenteModal,
                                              agenteService:ctrl.resolve.agenteService,
                                              openFuncionAgenteModal:ctrl.resolve.openFuncionAgenteModal,
                                              funcionAgenteService:ctrl.resolve.funcionAgenteService}"
                                    required="false"
                                    template-url="edicion.agenteTemplate.html">
-                        </list-form>
+                        </list-form2>
 
                     </div>
                 </div>
