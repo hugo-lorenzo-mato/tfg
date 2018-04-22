@@ -1,7 +1,7 @@
 FROM tomcat:8.0-jre8
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
-COPY *.war /usr/local/tomcat/webapps/ROOT.war
+COPY ./application/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
 
 ## Ejemplo de config mediante variables de entorno:
 #ENV JAVA_OPTS="-Ddatasource.jdbcUrl=jdbc:postgresql://pg-d:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres"
