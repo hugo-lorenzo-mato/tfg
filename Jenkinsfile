@@ -29,7 +29,6 @@ node () {
     } finally {
         sh "saliendo"
         }
-     }
 }
 
 
@@ -38,3 +37,4 @@ node () {
          sh "echo 'TESTEANDO'"
     }
 }
+
