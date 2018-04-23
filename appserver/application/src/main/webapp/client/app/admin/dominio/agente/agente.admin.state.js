@@ -5,7 +5,7 @@
         .module('app')
         .config(stateConfig);
 
-    
+
     /* @ngInject */
     function stateConfig($stateProvider,  STATE_HELPER, AGENTE_FORM_ADMIN) {
         var config = AGENTE_FORM_ADMIN();
@@ -49,5 +49,3 @@
             .state(state.edit.name, state.edit);
     }
 })();
-
-
