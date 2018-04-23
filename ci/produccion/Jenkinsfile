@@ -48,7 +48,6 @@ node() {
     } finally {
         sh "echo 'saliendo'"
     }
-}
 
 
     node() {
@@ -58,14 +57,10 @@ node() {
     }
 
 
-    } finally {
-    sh "echo 'saliendo'"
-    }
-}
 
-
-node () {
-    stage ('Test: Install') {
-    sh "echo 'TESTEANDO'"
-    }
+	node () {
+	    stage ('Test: Install') {
+	    sh "echo 'TESTEANDO'"
+	    }
+	}
 }
