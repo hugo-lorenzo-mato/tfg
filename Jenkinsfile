@@ -25,9 +25,13 @@ node () {
         echo 'Checking out git repository'
         sh "git config --global credential.helper 'cache --timeout=3600'"
         checkout scm
-    }
-                stage ('Test: Install') {
-                    sh "echo 'TESTEANDO'"
+        }
     }
 }
+
+
+node () {
+     stage ('Test: Install') {
+         sh "echo 'TESTEANDO'"
+    }
 }
