@@ -26,6 +26,7 @@ node () {
         sh "git config --global credential.helper 'cache --timeout=3600'"
         checkout scm
         }
+         sh "echo 'Bien hecho'"
     }
 }
 
