@@ -27,7 +27,7 @@ node () {
         checkout scm
         }
     } finally {
-        sh "saliendo"
+        sh "echo 'saliendo'"
         }
 }
 
@@ -37,4 +37,5 @@ node () {
          sh "echo 'TESTEANDO'"
     }
 }
+
 
