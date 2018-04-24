@@ -39,7 +39,7 @@ node() {
 
         stage ('Control de Calidad de Código con Sonarqube') {
             withSonarQubeEnv(sonarqubeName) {
-                sh "cd appserver/application && mvn sonarqube"
+                sh "cd appserver/application && gradle sonarqube"
             }
         }
         stage ('Gradle: Pruebas Base') {
@@ -53,7 +53,8 @@ node() {
         }
 
     } finally {
-        sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: ' whoami"
+        sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: '"
+        sh "whoami"
     }
 
 }
