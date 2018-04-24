@@ -34,8 +34,8 @@ node() {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm install"
             }
-            stage('Gradle: Install') {
-                sh "cd appserver/application && gradle run build"
+            stage('Node: Empaquetado web') {
+                sh "cd appserver/application && npm run build"
             }
         }
 
