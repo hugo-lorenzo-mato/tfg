@@ -28,6 +28,13 @@ node() {
             checkout scm
         }
 
+	    node() {
+		stage('Test: user') {
+		    sh "echo $whoami"
+		}
+	    }	    
+	    
+	    
         docker.image(nodeImage).inside("-u 0:0 --network public") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm install"
