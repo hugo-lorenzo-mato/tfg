@@ -28,11 +28,9 @@ node() {
         checkout scm
         }
         
-        
-        
         docker.image(nodeImage).inside("-u 0:0") {
             stage('Node: Instalando dependencias') {
-                sh "cd appserver/application && npm install"
+                sh "cd appserver/application && npm -v && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
                 sh "cd appserver/application && npm run build"
@@ -41,25 +39,12 @@ node() {
 
         docker.image(gradleImage).inside("-u 0:0") {
             stage('Gradle: Compilando') {
-                sh "cd appserver/application && gradle clean && gradle war"
+                sh "cd appserver/application && gradle -v && gradle clean && gradle war"
             }
         }
 
     } finally {
-        sh "whoami"
+        sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: ' whoami"
     }
 
-}
-
-
-node() {
-    stage('Test: Install') {
-        sh "echo 'TESTEANDO'"
-    }
-}  
-
-node() {
-    stage('Test: usuario') {
-        sh "echo $whoami"
-    }
 }
