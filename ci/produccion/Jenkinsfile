@@ -46,7 +46,7 @@ node() {
         }
 
     } finally {
-        sh "echo $whoami"
+        sh "whoami"
     }
 
 }
