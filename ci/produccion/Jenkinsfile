@@ -7,7 +7,7 @@
 
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6'
-def gradleImage = 'gradle:4.7'
+def gradleImage = 'gradle:4.0.2'
 def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def flywayImage = 'boxfuse/flyway:5'
 
