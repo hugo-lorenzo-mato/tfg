@@ -41,7 +41,7 @@ node() {
 
         docker.image(gradleImage).inside("-u 0:0") {
             stage('Gradle: Compilando') {
-                sh "cd appserver/application && gradle war"
+                sh "cd appserver/application && gradle clean && gradle war"
             }
         }
 
