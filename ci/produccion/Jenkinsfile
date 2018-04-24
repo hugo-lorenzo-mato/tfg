@@ -25,17 +25,11 @@ node() {
         stage('Git: Checkout') {
             echo 'Checking out git repository'
             sh "git config --global credential.helper 'cache --timeout=3600'"
-	    checkout scm
+        checkout scm
         }
-	    
-
-    node () {
-	stage ('Test: usuario') {
-	    sh "echo $whoami" 
-	    }
-    }
-	    
-	    
+        
+        
+        
         docker.image(nodeImage).inside("-u 0:0 --network public") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm install"
@@ -51,22 +45,21 @@ node() {
             }
         }
 
-
-
     } finally {
         sh "echo 'saliendo'"
     }
 
+}
 
-    node() {
-        stage('Test: Install') {
-            sh "echo 'TESTEANDO'"
-        }
-    }	   
 
-	node () {
-	    stage ('Test: Install') {
-	    sh "echo 'TESTEANDO'"
-	    }
-	}
+node() {
+    stage('Test: Install') {
+        sh "echo 'TESTEANDO'"
+    }
+}  
+
+node() {
+    stage('Test: usuario') {
+        sh "echo $whoami"
+    }
 }
