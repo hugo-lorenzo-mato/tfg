@@ -25,10 +25,9 @@ node() {
         stage('Git: Checkout') {
             echo 'Checking out git repository'
             sh "git config --global credential.helper 'cache --timeout=3600'"
-	    sh "echo $whoami"
-            checkout scm
+	    checkout scm
         }
-	    
+	sh "echo $whoami"    
         docker.image(nodeImage).inside("-u 0:0 --network public") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm install"
