@@ -30,7 +30,7 @@ node() {
         
         
         
-        docker.image(nodeImage).inside("-u 0:0 --network public") {
+        docker.image(nodeImage).inside("-u 0:0") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm install"
             }
