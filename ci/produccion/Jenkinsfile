@@ -44,15 +44,17 @@ node() {
             stage ('Gradle: Pruebas Base (unidad - integracion)') {
                 sh "cd appserver/application && gradle test"
             }       
-        }
-
-
-        docker.image(gradleImage).inside("-u 0:0"){
             stage ('Control de Calidad de Código con Sonarqube') {
                 sh "cd appserver/application && gradle sonarqube"
             }
+        }
+
+/*
+        docker.image(gradleImage).inside("-u 0:0"){
+
 
         }
+*/        
 
     } finally {
         sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: '"
