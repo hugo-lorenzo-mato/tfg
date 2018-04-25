@@ -26,9 +26,9 @@ node() {
         stage('Git: Checkout') {
             echo 'Checking out git repository'
             sh "git config --global credential.helper 'cache --timeout=3600'"
-        checkout scm
+            checkout scm
         }
-        
+
         docker.image(nodeImage).inside("-u 0:0") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm -v && node -v && npm install"
@@ -44,19 +44,18 @@ node() {
             }
             stage ('Gradle: Pruebas Base (unidad - integracion)') {
                 sh "cd appserver/application && gradle test"
-            }       
+            }
 
         }
 
 
         docker.image(gradleImage2).inside(){
-            stage ('Control de Calidad de Código') {
-                withSonarQubeEnv(sonarqubeName) {
-                    sh "cd appserver/application && gradle -Dsonar.java.binaries=target/classes --debug sonarqube"
-                }
+            withSonarQubeEnv(sonarqubeName) {
+                sh "cd appserver/application && gradle -Dsonar.java.binaries=target/classes --debug sonarqube"
             }
+
         }
-        
+
 
     } finally {
         sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: '"
