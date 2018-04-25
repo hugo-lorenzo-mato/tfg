@@ -46,18 +46,20 @@ node() {
                 sh "cd appserver/application && gradle test"
             }
 
+        }
+
+
+        docker.image(gradleImage2).inside() {
             stage('Control de Calidad de Código') {
                 withSonarQubeEnv('sonarqubeName') {
                     sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
                 }
             }
-
         }
 
 
-
     } finally {
-        sh "echo 'Saliendo....'"
+        sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: '"
         sh "whoami"
     }
 
