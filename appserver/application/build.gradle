@@ -13,13 +13,13 @@ buildscript {
     }
 }
 
-
+/*
 plugins {
     id "org.sonarqube" version "2.6.2"
 }
 
 apply plugin: "org.sonarqube"
-
+*/
 apply plugin: 'java'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
