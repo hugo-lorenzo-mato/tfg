@@ -41,13 +41,17 @@ node() {
             stage('Gradle: Compilando') {
                 sh "cd appserver/application && gradle -v && gradle war"
             }
-            
-            stage ('Control de Calidad de Código con Sonarqube') {
-                    sh "cd appserver/application && gradle sonarqube"
-            }
-            stage ('Gradle: Pruebas Base') {
+            stage ('Gradle: Pruebas Base (unidad - integración)') {
                 sh "cd appserver/application && gradle test"
             }       
+        }
+
+
+        docker.image(gradleImage).inside("-u 0:0"){
+            stage ('Control de Calidad de Código con Sonarqube') {
+                sh "cd appserver/application && gradle sonarqube"
+            }
+
         }
 
     } finally {
