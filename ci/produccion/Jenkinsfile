@@ -51,7 +51,8 @@ node() {
 
         docker.image(gradleImage2).inside(){
             stage ('Control de Calidad de Código') {
-                sh "cd appserver/application && gradle clean build && gradle --debug sonarqube"
+                sh "ping google.es"
+                sh "cd appserver/application && gradle --debug sonarqube"
             }
         }
 
