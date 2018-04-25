@@ -50,10 +50,9 @@ node() {
 
 
         docker.image(gradleImage2).inside(){
-            withSonarQubeEnv(sonarqubeName) {
+            stage ('Control de Calidad de Código') {
                 sh "cd appserver/application && gradle -Dsonar.java.binaries=target/classes --debug sonarqube"
             }
-
         }
 
 
