@@ -8,6 +8,7 @@
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6'
 def gradleImage = 'frekele/gradle:4.2.1-jdk8'
+def gradleImage2 = 'gradle:latest'
 def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def flywayImage = 'boxfuse/flyway:5'
 
@@ -44,20 +45,18 @@ node() {
             stage ('Gradle: Pruebas Base (unidad - integracion)') {
                 sh "cd appserver/application && gradle test"
             }       
+
+        }
+
+
+        docker.image(gradleImage2).inside(){
             stage ('Control de Calidad de Código') {
                 withSonarQubeEnv(sonarqubeName) {
                     sh "cd appserver/application && gradle -Dsonar.java.binaries=target/classes --debug sonarqube"
                 }
             }
-
         }
-
-/*
-        docker.image(gradleImage).inside("-u 0:0"){
-
-
-        }
-*/        
+        
 
     } finally {
         sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: '"
