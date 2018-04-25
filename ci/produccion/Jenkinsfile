@@ -46,7 +46,7 @@ node() {
             }       
             stage ('Control de Calidad de Código') {
                 withSonarQubeEnv(sonarqubeName) {
-                    sh "cd appserver/application && gradle -Dsonar.java.binaries=target/classes --info sonarqube"
+                    sh "cd appserver/application && gradle -Dsonar.java.binaries=target/classes --debug sonarqube"
                 }
             }
 
