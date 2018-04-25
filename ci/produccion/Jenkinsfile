@@ -48,12 +48,11 @@ node() {
 
             stage('Control de Calidad de Código') {
                 withSonarQubeEnv('sonarqubeName') {
-                    sh "cd appserver/application && gradle --debug sonarqube"
+                    sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
                 }
             }
 
         }
-
 
 
 
