@@ -44,9 +44,12 @@ node() {
             stage ('Gradle: Pruebas Base (unidad - integracion)') {
                 sh "cd appserver/application && gradle test"
             }       
-            stage ('Control de Calidad de Código con Sonarqube') {
-                sh "cd appserver/application && gradle sonarqube"
+            stage ('Control de Calidad de Código') {
+                withSonarQubeEnv(sonarqubeName) {
+                    sh "cd appserver/application && gradle --info sonarqube"
+                }
             }
+
         }
 
 /*
