@@ -51,7 +51,7 @@ node() {
 
         docker.image(gradleImage2).inside(){
             stage ('Control de Calidad de Código') {
-                sh "cd appserver/application && gradle --stop && gradle clean build && gradle -Dsonar.java.binaries=target/classes --debug sonarqube"
+                sh "cd appserver/application && gradle clean build && gradle --debug sonarqube"
             }
         }
 
