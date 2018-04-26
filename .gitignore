@@ -1,3 +1,6 @@
+
+integration/seleniumtest/target
+
 # Compiled class file
 *.class
 
@@ -20,3 +23,20 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+/target/
+target
+/bin/
+/.externalToolBuilders/
+.idea/
+.project
+idex.iml
+idex_es.iml
+/overlays/
+*/.classpath
+*.classpath
+*/.settings/*
+/.settings/
+/tmp/
+.idea/*

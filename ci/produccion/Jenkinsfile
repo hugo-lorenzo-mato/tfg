@@ -14,7 +14,7 @@ def flywayImage = 'boxfuse/flyway:5'
 
 def db = null
 def dbHostname = null
-def dbName = 'postgres'
+def dbName = 'ggal1701'
 def dbUser = 'postgres'
 def dbPassword = 'postgres'
 
@@ -47,12 +47,38 @@ node() {
             }
 
             stage('Control de Calidad de Código') {
-            /*
-                withSonarQubeEnv('sonarqubeName') {
-                    sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
-                }
-            */
+                /*
+                    withSonarQubeEnv('sonarqubeName') {
+                        sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
+                    }
+                */
             }
+
+
+            stage ('Despliegue: DB Init') {
+                def dbImage = docker.build("enxenio/dekra-es-db:${BRANCH_NAME}","--label jenkins ./appserver/database")
+                dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
+                db = dbImage.run("--network public --name ${dbHostname}")
+                timeout(time: 3, unit: 'MINUTES') {
+                    sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
+                }
+            }
+
+
+            stage ('Despliegue: App') {
+                def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./")
+                def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
+                        "-Ddatasource.user=${dbUser} " +
+                        "-Ddatasource.password=${dbPassword}"
+                webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
+                def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
+                        "-l 'traefik.port=8080'"
+                web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ${proxyOpts}")
+                timeout(time: 3, unit: 'MINUTES') {
+                    sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
+                }
+            }
+
 
 
             stage ('Pruebas Integración: Selenium') {

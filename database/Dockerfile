@@ -1,4 +1,5 @@
 FROM postgres:9.5
+LABEL maintainer="hugo.lorenzomato@gmail.com"
 
 # Copy the database initialize script: 
 # Contents of /docker-entrypoint-initdb.d are run on postgres startup
