@@ -8,7 +8,6 @@
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6'
 def gradleImage = 'frekele/gradle:4.2.1-jdk8'
-def gradleImage2 = 'gradle:latest'
 def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def flywayImage = 'boxfuse/flyway:5'
 
@@ -38,7 +37,7 @@ node() {
             }
         }
 
-        docker.image(gradleImage).inside("-u 0:0") {
+        docker.image(gradleImage).inside("-u 0:0 --network public") {
             stage('Gradle: Compilando') {
                 sh "cd appserver/application && gradle -v && gradle war"
             }
@@ -56,7 +55,7 @@ node() {
 
 
             stage ('Despliegue: DB Init') {
-                def dbImage = docker.build("enxenio/dekra-es-db:${BRANCH_NAME}","--label jenkins ./appserver/database")
+                def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./appserver/database")
                 dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
                 db = dbImage.run("--network public --name ${dbHostname}")
                 timeout(time: 3, unit: 'MINUTES') {
