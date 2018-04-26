@@ -29,7 +29,7 @@ node() {
             checkout scm
         }
 
-        docker.image(nodeImage).inside("-u 0:0") {
+        docker.image(nodeImage).inside("-u 0:0 --network public") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm -v && node -v && npm install"
             }
