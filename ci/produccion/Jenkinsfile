@@ -46,16 +46,26 @@ node() {
                 sh "cd appserver/application && gradle test"
             }
 
-        }
-
-
-        docker.image(gradleImage2).inside() {
             stage('Control de Calidad de Código') {
+            /*
                 withSonarQubeEnv('sonarqubeName') {
                     sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
                 }
+            */
             }
+
+
+            stage ('Pruebas Integración: Selenium') {
+                docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
+                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}' clean test"
+                }
+                junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
+            }
+
+
         }
+
+
 
 
     } finally {
