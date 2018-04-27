@@ -90,10 +90,11 @@ node() {
                     sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}' clean test"
                 }
                 */
-                docker.image(mavenChromeImage).inside() {
+                docker.image(mavenChromeImage) {
+                    sh "echo 'Acabo de entrar en el test de selenium'"
                     sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
                 }
-                junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
+                /*junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'*/
             }
 
 
