@@ -29,18 +29,18 @@ node() {
         }
 
         docker.image(nodeImage).inside("-u 0:0") {
-        /*
+
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm -v && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
                 sh "cd appserver/application && npm run build"
             }
-        */
+
         }
 
         docker.image(gradleImage).inside("-u 0:0") {
-        /*
+
             stage('Gradle: Compilando') {
                 sh "cd appserver/application && gradle -v && gradle war"
             }
@@ -55,12 +55,11 @@ node() {
                     }
 
             }
-        */
+
         }
 
 
             stage ('Despliegue: DB Init') {
-                sh "echo $PWD"
 
                 def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./database")
                 dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
@@ -73,33 +72,27 @@ node() {
 
 
             stage ('Despliegue: App') {
-                sh "echo $PWD"
-            /*
-                def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./")
+                def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./appserver")
                 def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
                         "-Ddatasource.user=${dbUser} " +
                         "-Ddatasource.password=${dbPassword}"
                 webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-                def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
-                        "-l 'traefik.port=8080'"
-                web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ${proxyOpts}")
+                web = webImage.run("--network public --link ${dbHostname} --name ${webHostname}")
                 timeout(time: 3, unit: 'MINUTES') {
                     sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
                 }
-            */
             }
 
 
 
             stage ('Pruebas Integración: Selenium') {
-                sh "echo $PWD"
                 /*
                 docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                     sh "echo $PWD && cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://${webHostname}' clean test"
                 }
                 */
                 docker.image(mavenChromeImage).inside("-u 0:0") {
-                    sh "echo $PWD && cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
+                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
                 }
                 junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
             }
