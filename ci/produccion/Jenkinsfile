@@ -55,16 +55,19 @@ node() {
 
 
             stage ('Despliegue: DB Init') {
+            /*
                 def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./appserver/database")
                 dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
                 db = dbImage.run("--network public --name ${dbHostname}")
                 timeout(time: 3, unit: 'MINUTES') {
                     sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
                 }
+            */
             }
 
 
             stage ('Despliegue: App') {
+            /*
                 def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./")
                 def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
                         "-Ddatasource.user=${dbUser} " +
@@ -76,13 +79,19 @@ node() {
                 timeout(time: 3, unit: 'MINUTES') {
                     sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
                 }
+            */
             }
 
 
 
             stage ('Pruebas Integración: Selenium') {
+                /*
                 docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                     sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}' clean test"
+                }
+                */
+                docker.image(mavenChromeImage).inside() {
+                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
                 }
                 junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
             }
