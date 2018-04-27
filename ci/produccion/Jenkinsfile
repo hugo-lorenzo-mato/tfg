@@ -28,7 +28,7 @@ node() {
             checkout scm
         }
 
-        docker.image(nodeImage).inside("-u 0:0 --network public") {
+        docker.image(nodeImage).inside("-u 0:0") {
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm -v && node -v && npm install"
             }
@@ -37,7 +37,7 @@ node() {
             }
         }
 
-        docker.image(gradleImage).inside("-u 0:0 --network public") {
+        docker.image(gradleImage).inside("-u 0:0") {
             stage('Gradle: Compilando') {
                 sh "cd appserver/application && gradle -v && gradle war"
             }
