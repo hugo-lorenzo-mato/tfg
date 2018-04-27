@@ -55,6 +55,7 @@ node() {
 
 
             stage ('Despliegue: DB Init') {
+                sh "echo $PWD"
             /*
                 def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./appserver/database")
                 dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
@@ -67,6 +68,7 @@ node() {
 
 
             stage ('Despliegue: App') {
+                sh "echo $PWD"
             /*
                 def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./")
                 def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
@@ -85,22 +87,20 @@ node() {
 
 
             stage ('Pruebas Integración: Selenium') {
+                sh "echo $PWD"
                 /*
                 docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                     sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}' clean test"
                 }
                 */
-                docker.image(mavenChromeImage) {
-                    sh "echo 'Acabo de entrar en el test de selenium'"
+                docker.image(mavenChromeImage).inside("-u 0:0") {
                     sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
                 }
-                /*junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'*/
+                junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
             }
 
 
         }
-
-
 
 
     } finally {
