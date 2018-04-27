@@ -29,15 +29,18 @@ node() {
         }
 
         docker.image(nodeImage).inside("-u 0:0") {
+        /*
             stage('Node: Instalando dependencias') {
                 sh "cd appserver/application && npm -v && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
                 sh "cd appserver/application && npm run build"
             }
+        */
         }
 
         docker.image(gradleImage).inside("-u 0:0") {
+        /*
             stage('Gradle: Compilando') {
                 sh "cd appserver/application && gradle -v && gradle war"
             }
@@ -46,12 +49,14 @@ node() {
             }
 
             stage('Control de Calidad de Código') {
-                /*
+
                     withSonarQubeEnv('sonarqubeName') {
                         sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
                     }
-                */
+
             }
+        */
+        }
 
 
             stage ('Despliegue: DB Init') {
@@ -90,11 +95,11 @@ node() {
                 sh "echo $PWD"
                 /*
                 docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}' clean test"
+                    sh "echo $PWD && cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://${webHostname}' clean test"
                 }
                 */
                 docker.image(mavenChromeImage).inside("-u 0:0") {
-                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
+                    sh "echo $PWD && cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
                 }
                 junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
             }
