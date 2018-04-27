@@ -86,14 +86,15 @@ node() {
 
 
             stage ('Pruebas Integración: Selenium') {
-                /*
+
                 docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                    sh "echo $PWD && cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://${webHostname}' clean test"
+                    sh "cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://${webHostname}' clean test"
                 }
-                */
+                /*
                 docker.image(mavenChromeImage).inside("-u 0:0") {
                     sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
                 }
+                */
                 junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
             }
 
