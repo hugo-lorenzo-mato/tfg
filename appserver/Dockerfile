@@ -14,8 +14,8 @@ COPY ./application/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
 #ADD tomcat/context.xml $CATALINA_HOME/webapps/manager/META-INF/
 
 # ADD tomcat/catalina.sh $CATALINA_HOME/bin/
-#ADD tomcat/run.sh $CATALINA_HOME/bin/run.sh
-#RUN chmod +x $CATALINA_HOME/bin/run.sh
+ADD tomcat/run.sh $CATALINA_HOME/bin/run.sh
+RUN chmod +x $CATALINA_HOME/bin/run.sh
 
 #RUN echo "export JAVA_OPTS=\"-Ddatasource.jdbcUrl=jdbc:postgresql://mypostgres:5432/ggal1701\"" > /usr/local/tomcat/bin/setenv.sh
 
@@ -28,5 +28,5 @@ COPY ./application/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
 
 
 # start tomcat8 with remote debugging
-#EXPOSE 8080
-#CMD ["run.sh"]
+EXPOSE 8080
+CMD ["run.sh"]
