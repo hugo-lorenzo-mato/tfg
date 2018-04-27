@@ -73,13 +73,13 @@ node() {
 
             stage ('Despliegue: App') {
                 def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./appserver")
-                def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/${dbName} " +
+                def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
                         "-Ddatasource.user=${dbUser} " +
                         "-Ddatasource.password=${dbPassword}"
                 webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
                 web = webImage.run("--network public --link ${dbHostname} --name ${webHostname}")
                 timeout(time: 3, unit: 'MINUTES') {
-                    sh "until [ \$(docker logs ${webHostname} --tail 100 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
+                    sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
                 }
             }
 
