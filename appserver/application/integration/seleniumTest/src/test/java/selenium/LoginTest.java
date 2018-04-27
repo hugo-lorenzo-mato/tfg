@@ -54,7 +54,7 @@ public class LoginTest {
         String urlCompleta = url + "/login";
         System.out.println(urlCompleta);
         driver.get(urlCompleta);
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         driver.findElement(By.id("username")).click();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys("admin");
