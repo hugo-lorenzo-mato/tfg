@@ -61,14 +61,14 @@ node() {
 
             stage ('Despliegue: DB Init') {
                 sh "echo $PWD"
-            /*
+
                 def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./appserver/database")
                 dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
                 db = dbImage.run("--network public --name ${dbHostname}")
                 timeout(time: 3, unit: 'MINUTES') {
                     sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
                 }
-            */
+
             }
 
 
