@@ -88,7 +88,7 @@ node() {
             stage ('Pruebas Integración: Selenium') {
 
                 docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                    sh "cd appserver/application/integration/seleniumTest && echo $PWD && mvn -DargLine='-Durl=http://${webHostname}' clean test"
+                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}' clean test"
                 }
                 /*
                 docker.image(mavenChromeImage).inside("-u 0:0") {

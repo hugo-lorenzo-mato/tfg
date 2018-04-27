@@ -42,7 +42,8 @@ public class LoginTest {
                     e.printStackTrace();
                 }
             }
-        }*/
+        }
+        */
 
         //Configuramos el entorno
         System.setProperty("webdriver.chrome.driver","chromedriver");
@@ -54,7 +55,15 @@ public class LoginTest {
         String urlCompleta = url + "/login";
         System.out.println(urlCompleta);
         driver.get(urlCompleta);
-        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        // Realizo una captura de pantalla para ver en modo no gráfico lo que obtenemos
+        File scrFile = ((TakesScreenshot) driver)
+            .getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(scrFile, new File("/tmp/imagenSinExploradorlogin.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         driver.findElement(By.id("username")).click();
         driver.findElement(By.id("username")).clear();
         driver.findElement(By.id("username")).sendKeys("admin");
@@ -62,16 +71,6 @@ public class LoginTest {
         driver.findElement(By.id("password")).sendKeys("uggo1802Z./");
         driver.findElement(By.id("rememberMe")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        // Realizo una captura de pantalla para ver en modo no gráfico lo que obtenemos
-        /*
-        File scrFile = ((TakesScreenshot) driver)
-                .getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(scrFile, new File("/home/mrnobody/imagenSinExploradorlogin.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
         driver.findElement(By.linkText("Conta")).click();
         driver.findElement(By.linkText("Sair")).click();
         driver.quit();
