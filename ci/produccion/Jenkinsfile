@@ -79,7 +79,7 @@ node() {
                 webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
                 web = webImage.run("--network public --link ${dbHostname} --name ${webHostname}")
                 timeout(time: 3, unit: 'MINUTES') {
-                    sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
+                    sh "until [ \$(docker logs ${webHostname} --tail 100 2>&1 | grep 'Catalina start' | wc -l) -gt 0 ]; do sleep 10; done"
                 }
             }
 
