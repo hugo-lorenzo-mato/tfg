@@ -110,6 +110,8 @@ node() {
     } finally {
         web?.stop()
         db?.stop()
+        sh "docker rmi $(docker images -q) -f"
+        sh "docker rm $(docker ps -a -q) -f"
 
     }
 
