@@ -72,7 +72,8 @@ node() {
 
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
-            def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
+            //def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
+            def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/${dbName} " +
                     "-Ddatasource.user=${dbUser} " +
                     "-Ddatasource.password=${dbPassword}"
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
@@ -110,10 +111,10 @@ node() {
 
 
     } finally {
-        //web?.stop()
-        //db?.stop()
-        //sh "docker rmi \$(docker images -q)"
-        //sh "docker rm \$(docker ps -a -q)"
+        web?.stop()
+        db?.stop()
+        sh "docker rmi \$(docker images -q)"
+        sh "docker rm \$(docker ps -a -q)"
     }
 
 }
