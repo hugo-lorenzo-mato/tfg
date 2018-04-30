@@ -55,7 +55,7 @@ public class LoginTest {
         String urlCompleta = url + "/login";
         System.out.println(urlCompleta);
         driver.get(urlCompleta);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         // Realizo una captura de pantalla para ver en modo no gráfico lo que obtenemos
         File scrFile = ((TakesScreenshot) driver)
             .getScreenshotAs(OutputType.FILE);
