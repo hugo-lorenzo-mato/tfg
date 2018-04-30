@@ -61,7 +61,8 @@ node() {
         stage ('Despliegue: DB Init') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
-            dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
+            //dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
+            dbHostname = "ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com"
             db = dbImage.run("--network public --name ${dbHostname}")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
