@@ -1,4 +1,5 @@
-FROM tomcat:8.0-jre8
+#FROM tomcat:8.0-jre8
+FROM tomcat:9
 #FROM tomcat:7
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
