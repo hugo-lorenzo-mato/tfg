@@ -49,53 +49,62 @@ node() {
             }
 
             stage('Control de Calidad de Código') {
-            /*
-                    withSonarQubeEnv('sonarqubeName') {
-                        sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
-                    }
-            */
+                /*
+                        withSonarQubeEnv('sonarqubeName') {
+                            sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
+                        }
+                */
             }
 
         }
 
-            stage ('Despliegue: DB Init') {
+        stage ('Despliegue: DB Init') {
 
-                def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./database")
-                dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
-                db = dbImage.run("--network public --name ${dbHostname}")
-                timeout(time: 3, unit: 'MINUTES') {
-                    sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
-                }
-
+            def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./database")
+            dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
+            db = dbImage.run("--network public --name ${dbHostname}")
+            timeout(time: 3, unit: 'MINUTES') {
+                sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
             }
 
+        }
 
-            stage ('Despliegue: App') {
-                def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./appserver")
-                def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
-                        "-Ddatasource.user=${dbUser} " +
-                        "-Ddatasource.password=${dbPassword}"
-                webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-                web = webImage.run("--network public --link ${dbHostname} --name ${webHostname}")
-                timeout(time: 3, unit: 'MINUTES') {
-                    sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
-                }
+
+        stage ('Despliegue: App') {
+            def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./appserver")
+            def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
+                    "-Ddatasource.user=${dbUser} " +
+                    "-Ddatasource.password=${dbPassword}"
+            webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
+            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname}")
+            timeout(time: 3, unit: 'MINUTES') {
+                sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
+        }
 
 
 
-            stage ('Pruebas Integración: Selenium') {
+        stage ('Pruebas Integración: Selenium') {
 
-                docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=https://catalogador.ga' clean test"
-                }
-                /*
-                docker.image(mavenChromeImage).inside("-u 0:0") {
-                    sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
-                }
-                */
-                junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
+            docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=https://${webHostname}' clean test"
             }
+            /*
+            docker.image(mavenChromeImage).inside("-u 0:0") {
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
+            }
+            */
+            junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
+        }
+
+        /*
+        stage ('Push Package'){
+            withCredentials([file(credentialsId: mvnSettingsCredentialsID, variable: 'mvnSettings')]) {
+                sh "mvn -Dmaven.repo.local=${pwd tmp: true}/m2repo -s ${mvnSettings} -DaltDeploymentRepository=nexus::default::${mvnSnapshotsURL} clean deploy"
+            }
+        }
+        */
+
 
 
     } finally {
