@@ -1,4 +1,4 @@
-#FROM tomcat:8.0-jre8
+FROM tomcat:8.0-jre8
 #FROM tomcat:9.0.7-jre8
 #FROM tomcat:7
 
