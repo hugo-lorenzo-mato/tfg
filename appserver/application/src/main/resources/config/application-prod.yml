@@ -14,10 +14,10 @@ spring:
 
     # Configuración de la BASE DE DATOS
     datasource:
-         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-#        url: jdbc:postgresql://master-10-app:5432/ggal1701
-#        username: postgres
-#        password: postgres
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        url: jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/ggal1701
+        username: postgres
+        password: postgres
         maximum-pool-size: 5
 
     application:
