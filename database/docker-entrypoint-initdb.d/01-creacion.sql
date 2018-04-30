@@ -9,6 +9,14 @@
 --			      TEMPLATE = template0
 --			      ENCODING = 'UTF8';
 
+
+-- CREATE USER dekr1401user  WITH PASSWORD 'dekr1401pass';
+CREATE DATABASE ggal1701;
+GRANT ALL PRIVILEGES ON DATABASE ggal1701 to postgres;
+ALTER DATABASE ggal1701 OWNER TO postgres;
+ALTER USER postgres WITH SUPERUSER;
+
+
 \c ggal1701 postgres
 
 ALTER ROLE postgres WITH SUPERUSER;
