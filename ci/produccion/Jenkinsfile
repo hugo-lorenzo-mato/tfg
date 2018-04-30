@@ -76,7 +76,7 @@ node() {
                     "-Ddatasource.user=${dbUser} " +
                     "-Ddatasource.password=${dbPassword}"
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS=${webJavaOpts}")
+            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}'")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
@@ -87,11 +87,11 @@ node() {
         stage ('Pruebas Integración: Selenium') {
 
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=https://${webHostname}' clean test"
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=https://${webHostname}:8080' clean test"
             }
             /*
             docker.image(mavenChromeImage).inside("-u 0:0") {
-                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' test"
             }
             */
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
