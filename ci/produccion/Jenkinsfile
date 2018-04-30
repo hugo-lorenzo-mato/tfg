@@ -108,8 +108,9 @@ node() {
 
 
     } finally {
-        sh "echo 'Fallo en la ejecución del hilo ejecutándolo como: '"
-        sh "whoami"
+        web?.stop()
+        db?.stop()
+
     }
 
 }
