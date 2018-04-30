@@ -60,7 +60,7 @@ node() {
 
         stage ('Despliegue: DB Init') {
 
-            def dbImage = docker.build("catalogador/catalogador-tfg:${BRANCH_NAME}","--label jenkins ./database")
+            def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
             dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
             db = dbImage.run("--network public --name ${dbHostname}")
             timeout(time: 3, unit: 'MINUTES') {
@@ -71,7 +71,7 @@ node() {
 
 
         stage ('Despliegue: App') {
-            def webImage = docker.build("enxenio/dekra-es-app:${BRANCH_NAME}","--label jenkins ./appserver")
+            def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
             def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
                     "-Ddatasource.user=${dbUser} " +
                     "-Ddatasource.password=${dbPassword}"
