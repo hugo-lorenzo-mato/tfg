@@ -88,7 +88,7 @@ node() {
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            web = webImage.run("--name ${webHostname}")
+            web = webImage.run("--network public --name ${webHostname}")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
