@@ -13,8 +13,8 @@
 spring:
 
     # Configuración de la BASE DE DATOS
-    datasource:
-        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+#    datasource:
+#        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
 #        url: jdbc:postgresql://master-10-app:5432/ggal1701
 #        username: postgres
 #        password: postgres
