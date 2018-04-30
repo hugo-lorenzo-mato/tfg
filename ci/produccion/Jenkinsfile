@@ -106,8 +106,8 @@ node() {
         */
 
         stage ('Eliminando contenedores e imágenes'){
-            sh "docker rmi $(docker images -q) -f"
-            sh "docker rm $(docker ps -a -q) -f"
+            sh "docker rmi '$(docker images -q)' -f"
+            sh "docker rm '$(docker ps -a -q)' -f"
         }
 
 
