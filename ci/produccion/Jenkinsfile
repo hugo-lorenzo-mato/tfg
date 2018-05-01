@@ -33,7 +33,7 @@ node() {
         docker.image(nodeImage).inside("-u 0:0") {
 
             stage('Node: Instalando dependencias') {
-                sh "cd appserver/application && pwd && npm -v && node -v && npm install"
+                sh "cd appserver/application && npm -v && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
                 sh "cd appserver/application && pwd && npm run build"
@@ -44,14 +44,14 @@ node() {
         docker.image(gradleImage).inside("-u 0:0") {
 
             stage('Gradle: Compilando') {
-                sh "cd appserver/application && pwd && gradle -v && pwd && gradle clean war"
+                sh "cd appserver/application && gradle -v && gradle clean war"
             }
             stage ('Gradle: Pruebas Base (unidad - integracion)') {
                 sh "cd appserver/application && gradle test"
             }
 
         }
-
+/*
         stage ('Despliegue: DB Init') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
@@ -64,7 +64,7 @@ node() {
 
         }
 
-/*
+
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
             def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} -Ddatasource.user=${dbUser} -Ddatasource.password=${dbPassword}"
@@ -76,16 +76,6 @@ node() {
         }
 
 */
-
-
-        stage ('Despliegue: App') {
-            def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
-            webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            web = webImage.run("--network public --name ${webHostname}")
-            timeout(time: 3, unit: 'MINUTES') {
-                sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
-            }
-        }
 /*
 
         stage ('Pruebas Integración: Selenium') {
@@ -100,16 +90,15 @@ node() {
 
 
         docker.image(gradleImage2).inside("--network public -u 0:0") {
-            stage('Control de Calidad de Código') {
+            stage('Sonarqube: control de Calidad de Código') {
                 sh "cd appserver/application && pwd && gradle sonarqube"
             }
 
         }
 
 
-
         docker.image(gradleImage).inside("--network public -u 0:0") {
-            stage ('Entrega: Nexus') {
+            stage ('Nexus: entrega artefactos') {
                 sh "cd appserver/application && gradle upload"
 
             }
