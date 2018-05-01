@@ -103,13 +103,37 @@ node() {
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
 
-        /*
-        stage ('Push Package'){
+
+        stage ('Nexus: Push Package'){
             withCredentials([file(credentialsId: mvnSettingsCredentialsID, variable: 'mvnSettings')]) {
                 sh "mvn -Dmaven.repo.local=${pwd tmp: true}/m2repo -s ${mvnSettings} -DaltDeploymentRepository=nexus::default::${mvnSnapshotsURL} clean deploy"
             }
         }
-        */
+
+
+        stage ('Entrega: Nexus') {
+            ARTIFACT = "catalogador-estable"
+            VERSION = sh (
+                    script: "echo \$(date +%Y%m%d%H%M)-\$(git rev-parse --short HEAD)",
+                    returnStdout: true
+            ).trim()
+            sh "cd appserver/application && ./pack.sh ${ARTIFACT} ${VERSION}"
+            docker.image(builderImage).inside("-u 0:0 --network public") {
+                withCredentials([file(credentialsId: mvnSettingsCredentialsID, variable: 'mvnSettings')]) {
+                    sh "cd appserver/application/build/libs  &&" +
+                            " mvn deploy:deploy-file " +
+                            "-DgroupId=ga.catalogador.fcpw " +
+                            "-DartifactId=${ARTIFACT} " +
+                            "-Dversion=${VERSION}"  +
+                            "-Dpackaging=zip " +
+                            "-Dfile=${ARTIFACT}.zip " +
+                            "-s ${mvnSettings}" +
+                            "-DrepositoryId=nexus" +
+                            "-Durl=${mvnReleasesURL}"
+                }
+            }
+        }
+
 
 
 

@@ -67,6 +67,31 @@ configurations {
     providedRuntime
 }
 
+
+repositories {
+    maven {
+        url "http://catalogador-nexus.ga/repository/maven-central/"
+        credentials {
+            username "admin"
+            password "uggo1802Z./"
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "${nexusUrl}/repository/maven-releases/") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+            snapshotRepository(url: "${nexusUrl}/repository/maven-snapshots") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+        }
+    }
+}
+
+
 repositories {
     mavenLocal()
     maven { url 'http://repo.spring.io/milestone' }
