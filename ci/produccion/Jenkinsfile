@@ -31,10 +31,10 @@ node() {
         docker.image(nodeImage).inside("-u 0:0") {
 
             stage('Node: Instalando dependencias') {
-                sh "cd appserver/application && npm -v && node -v && npm install"
+                sh "cd appserver/application && pwd && npm -v && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
-                sh "cd appserver/application && $PWD && npm run build"
+                sh "cd appserver/application && pwd && npm run build"
             }
 
         }
@@ -42,7 +42,7 @@ node() {
         docker.image(gradleImage).inside("-u 0:0") {
 
             stage('Gradle: Compilando') {
-                sh "cd appserver/application && $PWD && gradle -v && $PWD && gradle clean war"
+                sh "cd appserver/application && pwd && gradle -v && pwd && gradle clean war"
             }
             stage ('Gradle: Pruebas Base (unidad - integracion)') {
                 sh "cd appserver/application && gradle test"
