@@ -10,7 +10,7 @@ def nodeImage = 'node:6'
 def gradleImage = 'frekele/gradle:4.2.1-jdk8'
 def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def flywayImage = 'boxfuse/flyway:5'
-def gradleImage2 = 'gradle:latest'
+def gradleImage2 = 'frekele/gradle:4.1-jdk8'
 
 
 def db = null
