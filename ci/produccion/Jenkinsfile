@@ -57,7 +57,7 @@ node() {
             }
 
         }
-/*
+
         stage ('Despliegue: DB Init') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
@@ -70,7 +70,6 @@ node() {
 
         }
 
-*/
 /*
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
