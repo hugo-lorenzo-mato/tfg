@@ -110,13 +110,15 @@ node() {
         }
 
 */
+/*
+
         docker.image(gradleImage).inside("--network public -u 0:0") {
             stage ('Entrega: Nexus') {
                 sh "cd appserver/application && gradle upload"
 
             }
         }
-
+*/
 /*
         stage ('Entrega: Nexus') {
             ARTIFACT = "catalogador-estable"
@@ -147,10 +149,10 @@ node() {
 
 
     } finally {
-        //web?.stop()
-        //db?.stop()
-        //sh "docker rm \$(docker ps -a -q)"
-        //sh "docker rmi \$(docker images -q)"
+        web?.stop()
+        db?.stop()
+        sh "docker rm \$(docker ps -a -q)"
+        sh "docker rmi \$(docker images -q)"
     }
 
 }
