@@ -93,7 +93,7 @@ node() {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
         }
-
+/*
 
         stage ('Pruebas Integración: Selenium') {
 
@@ -110,7 +110,15 @@ node() {
             }
         }
 
+*/
+        docker.image(gradleImage).inside("--network public -u 0:0") {
+            stage ('Entrega: Nexus') {
+                sh "cd appserver/application && gradle upload"
 
+            }
+        }
+
+/*
         stage ('Entrega: Nexus') {
             ARTIFACT = "catalogador-estable"
             VERSION = sh (
@@ -134,7 +142,7 @@ node() {
             }
         }
 
-
+*/
 
 
 
