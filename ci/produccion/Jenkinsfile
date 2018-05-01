@@ -48,14 +48,6 @@ node() {
                 sh "cd appserver/application && gradle test"
             }
 
-            stage('Control de Calidad de Código') {
-                /*
-                        withSonarQubeEnv('sonarqubeName') {
-                            sh "cd appserver/application && gradle --debug --info --stacktrace sonarqube"
-                        }
-                */
-            }
-
         }
 
         stage ('Despliegue: DB Init') {
@@ -73,7 +65,7 @@ node() {
 /*
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
-            def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname2}:5432/${dbName} -Ddatasource.user=${dbUser} -Ddatasource.password=${dbPassword}"
+            def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} -Ddatasource.user=${dbUser} -Ddatasource.password=${dbPassword}"
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
             web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}'")
             timeout(time: 3, unit: 'MINUTES') {
@@ -102,14 +94,17 @@ node() {
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
 
+*/
 
-        stage ('Nexus: Push Package'){
-            withCredentials([file(credentialsId: mvnSettingsCredentialsID, variable: 'mvnSettings')]) {
-                sh "mvn -Dmaven.repo.local=${pwd tmp: true}/m2repo -s ${mvnSettings} -DaltDeploymentRepository=nexus::default::${mvnSnapshotsURL} clean deploy"
+
+        docker.image(gradleImage).inside("--network public -u 0:0") {
+            stage('Control de Calidad de Código') {
+                sh "cd appserver/application && gradle sonarqube"
             }
+
         }
 
-*/
+
 
 
         docker.image(gradleImage).inside("--network public -u 0:0") {
@@ -118,32 +113,6 @@ node() {
 
             }
         }
-
-/*
-        stage ('Entrega: Nexus') {
-            ARTIFACT = "catalogador-estable"
-            VERSION = sh (
-                    script: "echo \$(date +%Y%m%d%H%M)-\$(git rev-parse --short HEAD)",
-                    returnStdout: true
-            ).trim()
-            sh "cd appserver/application && ./pack.sh ${ARTIFACT} ${VERSION}"
-            docker.image(builderImage).inside("-u 0:0 --network public") {
-                withCredentials([file(credentialsId: mvnSettingsCredentialsID, variable: 'mvnSettings')]) {
-                    sh "cd appserver/application/build/libs  &&" +
-                            " mvn deploy:deploy-file " +
-                            "-DgroupId=ga.catalogador.fcpw " +
-                            "-DartifactId=${ARTIFACT} " +
-                            "-Dversion=${VERSION}"  +
-                            "-Dpackaging=zip " +
-                            "-Dfile=${ARTIFACT}.zip " +
-                            "-s ${mvnSettings}" +
-                            "-DrepositoryId=nexus" +
-                            "-Durl=${mvnReleasesURL}"
-                }
-            }
-        }
-
-*/
 
 
 
