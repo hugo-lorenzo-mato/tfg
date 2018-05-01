@@ -110,7 +110,7 @@ node() {
         }
 
 */
-/*
+
 
         docker.image(gradleImage).inside("--network public -u 0:0") {
             stage ('Entrega: Nexus') {
@@ -118,7 +118,7 @@ node() {
 
             }
         }
-*/
+
 /*
         stage ('Entrega: Nexus') {
             ARTIFACT = "catalogador-estable"
