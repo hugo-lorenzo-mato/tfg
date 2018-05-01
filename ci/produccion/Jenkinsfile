@@ -10,6 +10,8 @@ def nodeImage = 'node:6'
 def gradleImage = 'frekele/gradle:4.2.1-jdk8'
 def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def flywayImage = 'boxfuse/flyway:5'
+def gradleImage2 = 'gradle:latest'
+
 
 def db = null
 def dbHostname = null
@@ -97,13 +99,12 @@ node() {
 */
 
 
-        docker.image(gradleImage).inside("--network public -u 0:0") {
+        docker.image(gradleImage2).inside("--network public -u 0:0") {
             stage('Control de Calidad de Código') {
-                sh "cd appserver/application && gradle sonarqube"
+                sh "cd appserver/application && pwd && gradle sonarqube"
             }
 
         }
-
 
 
 
