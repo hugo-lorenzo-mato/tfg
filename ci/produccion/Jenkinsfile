@@ -34,7 +34,7 @@ node() {
                 sh "cd appserver/application && npm -v && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
-                sh "cd appserver/application && npm run build"
+                sh "cd appserver/application && $PWD && npm run build"
             }
 
         }
