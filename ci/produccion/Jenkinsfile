@@ -57,7 +57,6 @@ node() {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
             dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
-            dbHostname2 = "ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com"
             db = dbImage.run("--network public --name ${dbHostname}")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${dbHostname} --tail 50 2>&1 | grep 'init process complete' | wc -l) -gt 0 ]; do sleep 10; done"
@@ -72,7 +71,8 @@ node() {
                     "-Dspring.datasource.username=${dbUser} " +
                     "-Dspring.datasource.password=${dbPassword} "
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            web = webImage.run("--network public --link ${dbHostname} --host ${webHostname} --ip 172.18.0.3 -e JAVA_OPTS='${webJavaOpts}' ")
+            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} --ip 172.18.0.3 -e JAVA_OPTS='${webJavaOpts}' ")
+            sh "ip addr"
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
