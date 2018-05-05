@@ -42,8 +42,6 @@ node() {
 
         }
 
-        ipTomcat = ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' tm
-
         docker.image(gradleImage).inside("-u 0:0") {
 
             stage('Gradle: Compilando') {
@@ -54,6 +52,8 @@ node() {
             }
 
         }
+
+        ipTomcat = ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' tm
 
         stage ('Despliegue: DB Init') {
 
