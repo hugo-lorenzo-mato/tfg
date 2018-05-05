@@ -8,7 +8,8 @@
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6'
 def gradleImage = 'frekele/gradle:4.2.1-jdk8'
-def mavenChromeImage = 'markhobson/maven-chrome:latest'
+//def mavenChromeImage = 'markhobson/maven-chrome:latest'
+def mavenChromeImage = 'selenium/standalone-chrome'
 def flywayImage = 'boxfuse/flyway:5'
 def gradleImage2 = 'frekele/gradle:4.1-jdk8'
 
@@ -78,12 +79,10 @@ node() {
         }
 
         stage ('Pruebas Integración: Selenium') {
-            //docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                //sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}:8080' clean test"
-            //sh "ls -la"
-            sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://catalogador.ga' clean test"
-            //}
-            //junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
+            docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}:8080' clean test"
+            }
+            junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
 
 
@@ -93,7 +92,6 @@ node() {
             }
 
         }
-
 
         docker.image(gradleImage).inside("--network public -u 0:0") {
             stage ('Nexus: entrega artefactos') {
