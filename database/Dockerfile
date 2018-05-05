@@ -10,3 +10,5 @@ ADD  docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
 #ENV POSTGRES_DB=ggal1701
 #ENV POSTGRES_USER=postgres
 #ENV POSTGRES_PASSWORD=postgres
+
+

@@ -1,21 +1,16 @@
 package selenium;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest {
+public class LoginTest2 {
 
     Properties prop = new Properties();
     InputStream input = null;
@@ -55,7 +50,7 @@ public class LoginTest {
         String urlCompleta = url + "/login";
         System.out.println(urlCompleta);
         driver.get(urlCompleta);
-        driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         // Realizo una captura de pantalla para ver en modo no gráfico lo que obtenemos
         /*
         File scrFile = ((TakesScreenshot) driver)
