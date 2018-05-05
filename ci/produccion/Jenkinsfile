@@ -9,7 +9,7 @@ def appName = 'catalogador-tfg'
 def nodeImage = 'node:6'
 def gradleImage = 'frekele/gradle:4.2.1-jdk8'
 //def mavenChromeImage = 'markhobson/maven-chrome:latest'
-def mavenChromeImage = 'skydever/maven-chrome-certs'
+def mavenChromeImage = 'skydever/maven-chrome-certs:latest'
 def flywayImage = 'boxfuse/flyway:5'
 def gradleImage2 = 'frekele/gradle:4.1-jdk8'
 
@@ -104,19 +104,11 @@ node() {
     } finally {
         web?.stop()
         db?.stop()
-        //sh "docker rm \$(docker ps -a -q)"
-        //sh "docker rmi \$(docker images -q)"
+        sh "docker rm \$(docker ps -a -q) -f"
+        sh "docker rm \$(docker ps -q) -f"
+        sh "docker rmi \$(docker images -q) -f"
     }
 
 }
 //-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres
 // sudo docker run --network public --link pg --name tm -e JAVA_OPTS="-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres" -p 9000:8080 worker
-
-
-/*
-
-        stage ('Hallar ip'){
-            ipTomcat = sh "ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${webHostname}"
-        }
-
- */
