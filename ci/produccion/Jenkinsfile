@@ -76,15 +76,10 @@ node() {
             }
         }
 
-        stage ('Hallae ip'){
-            ipTomcat = sh "ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${webHostname}"
-        }
-
-
         stage ('Pruebas Integración: Selenium') {
 
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${ipTomcat}:8080' clean test"
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://172.18.0.3:8080' clean test"
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
@@ -116,3 +111,12 @@ node() {
 }
 //-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres
 // sudo docker run --network public --link pg --name tm -e JAVA_OPTS="-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres" -p 9000:8080 worker
+
+
+/*
+
+        stage ('Hallar ip'){
+            ipTomcat = sh "ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${webHostname}"
+        }
+
+ */
