@@ -81,7 +81,7 @@ node() {
         stage ('Pruebas Integración: Selenium') {
 
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                sh "ping ${webHostname}:8080"
+                sh "ping http://${webHostname}:8080"
                 sh "cd appserver/application/integration/seleniumTest && mvn -DargLine='-Durl=http://${webHostname}:8080' clean test"
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
