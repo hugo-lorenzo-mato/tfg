@@ -53,8 +53,6 @@ node() {
 
         }
 
-        ipTomcat = ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' tm
-
         stage ('Despliegue: DB Init') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
@@ -78,6 +76,9 @@ node() {
             }
         }
 
+        stage ('Hallae ip'){
+            ipTomcat = sh "ipdocker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${webHostname}"
+        }
 
 
         stage ('Pruebas Integración: Selenium') {
