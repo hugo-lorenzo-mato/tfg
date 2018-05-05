@@ -67,7 +67,7 @@ node() {
 
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
-            def webJavaOpts = "-Ddatasource.jdbcUrl=jdbc:postgresql://${dbHostname}:5432/${dbName} -Ddatasource.user=${dbUser} -Ddatasource.password=${dbPassword}"
+            def webJavaOpts = "-Dspring.datasource.url=jdbc:postgresql://${dbHostname}:5432/${dbName} -Dspring.datasource.username=${dbUser} -Dspring.datasource.password=${dbPassword}"
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
             web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}'")
             timeout(time: 3, unit: 'MINUTES') {
@@ -76,7 +76,6 @@ node() {
         }
 
 
-/*
 
         stage ('Pruebas Integración: Selenium') {
 
@@ -85,8 +84,6 @@ node() {
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
-
-*/
 
 
         docker.image(gradleImage2).inside("--network public -u 0:0") {
@@ -103,8 +100,6 @@ node() {
 
             }
         }
-
-
 
 
     } finally {
