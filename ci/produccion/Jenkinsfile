@@ -70,7 +70,7 @@ node() {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
             def webJavaOpts = "-Dspring.datasource.url=jdbc:postgresql://${dbHostname}:5432/${dbName} -Dspring.datasource.username=${dbUser} -Dspring.datasource.password=${dbPassword}"
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}'")
+            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' -hostname test --ip 172.18.0.3")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
