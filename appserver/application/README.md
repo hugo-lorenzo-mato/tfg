@@ -58,6 +58,10 @@
 
 * `npm run build` compila la aplicación para producción en la carpeta `dist`.
 * `gradlew war` genera el war de la aplicación para producción en la carpeta `build/libs`.
+
+* gradle wrapper --gradle-version 4.0.2 para compilar gradlew y después:
+* ./gradlew build
+
 * Para sistemas:
     * Instalación:
         * Utilizar Java 8

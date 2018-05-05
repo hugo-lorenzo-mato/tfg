@@ -115,3 +115,5 @@ node() {
     }
 
 }
+//-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres
+// sudo docker run --network public --link pg --name tm -e JAVA_OPTS="-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres" -p 9000:8080 worker

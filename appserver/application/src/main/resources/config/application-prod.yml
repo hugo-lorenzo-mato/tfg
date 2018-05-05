@@ -15,9 +15,14 @@ spring:
     # Configuración de la BASE DE DATOS
     datasource:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/ggal1701
-        username: postgres
-        password: postgres
+         # Primera opción sin incluir ningún parámetro y usando JAVA_OPTS
+#        url: jdbc:postgresql://psw:5432/ggal1701
+#        username: postgres
+#        password: postgres
+#        Segunda opción con variables de entorno:
+#        url: ${JDBC_URL}
+#        username: ${DATABASE_USERNAME}
+#        password: ${DATABASE_PASSWORD}
         maximum-pool-size: 5
 
     application:
@@ -35,3 +40,8 @@ server:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
 
+
+# Primera respuesta SO, mal pasados los JAVAOPTS:
+# sudo docker run --network public --link pg --name tm -e JAVA_OPTS="-Dspring.datasource.url=jdbc:postgresql://pg:5432/ggal1701 -Dspring.datasource.username=postgres -Dspring.datasource.password=postgres" -p 9000:8080 worker
+# Segunda opción SO:
+# docker run --network public --link pg --name tm -e JDBC_URL="jdbc:postgresql://pg:5432/ggal1701" -e DATABASE_USERNAME="postgres" -e DATABASE_PASSWORD="postgres" -p 9000:8080 worker
