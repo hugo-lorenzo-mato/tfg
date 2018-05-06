@@ -83,13 +83,16 @@ node() {
                     "scp -i '/hugo-lorenzo-keypair.pem' application-0.0.1-SNAPSHOT.war ec2-user@ec2-18-220-208-109.us-east-2.compute.amazonaws.com:~/"
         }
 
+
+
+        /*
         stage ('Pruebas Integración: Selenium') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                 sh "cd appserver/application/integration/seleniumTest && mvn -DargLine=' -Durl=http://${webHostname}:8080' clean test"
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
-
+        */
 
         docker.image(gradleImage2).inside("--network public -u 0:0") {
             stage('Sonarqube: control de Calidad de Código') {
@@ -103,6 +106,17 @@ node() {
                 sh "cd appserver/application && gradle upload"
 
             }
+        }
+
+        stage ('Git: Update Stable Tag') {
+            VERSION = sh (
+                    script: "echo \$(date +%Y%m%d%H%M)-\$(git rev-parse --short HEAD)",
+                    returnStdout: true
+            ).trim()
+            sh "git tag stable-${VERSION}"
+            sh "git tag -f stable"
+            sh "git push origin :refs/tags/stable" /* Remove old stable tag*/
+            sh "git push --tags"
         }
 
 
