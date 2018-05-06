@@ -61,10 +61,10 @@ node() {
 */
 
         stage('Node: Instalando dependencias') {
-            sh "sudo su && cd appserver/application && pwd && whoami && npm -v && npm install angular@1.6.5 && node -v && npm install"
+            sh "cd appserver/application && pwd && whoami && npm -v && npm install angular@1.6.5 && node -v && npm install"
         }
         stage('Node: Empaquetado web') {
-            sh "sudo su && cd appserver/application && pwd && npm run build"
+            sh "cd appserver/application && pwd && npm run build"
 
         }
 
