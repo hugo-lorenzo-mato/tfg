@@ -61,7 +61,7 @@ node() {
 */
 
         stage('Node: Instalando dependencias') {
-            sh "cd appserver/application && pwd && whoami && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm -v" +
+            sh "cd appserver/application && env && pwd && whoami && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm -v" +
                     " && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm install angular@1.6.5 " +
                     "&& /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm -v" +
                     " && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm install"
