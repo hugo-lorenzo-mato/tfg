@@ -28,6 +28,7 @@ def ipTomcat = null
 
 def web = null
 def webHostname = null
+def npm = tool 'npm'
 
 node() {
     try {
@@ -61,7 +62,8 @@ node() {
 */
 
         stage('Node: Instalando dependencias') {
-            sh "cd appserver/application && env && pwd && whoami && npm -v" +
+            npm = tool 'npm'
+            sh "cd appserver/application && env && pwd && whoami && ${npm}/npm -v" +
                     " && npm install angular@1.6.5 " +
                     "&& npm -v" +
                     " && npm install"
