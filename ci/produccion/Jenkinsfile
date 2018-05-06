@@ -6,7 +6,7 @@
  */
 
 def appName = 'catalogador-tfg'
-def nodeImage = 'node:6'
+def nodeImage = 'node:6.11.1'
 //def gradleImage = 'frekele/gradle:4.2.1-jdk8'
 def gradleImage = 'frekele/gradle:4.0.2-jdk8'
 //def mavenChromeImage = 'markhobson/maven-chrome:latest'
@@ -15,7 +15,7 @@ def flywayImage = 'boxfuse/flyway:5'
 def gradleImage2 = 'frekele/gradle:4.1-jdk8'
 
 
-def webProxyPrefixPath = "dios"
+def webProxyPrefixPath = ""
 // def webProxyPrefixPath = "${BRANCH_NAME}" /* TODO: Pendiente configuración de proxy */
 
 
@@ -77,9 +77,9 @@ node() {
                     "-Dspring.datasource.username=${dbUser} " +
                     "-Dspring.datasource.password=${dbPassword} "
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}'"
-            //def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
-            //        "-l 'traefik.port=9090'"
+            //def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}'"
+            def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
+                    "-l 'traefik.port=9090'"
             web = webImage.run("-p 9999:8080 -p 9898:80 --network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ${proxyOpts}")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
