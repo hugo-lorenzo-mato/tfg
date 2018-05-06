@@ -119,12 +119,12 @@ node() {
             sh "git push origin :refs/tags/stable" // Remove old stable tag
             sh "git push --tags"
         }
-
+        */
         stage ('Pruebas Aceptación: Decisión') {
             input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
         }
 
-        */
+
 
     } finally {
         web?.stop()
