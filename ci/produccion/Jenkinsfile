@@ -78,13 +78,6 @@ node() {
             }
         }
 
-        stage('Copiando war en slave:'){
-            sh "sudo su && " +
-                    "scp -i '/hugo-lorenzo-keypair.pem' application-0.0.1-SNAPSHOT.war ec2-user@ec2-18-220-208-109.us-east-2.compute.amazonaws.com:~/"
-        }
-
-
-
         /*
         stage ('Pruebas Integración: Selenium') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
