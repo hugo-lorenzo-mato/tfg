@@ -76,9 +76,9 @@ node() {
                     "-Dspring.datasource.username=${dbUser} " +
                     "-Dspring.datasource.password=${dbPassword} "
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            //def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
-            //        "-l 'traefik.port=8080'"
-            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ")
+            def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
+                    "-l 'traefik.port=9090'"
+            web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ${proxyOpts}")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
