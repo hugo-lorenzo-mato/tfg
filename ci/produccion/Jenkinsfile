@@ -118,10 +118,13 @@ node() {
             sh "git push --tags"
         }
 
+        stage ('Pruebas Aceptación: Decisión') {
+            input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
+        }
 
     } finally {
-        //web?.stop()
-        //db?.stop()
+        web?.stop()
+        db?.stop()
     }
 
 }
