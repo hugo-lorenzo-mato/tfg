@@ -28,7 +28,6 @@ def ipTomcat = null
 
 def web = null
 def webHostname = null
-def npm = tool 'npm'
 
 node() {
     try {
@@ -37,7 +36,7 @@ node() {
             sh "git config --global credential.helper 'cache --timeout=3600'"
             checkout scm
         }
-/*
+
         docker.image(nodeImage).inside("-u 0:0") {
 
             stage('Node: Instalando dependencias') {
@@ -59,8 +58,8 @@ node() {
             }
 
         }
-*/
 
+/*
         stage('Node: Instalando dependencias') {
             npm = tool 'npm'
             sh "cd appserver/application && env && pwd && whoami && ${npm}/npm -v" +
@@ -79,7 +78,7 @@ node() {
         stage ('Gradle: Pruebas Base (unidad - integracion)') {
              sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle test"
         }
-
+*/
         stage ('Despliegue: DB Init') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
@@ -107,7 +106,7 @@ node() {
             }
         }
 
-        /*
+
         stage ('Pruebas Integración: Selenium') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                 sh "cd appserver/application/integration/seleniumTest && mvn -DargLine=' -Durl=http://${webHostname}:8080' clean test"
@@ -140,7 +139,7 @@ node() {
             sh "git push origin :refs/tags/stable" // Remove old stable tag
             sh "git push --tags"
         }
-        */
+
         stage ('Pruebas Aceptación: Decisión') {
             input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
         }
