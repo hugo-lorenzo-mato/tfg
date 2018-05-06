@@ -77,7 +77,7 @@ node() {
             sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle -v && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle clean war"
         }
         stage ('Gradle: Pruebas Base (unidad - integracion)') {
-            sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle test"
+             sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle test"
         }
 
         stage ('Despliegue: DB Init') {
