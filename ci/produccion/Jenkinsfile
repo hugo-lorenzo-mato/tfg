@@ -120,8 +120,8 @@ node() {
 
 
     } finally {
-        web?.stop()
-        db?.stop()
+        //web?.stop()
+        //db?.stop()
     }
 
 }
