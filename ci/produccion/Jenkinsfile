@@ -61,7 +61,7 @@ node() {
 */
 
         stage('Node: Instalando dependencias') {
-            sh "cd appserver/application && pwd && npm -v && npm install angular@1.6.5 && node -v && npm install"
+            sh "cd appserver/application && pwd && whoami && npm -v && npm install angular@1.6.5 && node -v && npm install"
         }
         stage('Node: Empaquetado web') {
             sh "cd appserver/application && pwd && npm run build"
