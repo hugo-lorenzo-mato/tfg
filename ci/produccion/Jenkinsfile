@@ -14,7 +14,7 @@ def flywayImage = 'boxfuse/flyway:5'
 def gradleImage2 = 'frekele/gradle:4.1-jdk8'
 
 
-def webProxyPrefixPath = ""
+def webProxyPrefixPath = "dios"
 // def webProxyPrefixPath = "${BRANCH_NAME}" /* TODO: Pendiente configuración de proxy */
 
 
@@ -127,3 +127,5 @@ node() {
 }
 //-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres
 // sudo docker run --network public --link pg --name tm -e JAVA_OPTS="-Ddatasource.jdbcUrl=jdbc:postgresql://pg:5432/ggal1701 -Ddatasource.user=postgres -Ddatasource.password=postgres" -p 9000:8080 worker
+// Para lanzar traefik
+// sudo docker run -d -p 9090:8080 -p 8888:8888 --network public --name traefik -v $PWD/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
