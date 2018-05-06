@@ -61,30 +61,21 @@ node() {
 */
 
         stage('Node: Instalando dependencias') {
-            sh "cd appserver/application && pwd && whoami && npm -v && npm install angular@1.6.5 && node -v && npm install"
+            sh "cd appserver/application && pwd && whoami && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm -v" +
+                    " && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm install angular@1.6.5 " +
+                    "&& /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm -v" +
+                    " && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm install"
         }
         stage('Node: Empaquetado web') {
-            sh "cd appserver/application && pwd && npm run build"
+            sh "cd appserver/application && pwd && /opt/bitnami/node/node-v6.11.1-linux-x64/bin/npm run build"
 
         }
 
         stage('Gradle: Compilando') {
-            sh "cd appserver/application && gradle -v && gradle clean war"
+            sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle -v && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle clean war"
         }
         stage ('Gradle: Pruebas Base (unidad - integracion)') {
-            sh "cd appserver/application && gradle test"
-        }
-
-
-        docker.image(gradleImage).inside("-u 0:0") {
-
-            stage('Gradle: Compilando') {
-                sh "cd appserver/application && gradle -v && gradle clean war"
-            }
-            stage ('Gradle: Pruebas Base (unidad - integracion)') {
-                sh "cd appserver/application && gradle test"
-            }
-
+            sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle test"
         }
 
         stage ('Despliegue: DB Init') {
