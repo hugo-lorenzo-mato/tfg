@@ -36,7 +36,7 @@ node() {
             sh "git config --global credential.helper 'cache --timeout=3600'"
             checkout scm
         }
-
+/*
         docker.image(nodeImage).inside("-u 0:0") {
 
             stage('Node: Instalando dependencias') {
@@ -47,6 +47,34 @@ node() {
             }
 
         }
+
+        docker.image(gradleImage).inside("-u 0:0") {
+
+            stage('Gradle: Compilando') {
+                sh "cd appserver/application && gradle -v && gradle clean war"
+            }
+            stage ('Gradle: Pruebas Base (unidad - integracion)') {
+                sh "cd appserver/application && gradle test"
+            }
+
+        }
+*/
+
+        stage('Node: Instalando dependencias') {
+            sh "cd appserver/application && npm -v && npm install angular@1.6.5 && node -v && npm install"
+        }
+        stage('Node: Empaquetado web') {
+            sh "cd appserver/application && pwd && npm run build"
+
+        }
+
+        stage('Gradle: Compilando') {
+            sh "cd appserver/application && gradle -v && gradle clean war"
+        }
+        stage ('Gradle: Pruebas Base (unidad - integracion)') {
+            sh "cd appserver/application && gradle test"
+        }
+
 
         docker.image(gradleImage).inside("-u 0:0") {
 
