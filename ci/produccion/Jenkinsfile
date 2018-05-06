@@ -14,6 +14,10 @@ def flywayImage = 'boxfuse/flyway:5'
 def gradleImage2 = 'frekele/gradle:4.1-jdk8'
 
 
+def webProxyPrefixPath = ""
+// def webProxyPrefixPath = "${BRANCH_NAME}" /* TODO: Pendiente configuración de proxy */
+
+
 def db = null
 def dbHostname = null
 def dbName = 'ggal1701'
@@ -72,8 +76,8 @@ node() {
                     "-Dspring.datasource.username=${dbUser} " +
                     "-Dspring.datasource.password=${dbPassword} "
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
-                    "-l 'traefik.port=8080'"
+            //def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
+            //        "-l 'traefik.port=8080'"
             web = webImage.run("--network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ")
             timeout(time: 3, unit: 'MINUTES') {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
