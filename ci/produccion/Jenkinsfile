@@ -7,7 +7,8 @@
 
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6'
-def gradleImage = 'frekele/gradle:4.2.1-jdk8'
+//def gradleImage = 'frekele/gradle:4.2.1-jdk8'
+def gradleImage = 'frekele/gradle:4.0.2-jdk8'
 //def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def mavenChromeImage = 'skydever/maven-chrome-certs:latest'
 def flywayImage = 'boxfuse/flyway:5'
@@ -47,7 +48,7 @@ node() {
 
         }
 
-        docker.image(gradleImage).inside("-u 0:0") {
+        docker.image(gradleImage2).inside("-u 0:0") {
 
             stage('Gradle: Compilando') {
                 sh "cd appserver/application && gradle -v && gradle clean war"
@@ -92,7 +93,7 @@ node() {
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
-        */
+
 
         docker.image(gradleImage2).inside("--network public -u 0:0") {
             stage('Sonarqube: control de Calidad de Código') {
@@ -115,13 +116,15 @@ node() {
             ).trim()
             sh "git tag stable-${VERSION}"
             sh "git tag -f stable"
-            sh "git push origin :refs/tags/stable" /* Remove old stable tag*/
+            sh "git push origin :refs/tags/stable" // Remove old stable tag
             sh "git push --tags"
         }
 
         stage ('Pruebas Aceptación: Decisión') {
             input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
         }
+
+        */
 
     } finally {
         web?.stop()
