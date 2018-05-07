@@ -42,6 +42,10 @@ node() {
             env.NODEJS_HOME = "${tool 'nodeTFG'}"
             env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
             sh 'npm --version'
+            sh 'node --version'
+            env.GRADLE_HOME = "${tool 'gradleTFG'}"
+            env.PATH="${env.GRADLE_HOME}/bin:${env.PATH}"
+            sh 'gradle --version'
         }
 
 
