@@ -37,6 +37,15 @@ node() {
             checkout scm
         }
 
+
+        stage('Pruebas desde jenkins'){
+            env.NODEJS_HOME = "${tool 'nodeTFG'}"
+            env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
+            sh 'npm --version'
+        }
+
+
+        /*
         docker.image(nodeImage).inside("-u 0:0") {
 
             stage('Node: Instalando dependencias') {
@@ -59,6 +68,8 @@ node() {
 
         }
 
+        */
+
 /*
         stage('Node: Instalando dependencias') {
             npm = tool 'npm'
@@ -79,6 +90,8 @@ node() {
              sh "cd appserver/application && /opt/bitnami/gradle/gradle-4.0.2/bin/gradle test"
         }
 */
+
+        /*
         stage ('Despliegue: DB Init') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
@@ -103,7 +116,7 @@ node() {
                 sh "until [ \$(docker logs ${webHostname} --tail 50 2>&1 | grep 'Server startup' | wc -l) -gt 0 ]; do sleep 10; done"
             }
         }
-
+        */
         /*
         stage ('Pruebas Integración: Selenium') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
