@@ -85,7 +85,7 @@ node() {
 
         stage ('Pruebas Integración: Selenium') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
-                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine=' -Durl=http://catalogador-jenkins.ga:9999/' clean test"
+                sh "cd appserver/application/integration/seleniumTest && mvn -DargLine=' -Durl=http://catalogador-jenkins.ga:9999' clean test"
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
