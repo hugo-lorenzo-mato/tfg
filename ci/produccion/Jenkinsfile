@@ -37,19 +37,6 @@ node() {
             checkout scm
         }
 
-
-        stage('Pruebas desde jenkins'){
-            env.NODEJS_HOME = "${tool 'nodeTFG'}"
-            env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-            sh 'npm --version'
-            sh 'node --version'
-            //env.GRADLE_HOME = "${tool 'gradleTFG'}"
-            //env.PATH="${env.GRADLE_HOME}/bin:${env.PATH}"
-            //sh 'gradle -v'
-        }
-
-
-
         stage('Node: Instalando dependencias') {
             env.NODEJS_HOME = "${tool 'nodeTFG'}"
             env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
@@ -70,8 +57,6 @@ node() {
             }
 
         }
-
-
 
         stage ('Despliegue: DB Init') {
 
@@ -98,7 +83,6 @@ node() {
             }
         }
 
-        /*
         stage ('Pruebas Integración: Selenium') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                 sh "cd appserver/application/integration/seleniumTest && mvn -DargLine=' -Durl=http://${webHostname}:8080' clean test"
@@ -132,14 +116,10 @@ node() {
             sh "git push --tags"
         }
 
-        */
-
         stage ('Pruebas Aceptación: Decisión') {
             //input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
             input "Despliegue en la URL: http://catalogador-jenkins.ga:9999"
         }
-
-
 
     } finally {
         web?.stop()
