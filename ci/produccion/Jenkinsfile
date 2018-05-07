@@ -7,8 +7,8 @@
 
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6.11.1'
-def gradleImage = 'frekele/gradle:4.2.1-jdk8'
-//def gradleImage = 'frekele/gradle:4.0.2-jdk8'
+//def gradleImage = 'frekele/gradle:4.2.1-jdk8'
+def gradleImage = 'frekele/gradle:4.0.2-jdk8'
 //def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def mavenChromeImage = 'skydever/maven-chrome-certs:latest'
 def flywayImage = 'boxfuse/flyway:5'
@@ -40,8 +40,7 @@ node() {
         docker.image(nodeImage).inside("-u 0:0") {
 
             stage('Node: Instalando dependencias') {
-                //sh "cd appserver/application && npm -v && npm install angular@1.6.5 && node -v && npm install"
-                sh "cd appserver/application && npm -v && npm install"
+                sh "cd appserver/application && npm -v && npm install angular@1.6.5 && node -v && npm install"
             }
             stage('Node: Empaquetado web') {
                 sh "cd appserver/application && pwd && npm run build"
@@ -112,7 +111,7 @@ node() {
             }
             junit 'appserver/application/integration/seleniumTest/target/surefire-reports/*.xml'
         }
-        */
+
 
         docker.image(gradleImage2).inside("--network public -u 0:0") {
             stage('Sonarqube: control de Calidad de Código') {
@@ -139,8 +138,11 @@ node() {
             sh "git push --tags"
         }
 
+        */
+
         stage ('Pruebas Aceptación: Decisión') {
-            input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
+            //input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
+            input "Despliegue en la URL: http://catalogador-jenkins.ga:9999"
         }
 
 
