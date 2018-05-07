@@ -53,7 +53,7 @@ node() {
         stage('Node: Instalando dependencias') {
             env.NODEJS_HOME = "${tool 'nodeTFG'}"
             env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-            sh "cd appserver/application && npm -v && npm install angular@1.6.5 && node -v && npm install"
+            sh "cd appserver/application && npm -v && whoami && node -v && npm install"
         }
         stage('Node: Empaquetado web') {
             sh "cd appserver/application && pwd && npm run build"
