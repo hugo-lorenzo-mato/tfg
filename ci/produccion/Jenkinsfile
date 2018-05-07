@@ -157,24 +157,3 @@ node() {
 // Para lanzar traefik
 // sudo docker run -d -p 9090:8080 -p 8888:8888 --network public --name traefik -v $PWD/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik
 
-
-/*
-
-
-Hello, everyone:
-
-I have bitnami jenkins released in an ec2 instance of AWS. On the same machine I am launching my pipeline in which I use docker for several processes, one of them launching a database and a tomcat for a.war application. The fact is that I want to be able to access it from a subdomain or another domain (the application I launch in that docker container to be able to observe the changes).
-
-For this I am using traefik and I can see all the containers running within the same EC2 network. I can also redirect it to a certain url. What I don't know is how to create a new subdomain to make this work. Traefic launched it with the following command (so you can see how I map the ports):
-
-`sudo docker run -d -p 9090:8080 -p 8888:80 --network public --name traefik -v $PWD/traefik.toml:/etc/traefik/traefik.toml -v /var/run/docker.sock:/var/run/docker.sock traefik`
-
-The traefic configuration file is the following in pastebin:[link to configuration file in pastebin](https://pastebin.com/wSzSHxDU)
-
-From what I have seen, the bitnami application uses tomcat, correct me if not. I have the domain in freenom, since it is a test that I am doing.
-
-It would be worthwhile to create a subdomain, as well as an extension: http://midominio.ga/test
-
-Thank you very much, any help is welcome.
-
- */
