@@ -77,10 +77,11 @@ public class LoginTest {
         driver.findElement(By.id("password")).sendKeys("uggo1802Z./");
         driver.findElement(By.id("rememberMe")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        WebDriverWait wait2 = new WebDriverWait(driver, 4000);
+        /*WebDriverWait wait2 = new WebDriverWait(driver, 4000);
         wait2.until(ExpectedConditions.visibilityOfElementLocated((By.linkText("Conta"))));
         driver.findElement(By.linkText("Conta")).click();
         driver.findElement(By.linkText("Sair")).click();
+        */
         driver.quit();
     }
 }
