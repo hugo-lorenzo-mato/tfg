@@ -7,8 +7,8 @@
 
 def appName = 'catalogador-tfg'
 def nodeImage = 'node:6.11.1'
-//def gradleImage = 'frekele/gradle:4.2.1-jdk8'
-def gradleImage = 'frekele/gradle:4.0.2-jdk8'
+def gradleImage = 'frekele/gradle:4.2.1-jdk8'
+//def gradleImage = 'frekele/gradle:4.0.2-jdk8'
 //def mavenChromeImage = 'markhobson/maven-chrome:latest'
 def mavenChromeImage = 'skydever/maven-chrome-certs:latest'
 def flywayImage = 'boxfuse/flyway:5'
@@ -90,14 +90,12 @@ node() {
 
         }
 
-
         stage ('Despliegue: App') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
             def webJavaOpts = "-Dspring.datasource.url=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
                     "-Dspring.datasource.username=${dbUser} " +
                     "-Dspring.datasource.password=${dbPassword} "
             webHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-app"
-            //def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}'"
             def proxyOpts = "-l 'traefik.frontend.rule=Host:${testingDomainName};PathPrefixStrip:/${webProxyPrefixPath}' " +
                     "-l 'traefik.port=9090'"
             web = webImage.run("-p 9999:8080 -p 9898:80 --network public --link ${dbHostname} --name ${webHostname} -e JAVA_OPTS='${webJavaOpts}' ${proxyOpts}")
