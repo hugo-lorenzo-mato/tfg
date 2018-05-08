@@ -57,7 +57,7 @@ node() {
 
         }
 
-        stage ('Despliegue: DB Init') {
+        stage ('Postgres: despliegue inicial de la base de datos') {
 
             def dbImage = docker.build("catalogador/catalogador-tfg-db:${BRANCH_NAME}","--label jenkins ./database")
             dbHostname = "${BRANCH_NAME}-${BUILD_NUMBER}-db"
@@ -68,7 +68,7 @@ node() {
 
         }
 
-        stage ('Despliegue: App') {
+        stage ('Tomcat: despliegue de la aplicación') {
             def webImage = docker.build("catalogador/catalogador-tfg-app:${BRANCH_NAME}","--label jenkins ./appserver")
             def webJavaOpts = "-Dspring.datasource.url=jdbc:postgresql://${dbHostname}:5432/${dbName} " +
                     "-Dspring.datasource.username=${dbUser} " +
@@ -82,7 +82,7 @@ node() {
             }
         }
 
-        stage ('Pruebas Integración: Selenium') {
+        stage ('Selenium: realización test funcionales') {
             docker.image(mavenChromeImage).inside("--network public -u 0:0 --link ${webHostname}") {
                 sh "cd appserver/application/integration/seleniumTest && mvn -DargLine=' -Durl=http://catalogador-jenkins.ga:9999' clean test"
             }
@@ -104,7 +104,7 @@ node() {
             }
         }
 
-        stage ('Git: Update Stable Tag') {
+        stage ('Git: etiquetado nueva versión stable') {
             VERSION = sh (
                     script: "echo \$(date +%Y%m%d%H%M)-\$(git rev-parse --short HEAD)",
                     returnStdout: true
@@ -115,9 +115,9 @@ node() {
             sh "git push --tags"
         }
 
-        stage ('Pruebas Aceptación: Decisión') {
+        stage ('Prueba de Aceptación: Decisión final') {
             //input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
-            input "aDespliegue en la URL: http://catalogador-jenkins.ga:9999"
+            input "Puede ver el resultado desplegado en la URL:  <a href=\"http://catalogador-jenkins.ga:9999\">ver aquí</a> "
         }
 
     } finally {
