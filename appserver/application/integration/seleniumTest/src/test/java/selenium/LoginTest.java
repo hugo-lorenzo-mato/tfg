@@ -54,10 +54,10 @@ public class LoginTest {
         options.addArguments("window-size=1200x600");
         WebDriver driver = new ChromeDriver(options);
         //Ejecutamos el test
-        String urlCompleta = url + "/login";
-        System.out.println(urlCompleta);
-        driver.get(urlCompleta);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //String urlCompleta = url + "/login";
+        //System.out.println(urlCompleta);
+        driver.get(url);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         // Realizo una captura de pantalla para ver en modo no gráfico lo que obtenemos
         /*
         File scrFile = ((TakesScreenshot) driver)
