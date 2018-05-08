@@ -117,7 +117,7 @@ node() {
 
         stage ('Prueba de Aceptación: Decisión final') {
             //input "Despliegue en la URL: http://${testingDomainName}/${webProxyPrefixPath}"
-            input "Puede ver el resultado desplegado en la URL:  <a href=\"http://catalogador-jenkins.ga:9999\">ver aquí</a> "
+            input "Puede ver el resultado desplegado en la URL:  <a href='http://catalogador-jenkins.ga:9999'>ver aquí</a> "
         }
 
     } finally {
