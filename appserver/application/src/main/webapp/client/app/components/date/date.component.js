@@ -1,8 +1,5 @@
 (function () {
     'use strict';
-
-    //
-
     var date = {
         template: '{{ctrl.result | date:ctrl.format}}',
         bindings: {
@@ -25,14 +22,12 @@
                     }
                 }
             }
-
             function init() {
                 // Si recibimos la fecha del servidor, convertimos segundos a milisegundos
                 if (angular.isNumber(vm.model)) {
                     vm.result = vm.model * 1000;
                 }
             }
-
             $scope.$watch(function () {
                 return vm.model;
             }, function () {
@@ -41,9 +36,7 @@
         },
         controllerAs: 'ctrl'
     };
-
     angular
         .module('app')
         .component('date', date);
-
 })();

@@ -420,11 +420,9 @@ $brand-primary: #2196f3;
 
     }
 
-
     .form-group:nth-child(1) {
         margin-top: 15px;
     }
-
 
     .admin .ilimitados {
         margin-top: 0px;
@@ -463,7 +461,111 @@ $brand-primary: #2196f3;
         margin-top: 16px;
     }
 
-    @media (min-width: 600px) {
+    .crear {
+        margin-top: 10px;
+    }
+
+    #botonbusqueda {
+        float: right;
+        margin-top: 0px;
+        margin-bottom: -34px;
+        margin-right: 10px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .listarefs {
+            margin-top: 100px;
+        }
+
+        .botonagregar {
+            display: grid;
+            margin-top: 0px;
+            margin-left: -20%;
+            float: right;
+        }
+
+        .botonborrar {
+            margin-right: -20px;
+        }
+
+        .botonagregar2 {
+            display: grid;
+            margin-top: 0px;
+            margin-left: -23%;
+            float: left;
+        }
+
+        .botonborrar2 {
+            margin-right: 0px;
+            margin-top: 27px;
+        }
+
+        .scriptagente {
+            max-width: 85%;
+            margin: 0 auto 0 auto;
+        }
+
+        .scriptagentelibro {
+            max-width: 95%;
+            margin: 0 auto 0 auto;
+        }
+
+        .scriptagentelibro {
+            max-width: 95%;
+            margin: 0 auto 0 auto;
+        }
+
+        .botonagregar3 {
+            display: grid;
+            margin-top: 0px;
+            margin-left: -15px;
+            float: left;
+        }
+
+        .botonborrar3 {
+            margin-top: 27px;
+        }
+
+        #cabeceracorrespondencia {
+            margin-top: 80px;
+        }
+
+        #avisoformularios {
+            margin-top: -93px;
+            max-width: 95%;
+            margin: 0 auto 0 auto;
+        }
+
+        .admin #crear {
+            margin-right: 0px;
+            margin-top: 30px;
+        }
+
+        #botonbusqueda {
+            float: right;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 13px;
+        }
+
+        .marcosformularios {
+            border-bottom: 3px solid #369;
+            margin-bottom: 30px;
+
+        }
+
+    }
+
+    #crear {
+        margin-right: 0px;
+    }
+
+    #formulariosmarco {
+        max-width: 90%;
+        margin: 0 auto 0 auto
+    }
+
+    @media (min-width: 1001px) {
 
         #filtrador {
             display: inline-flex;
@@ -499,142 +601,51 @@ $brand-primary: #2196f3;
             margin-top: 0px;
         }
 
-
         .marcosformularios {
             border: 3px outset #369;
             margin-bottom: 100px;
 
         }
 
-        .interiormarcos{
+        .interiormarcos {
             max-width: 90%;
             margin: 0 auto 0 auto;
         }
 
     }
 
-    #filtrador {
+    @media (min-width: 761px) and (max-width: 1000px) {
 
-    }
-
-    #filtrador2 {
-
-    }
-
-    #filtradortag {
-
-    }
-
-    #filtrador2tag {
-
-    }
-
-    .crear {
-        margin-top: 10px;
-    }
-
-
-    #botonbusqueda{
-        float: right;
-        margin-top: 0px;
-        margin-bottom: -34px;
-        margin-right: 10px;
-    }
-
-    @media only screen and (max-width: 600px){
-        .listarefs {
-            margin-top: 100px;
-        }
-
-        .botonagregar {
-            display: grid;
+        #filtrador {
+            display: inline-block;
+            max-width: 98%;
+            width: 100%;
+            margin-left: 12px;
+            margin-right: 12px;
             margin-top: 0px;
-            margin-left: -20%;
-            float: right;
         }
 
-        .botonborrar {
-            margin-right: -20px;
-        }
-
-
-        .botonagregar2 {
-            display: grid;
+        #filtrador2 {
+            display: inline-block;
+            max-width: 98%;
+            width: 100%;
+            margin-left: 12px;
+            margin-right: 12px;
             margin-top: 0px;
-            margin-left: -23%;
-            float: left;
         }
 
-        .botonborrar2 {
-            margin-right: 0px;
-            margin-top: 27px;
+        #filtradortag {
+            margin-left: 0px;
+            margin-top: 18px;
+            width: 100%;
         }
 
-        .scriptagente {
-            max-width: 85%;
-            margin: 0 auto 0 auto;
+        #filtrador2tag {
+            margin-left: 0px;
+            margin-top: 18px;
+            width: 100%;
         }
 
-        .scriptagentelibro {
-            max-width: 95%;
-            margin: 0 auto 0 auto;
-        }
-
-        .scriptagentelibro {
-            max-width: 95%;
-            margin: 0 auto 0 auto;
-        }
-
-
-        .botonagregar3 {
-            display: grid;
-            margin-top: 0px;
-            margin-left: -15px;
-            float: left;
-        }
-
-        .botonborrar3 {
-            margin-top: 27px;
-        }
-
-        #cabeceracorrespondencia{
-            margin-top: 80px;
-        }
-
-        #avisoformularios{
-            margin-top: -93px;
-            max-width: 95%;
-            margin: 0 auto 0 auto;
-        }
-
-        .admin #crear {
-            margin-right: 0px;
-            margin-top: 30px;
-        }
-
-        #botonbusqueda{
-            float: right;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            margin-right: 13px;
-        }
-
-        .marcosformularios {
-            border-bottom: 3px solid #369;
-            margin-bottom: 30px;
-
-        }
 
     }
-
-    #crear{
-        margin-right: 0px;
-    }
-
-    #formulariosmarco{
-        max-width: 90%;
-        margin:0 auto 0 auto
-    }
-
-
 }

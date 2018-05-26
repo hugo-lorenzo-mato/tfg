@@ -86,7 +86,7 @@ Created by hlorenzo on 05/08/2017.
             <!-- Muestro si está concluida la producción -->
             <td data-title="'admin.prototexto.form.concluido' | translate" sortable="'concluido'"  class="col-md-1 text-center">
 
-                <a title="{{'admin.form.button.edit' | translate}}">
+                <a ui-sref="admin/prototexto/edit({id: element.id})" title="{{'admin.form.button.edit' | translate}}">
 
                     <span ng-if= "element.concluido === true" class="glyphicon glyphicon-check"></span>
 
@@ -98,8 +98,9 @@ Created by hlorenzo on 05/08/2017.
             <!-- Muestro los botones para editar / eliminar -->
             <td class="col-md-1 text-center button-icons">
 
-                <a class="button glyphicon glyphicon-pencil"
+                <a ui-sref="admin/prototexto/edit({id: element.id})" class="button glyphicon glyphicon-pencil"
                    title="{{'admin.form.button.edit' | translate}}"></a>
+
 
                 <a ng-click="ctrl.showRemoveConfirmation(element.id)" class="button glyphicon glyphicon-remove"
                    title="{{'admin.form.button.delete' | translate}}"></a>

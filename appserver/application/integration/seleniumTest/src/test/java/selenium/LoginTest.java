@@ -28,25 +28,6 @@ public class LoginTest {
         // Recogemos la URL que pasamos por comando
         url = System.getProperty("url").toString();
         System.out.println(url);
-        /* Lo dejo comentado por si interesa leerlo desde un archivo de configuracion
-        // Leemos la url del archivo de configuración
-        try {
-            input = new FileInputStream("urlTestFuncionales.properties");
-            prop.load(input);
-            url = (prop.getProperty("url"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        */
-
         //Configuramos el entorno
         System.setProperty("webdriver.chrome.driver","chromedriver");
         ChromeOptions options = new ChromeOptions();
@@ -77,11 +58,6 @@ public class LoginTest {
         driver.findElement(By.id("password")).sendKeys("uggo1802Z./");
         driver.findElement(By.id("rememberMe")).click();
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        /*WebDriverWait wait2 = new WebDriverWait(driver, 4000);
-        wait2.until(ExpectedConditions.visibilityOfElementLocated((By.linkText("Conta"))));
-        driver.findElement(By.linkText("Conta")).click();
-        driver.findElement(By.linkText("Sair")).click();
-        */
         driver.quit();
     }
 }

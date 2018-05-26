@@ -1,6 +1,6 @@
 {
   "authors": [
-    "Carlos Rodríguez Corral <crodriguez@enxenio.es>"
+    "Hugo Lorenzo Mato <hlorenzo@enxenio.es>"
   ],
   "dependencies": {
     "angular": "1.6.5",

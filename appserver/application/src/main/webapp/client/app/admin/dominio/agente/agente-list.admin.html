@@ -18,15 +18,12 @@ Created by hlorenzo on 05/09/2017.
 
         <tr ng-repeat="element in $data track by element.id" class="animate">
 
-            <!--
-              Muestro el nombre de la agente
-            -->
+            <!-- Muestro el nombre del agente -->
             <td data-title="'admin.agente.form.nombre' | translate" sortable="'nombre'" class="col-md-5">
                 <a ui-sref="admin/agente/edit({id: element.id})" title="{{'admin.form.button.edit' | translate}}">
                     {{element.nombre}}
                 </a>
             </td>
-
 
             <!-- Muestro el nombre de la agente -->
             <td data-title="'admin.agente.form.apellidos' | translate" sortable="'apellidos'" class="col-md-5">

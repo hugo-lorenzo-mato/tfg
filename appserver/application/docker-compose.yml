@@ -1,38 +1,46 @@
-version: "3.3"
-
+version: "3"
 services:
-
-  mytomcat:
-    build:
-      context: ./appserver
-    image: webserver
-    container_name: webserver
-    hostname: webserver
-    ports:
-      - "8090:8080"
-      - "8000:8000"
-    links:
-      - mypostgres:postgresdb
-    networks:
-      - main
-
-  mypostgres:
-    build:
-      context: ./database
-    image: postgresdb
-    container_name: postgresdb
-    hostname: postgresdb
+  postgres:
+    image: uggo/catalogador-postgres:initial
     ports:
       - "5432:5432"
     volumes:
-      - type: volume
-        source: psql_data
-        target: /var/lib/postgresql/data
+      - "/tmp:/tmp"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
     networks:
-      - main
-
-volumes:
-  psql_data:
-
+      - webnet
+  web:
+    # replace username/repo:tag with your name and image details
+    image: uggo/catalogador-tomcat:part2
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+    environment:
+      #- "JAVA_OPTS: '-Dspring.datasource.url=jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/ggal1701 -Dspring.datasource.username=postgres -Dspring.datasource.password=postgres'"
+      - JDBC_URL=jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432:5432/ggal1701
+      - DATABASE_USERNAME= postgres
+      - DATABASE_PASSWORD=postgres
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
 networks:
-  main:
+  webnet:

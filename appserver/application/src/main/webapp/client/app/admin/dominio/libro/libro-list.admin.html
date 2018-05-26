@@ -88,7 +88,7 @@ Created by hlorenzo on 05/08/2017.
             </td>
 
             <td data-title="'admin.libro.form.revisado' | translate" sortable="'revisado'"  class="col-md-1 text-center">
-                <a title="{{'admin.form.button.edit' | translate}}">
+                <a ui-sref="admin/libro/edit({id: element.id})"  title="{{'admin.form.button.edit' | translate}}">
 
                     <span ng-if= "element.revisado === true" class="glyphicon glyphicon-eye-open"></span>
 
@@ -98,7 +98,7 @@ Created by hlorenzo on 05/08/2017.
             </td>
 
             <td data-title="'admin.libro.form.concluido' | translate" sortable="'concluido'"  class="col-md-1 text-center">
-                <a title="{{'admin.form.button.edit' | translate}}">
+                <a ui-sref="admin/libro/edit({id: element.id})" title="{{'admin.form.button.edit' | translate}}">
 
                     <span ng-if= "element.concluido === true" class="glyphicon glyphicon-check"></span>
 

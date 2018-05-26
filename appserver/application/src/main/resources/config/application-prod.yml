@@ -16,9 +16,9 @@ spring:
     datasource:
         dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
          # Primera opción sin incluir ningún parámetro y usando JAVA_OPTS
-#        url: jdbc:postgresql://psw:5432/ggal1701
-#        username: postgres
-#        password: postgres
+        url: jdbc:postgresql://ggal1701.c0gqvbyobsaf.us-east-2.rds.amazonaws.com:5432/ggal1701
+        username: postgres
+        password: postgres
 #        Segunda opción con variables de entorno:
 #        url: ${JDBC_URL}
 #        username: ${DATABASE_USERNAME}

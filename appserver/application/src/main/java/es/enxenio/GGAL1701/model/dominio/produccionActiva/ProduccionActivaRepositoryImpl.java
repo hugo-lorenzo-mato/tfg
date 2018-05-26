@@ -25,13 +25,6 @@ public class ProduccionActivaRepositoryImpl implements ProduccionActivaRepositor
         String where = " WHERE 1=1";
         String order = " ORDER BY " + filter.getSortToString("id", "a");
 
-        // Joins
-
-        //if (StringUtils.isNotEmpty(filter.getCiudad())) from += " LEFT JOIN a.ciudades c";
-
-        // Where
-
-
         if (StringUtils.isNotEmpty(filter.getTitulo()) || StringUtils.isNotEmpty(filter.getQuery()))
             where += " AND " + compararParamConRegExp("a.titulo", "titulo");
 
@@ -109,10 +102,6 @@ public class ProduccionActivaRepositoryImpl implements ProduccionActivaRepositor
 
         if (StringUtils.isNotEmpty(filter.getNotas()))
             q.setParameter("notas", convertirQueryARegExp(filter.getNotas()));
-
-        // Entidades
-        //if (filter.getPais() != null) q.setParameter("paisId", filter.getPais().getId());
-        //if (filter.getCiudad() != null) q.setParameter("ciudad", convertirQueryARegExp(filter.getCiudad()));
 
         // Fechas
         if (filter.getInicio() != null) q.setParameter("inicio", filter.getInicio());
